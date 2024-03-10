@@ -1,0 +1,34 @@
+[
+    {
+        "code": "112543",
+        "name": "ali majidi",
+        "status": "single",
+        "jobtitle": "technician",
+        "unit": "technical",
+        "location": "Ahvaz"
+    },
+    {
+        "code": "13543",
+        "name": "saeed mohammadi",
+        "status": "married",
+        "jobtitle": "technician",
+        "unit": "technical",
+        "location": "Ahvaz"
+    },
+    {
+        "code": "412543",
+        "name": "ali majidi",
+        "status": "single",
+        "jobtitle": "technician",
+        "unit": "technical",
+        "location": "Ahvaz"
+    },
+    {
+        "code": "913543",
+        "name": "saeed mohammadi",
+        "status": "married",
+        "jobtitle": "technician",
+        "unit": "technical",
+        "location": "Ahvaz"
+    }
+]

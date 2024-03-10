@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <form action="#" method="post">
+    <div class="cal_box">
+      <div class="part1">
+        <div class="bill_input">
+          <label for="custom_tip">Select Tip %</label>
+          <div class="tip_btn_group">
+            <input type="checkbox" name="tip" id="tip5" value="5" />
+            <label class="btn_box" for="tip5">5%</label>
+            <input type="checkbox" name="tip" id="tip10" value="10" />
+            <label class="btn_box" for="tip10">10%</label>
+            <input type="checkbox" name="tip" id="tip15" value="15" />
+            <label class="btn_box" for="tip15">15%</label>
+            <input type="checkbox" name="tip" id="tip25" value="25" />
+            <label class="btn_box" for="tip25">25%</label>
+            <input type="checkbox" name="tip" id="tip50" value="50" />
+            <label class="btn_box" for="tip50">50%</label>
+            <input type="text" name="custom_tip" id="tip" value="" placeholder="Custom" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+</html>
+<script>
+$(function() {
+  $(".tip_btn_group input[type='checkbox']").change(function(event) {
+    var $self = $(this);
+    var tip;
+    $(".tip_btn_group input[type='checkbox']").not($self).prop("checked", false);
+    if ($(".tip_btn_group input[type='checkbox']:checked").length == 0) {
+      tip = 0;
+    } else {
+      tip = parseInt($self.val());
+    }
+    console.log(tip);
+  });
+});
+</script>
