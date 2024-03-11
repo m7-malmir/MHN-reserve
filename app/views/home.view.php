@@ -37,10 +37,7 @@
           </tr>
         </thead>
        
-        <tbody id="result">
-         
-           
-          
+        <tbody id="result"> 
         </tbody>
       </table>
 
@@ -120,8 +117,6 @@
 </html>
 <script>
 $(document).ready(function(){
-
-
   $(function() {
   $(".form-check input[type='checkbox']").change(function(event) {
     var $self = $(this);
