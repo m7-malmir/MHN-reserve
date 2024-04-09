@@ -22,6 +22,11 @@ trait Model
         return $this->query($query,$data);
 
     }
+    public function select($data)
+    {
+        $query="select * from [Faragostar].[View_Unifier]";
+        return $this->query($query,$data);  
+    }
     public function first($data)
     {
     }
