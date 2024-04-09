@@ -17,9 +17,9 @@
 
    <body>
         <?php
-          $serverName = "192.168.27.217";
-          $uid = "Faragostar";
-          $pwd = "Ff12345678";
+          $serverName = "";
+          $uid = "";
+          $pwd = "";
           $databaseName = "Reports";
           $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
           $conn = sqlsrv_connect($serverName, $connectionInfo);
