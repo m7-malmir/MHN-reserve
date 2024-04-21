@@ -1,37 +1,39 @@
 <?php
-    $serverName = "192.168.27.217";
-    $uid = "Faragostar";
-    $pwd = "Ff12345678";
-    $databaseName = "Reports";
-    $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
-    if ($conn) {
-        //conn ok
-    } else {
-        echo "Connection could not be established.\n";
-        die(print_r(sqlsrv_errors(), true));
-    }
-    $start = 0;
-    $perpage = 12;
-    $records = "SELECT * FROM Faragostar.View_Unifier ";
-    $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
-    $row_count = sqlsrv_num_rows($query);
-    $pages = ceil($row_count / $perpage);
+$serverName = "192.168.27.217";
+$uid = "Faragostar";
+$pwd = "Ff12345678";
+$databaseName = "Reports";
+$connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+if ($conn) {
+    //conn ok
+} else {
+    echo "Connection could not be established.\n";
+    die(print_r(sqlsrv_errors(), true));
+}
+$start = 0;
+$perpage = 12;
+$records = "SELECT * FROM Faragostar.View_Unifier ";
+$query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+$row_count = sqlsrv_num_rows($query);
+$pages = ceil($row_count / $perpage);
 
-    if (isset($_GET['page-nr'])) {
-        $page = $_GET['page-nr'] - 1;
-        $start = $page * $perpage;
-    }
-    $sql = " SELECT TOP " . $perpage . "  * FROM Faragostar.View_Unifier";
-    $stmt = sqlsrv_query($conn, $sql);
+if (isset($_GET['page-nr'])) {
+    $page = $_GET['page-nr'] - 1;
+    $start = $page * $perpage;
+}
+$sql = " SELECT TOP " . $perpage . "  * FROM Faragostar.View_Unifier";
+$stmt = sqlsrv_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap Simple Data Table</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -78,14 +80,16 @@
         .search-box {
             position: relative;
             float: right;
+            width: 47%;
         }
 
         .search-box input {
-            height: 34px;
-            border-radius: 20px;
-            padding-left: 35px;
+            height: 45px;
+            border-radius: 10px;
+            padding-right: 50px;
             border-color: #ddd;
             box-shadow: none;
+            direction: rtl;
         }
 
         .search-box input:focus {
@@ -96,8 +100,9 @@
             color: #a0a5b1;
             position: absolute;
             font-size: 19px;
-            top: 8px;
-            left: 10px;
+            top: 14px;
+            right: 10px;
+            object-position: center;
         }
 
         table {
@@ -206,10 +211,36 @@
         .shownum {
             display: block !important;
         }
+
+        .inner-search {
+            box-shadow: inset 0px 1px 11px 0px rgba(0, 0, 0, .24);
+            border: none;
+            border-radius: 5px;
+            height: 2rem;
+            direction: rtl;
+            padding-right: 10px;
+            min-width: 100%;
+
+        }
+
+        input[type=checkbox] {
+            transform: scale(1.5);
+        }
+
+        table th:nth-child(8) {
+            width: 5%;
+        }
     </style>
     <script>
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
+            $("#allbox").click(function() {
+                alert();
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+        });
+        $("#allbox").click(function() {
+            $('input:checkbox').not(this).prop('checked', this.checked);
         });
     </script>
 </head>
@@ -227,15 +258,16 @@ if (isset($_GET['page-nr'])) {
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
-                    <div class="row">
+                    <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
-                            <h2><b>شعبه </b>قم</h2>
-                        </div>
-                        <div class="col-sm-4">
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" placeholder="Search&hellip;">
+                                <input type="text" class="form-control" placeholder="جستجو ...">
                             </div>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <h2><b>شعبه </b>قم</h2>
+
                         </div>
                     </div>
                 </div>
@@ -249,11 +281,26 @@ if (isset($_GET['page-nr'])) {
                             <th>نام و نام خانوادگی فروشنده</th>
                             <th>نام و نام خانوادگی مشتری</th>
                             <th></th>
-                            <th>#</th>
+                            <th>انتخاب همه</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th><input class="inner-search" type="text" placeholder="جستجو ساختار فروش"></th>
+                            <th></th>
+                            <th><input class="inner-search" type="text" placeholder="جستجو فروشنده"></th>
+                            <th><input class="inner-search" type="text" placeholder="جستجو مشتری ..."></th>
+                            <th></th>
+                            <th>
+                                <div class="form-check ">
+                                    <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    </label>
+                                </div>
+                            </th>
+                        </tr>
                         <?php
                         $number = '';
                         if ($stmt > 0) {
