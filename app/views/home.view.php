@@ -18,12 +18,10 @@
       /* background-color: #a5ffff; */
       font-family: 'Yekan';
     }
-
     table {
       font-size: 14px;
       text-align: center;
     }
-
     input[type=text],
     select,
     textarea {
@@ -298,13 +296,10 @@
         </form>
       </div>
     </section><!--row container-fluid-->
-
     <section class="container-fluid">
-
     </section><!--row container-fluid-->
   </main>
 </head>
-
 <body>
   <h1></h1>
 </body>
