@@ -54,7 +54,10 @@ $stmt = sqlsrv_query($conn, $sql);
             font-family: Yekan;
             src: url(./font/Yekan.ttf);
         }
-
+        .container-castum{
+            max-width: 1400px;
+            margin: 0 auto;
+        }
         .table-responsive {
             margin: 30px 0;
         }
@@ -73,7 +76,7 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         .table-title h2 {
-            margin: 8px 0 0;
+            margin: 10px 15px 0px 0px;
             font-size: 22px;
         }
 
@@ -92,9 +95,12 @@ $stmt = sqlsrv_query($conn, $sql);
             direction: rtl;
         }
 
-        .search-box input:focus {
+        /* .search-box input:focus {
             border-color: #3FBAE4;
-        }
+            box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+            -webkit-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+            -moz-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+        } */
 
         .search-box i {
             color: #a0a5b1;
@@ -113,7 +119,9 @@ $stmt = sqlsrv_query($conn, $sql);
         table.table tr td {
             border-color: #e9e9e9;
         }
-
+        table tr:hover{
+            cursor: pointer;
+        }
         table.table-striped tbody tr:nth-of-type(odd) {
             background-color: #fcfcfc;
         }
@@ -222,7 +230,13 @@ $stmt = sqlsrv_query($conn, $sql);
             min-width: 100%;
 
         }
-
+        .inner-search:focus {
+            outline-width: 0;
+            box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
+            -webkit-box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
+            -moz-box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
+            border: none;
+        }
         input[type=checkbox] {
             transform: scale(1.5);
         }
@@ -252,8 +266,8 @@ if (isset($_GET['page-nr'])) {
 ?>
 
 <body id="<?php echo $id; ?>">
-    <div class="container">
-        <div class="table-responsive">
+    <div class="container-castum">
+        <div class="table-responsive mt-5">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
@@ -264,7 +278,7 @@ if (isset($_GET['page-nr'])) {
                             </div>
                         </div>
                         <div class="col-sm-4 text-right">
-                            <h2><b>شعبه </b>قم</h2>
+                            <h2><b>شعبه :  </b>قم</h2>
 
                         </div>
                     </div>
@@ -281,22 +295,22 @@ if (isset($_GET['page-nr'])) {
                             <th>#</th>
                             <th>@</th>
                         </tr>
-                    
-                            <th></th>
-                            <th></th>
-                            <th><input class="inner-search" type="text" placeholder="جستجو ساختار فروش"></th>
-                            <th></th>
-                            <th><input class="inner-search" type="text" placeholder="جستجو فروشنده"></th>
-                            <th><input class="inner-search" type="text" placeholder="جستجو مشتری ..."></th>
-                            <th></th>
-                            <th>
-                                <div class="form-check ">
-                                    <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    </label>
-                                </div>
-                            </th>
-                        
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><input class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
+                                <td></td>
+                                <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
+                                <td><input class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                                <td></td>
+                                <td>
+                                    <div class="form-check ">
+                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
                     </thead>
                     <tbody>
                      
@@ -329,7 +343,8 @@ if (isset($_GET['page-nr'])) {
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                    <div class="hint-text">نمایش <b><?php echo $page+1 ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
                     <ul class="pagination">
                         <li class="page-item disabled">
@@ -398,8 +413,7 @@ if (isset($_GET['page-nr'])) {
 </html>
 <script>
     $(document).ready(function(){
-        $('table tbody tr').not(':first').click(function(event){
-            //alert();
+        $('table tbody tr').click(function(event){
             if (event.target.type !== 'checkbox') {
                 $(':checkbox', this).trigger('click');
             }
