@@ -233,15 +233,13 @@ $stmt = sqlsrv_query($conn, $sql);
     </style>
     <script>
         $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
+           // $('[data-toggle="tooltip"]').tooltip();
             $("#allbox").click(function() {
-                alert();
+                //alert();
                 $('input:checkbox').not(this).prop('checked', this.checked);
             });
         });
-        $("#allbox").click(function() {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
+       
     </script>
 </head>
 <?php
@@ -280,12 +278,10 @@ if (isset($_GET['page-nr'])) {
                             <th>صنف مشتری</th>
                             <th>نام و نام خانوادگی فروشنده</th>
                             <th>نام و نام خانوادگی مشتری</th>
-                            <th></th>
-                            <th>انتخاب همه</th>
+                            <th>#</th>
+                            <th>@</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+                    
                             <th></th>
                             <th></th>
                             <th><input class="inner-search" type="text" placeholder="جستجو ساختار فروش"></th>
@@ -300,7 +296,10 @@ if (isset($_GET['page-nr'])) {
                                     </label>
                                 </div>
                             </th>
-                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                     
                         <?php
                         $number = '';
                         if ($stmt > 0) {
@@ -366,7 +365,7 @@ if (isset($_GET['page-nr'])) {
 
                             <?php
                             for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter + 1; ?></a>
+                                <a class="hide page-link" id="<?php echo $counter+1 ?>" href="?page-nr=<?php echo $counter+1 ?>"> <?php echo $counter + 1; ?></a>
                             <?php
                             }
                             ?>
@@ -398,8 +397,9 @@ if (isset($_GET['page-nr'])) {
 
 </html>
 <script>
-    $(document).ready(function() {
-        $('table tr').click(function(event) {
+    $(document).ready(function(){
+        $('table tbody tr').not(':first').click(function(event){
+            //alert();
             if (event.target.type !== 'checkbox') {
                 $(':checkbox', this).trigger('click');
             }
