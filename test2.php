@@ -59,7 +59,7 @@ $stmt = sqlsrv_query($conn, $sql);
             margin: 0 auto;
         }
         .table-responsive {
-            margin: 30px 0;
+            margin: 10px 0;
         }
 
         .table-wrapper {
@@ -244,6 +244,54 @@ $stmt = sqlsrv_query($conn, $sql);
         table th:nth-child(8) {
             width: 5%;
         }
+        .filterIcon {
+            height: 16px;
+            width: 16px;
+        }
+
+        .modalFilter {
+            display: none;
+            height: auto;
+            background: #FFF;
+            border: solid 1px #ccc;
+            padding: 8px;
+            position: absolute;
+            z-index: 1001;
+        }
+
+        .modalFilter .modal-content {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .modalFilter .modal-footer {
+            background: #FFF;
+            height: 35px;
+            padding-top: 6px;
+        }
+
+        .modalFilter .btn {
+            padding: 0 1em;
+            height: 28px;
+            line-height: 28px;
+            text-transform: none;
+        }
+
+        #mask {
+            display: none;
+            background: transparent;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            opacity: 1000;
+        }
+        .col-md-3{
+            text-align: right;
+            margin-top: 1rem;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -267,7 +315,7 @@ if (isset($_GET['page-nr'])) {
 
 <body id="<?php echo $id; ?>">
     <div class="container-castum">
-        <div class="table-responsive mt-5">
+        <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
@@ -279,7 +327,6 @@ if (isset($_GET['page-nr'])) {
                         </div>
                         <div class="col-sm-4 text-right">
                             <h2><b>شعبه :  </b>قم</h2>
-
                         </div>
                     </div>
                 </div>
@@ -298,7 +345,7 @@ if (isset($_GET['page-nr'])) {
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><input class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
+                                <td><input name="" id="" class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
                                 <td></td>
                                 <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
                                 <td><input class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
@@ -313,18 +360,16 @@ if (isset($_GET['page-nr'])) {
                             </tr>
                     </thead>
                     <tbody>
-                     
                         <?php
                         $number = '';
                         if ($stmt > 0) {
                             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_BOTH)) {
                                 $number++;
-
-                                echo '   <tr><td>' . $row['سال / ماه'] . ' </td>';
-                                echo '<td>' . $row['سازمان فروش'] . ' </td>';
-                                echo '<td>' . $row['ساختار فروش'] . ' </td>';
+                                echo '<tr><td>' . $row['سال / ماه'] . '</td>';
+                                echo '<td>' . $row['سازمان فروش'] . '</td>';
+                                echo '<td>' . $row['ساختار فروش'] . '</td>';
                                 echo '<td>' . $row['صنف مشتری'] . ' </td>';
-                                echo '<td>' . $row['نام و نام خانوادگی فروشنده'] . ' </td>';
+                                echo '<td >' . $row['نام و نام خانوادگی فروشنده'] . '</td>';
                                 echo '<td>' . $row['نا و نام خانوادگی مشتری'] . ' </td>';
                                 echo '<td>' . $number . '</td>';
                                 echo '<td><div class="form-check">
@@ -344,13 +389,11 @@ if (isset($_GET['page-nr'])) {
                 </table>
                 <div class="clearfix">
                     <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                    <div class="hint-text">نمایش <b><?php echo $page+1 ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+                    <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
                     <ul class="pagination">
                         <li class="page-item disabled">
-
                             <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-
                                 <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
                             <?php } else { ?>
                                 <a href="#"><i class="fa fa-angle-double-left"></i></a>
@@ -367,17 +410,14 @@ if (isset($_GET['page-nr'])) {
                             ?>
                         </li>
                         <li id="activ" class="page-item active">
-
                             <?php
                             for ($counter = 1; $counter <= $pages; $counter++) { ?>
                                 <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
                             <?php
                             }
                             ?>
-
                         </li>
                         <li class="next page-item">
-
                             <?php
                             for ($counter = 1; $counter <= $pages; $counter++) { ?>
                                 <a class="hide page-link" id="<?php echo $counter+1 ?>" href="?page-nr=<?php echo $counter+1 ?>"> <?php echo $counter + 1; ?></a>
@@ -405,9 +445,54 @@ if (isset($_GET['page-nr'])) {
                         </li>
                     </ul>
                 </div>
+                <form action="" method="post" style="direction: rtl;">
+    <div class="container row mt-2" style="direction: rtl;">
+    <div id="mask"></div>
+    <table id="example" class="bordered material-table centered striped green lighten-1"></table>
+        <div class="mt-5"></div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
+            <input id="search-box" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div style="position:relative;" id="suggesstion-box"></div>
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
+            <input id="search-box2" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div style="position:relative;" id="suggesstion-box2"></div>
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
+            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
+            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
+            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-3">
+            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
+            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="col-md-8">
+        <button type="submit" class="btn btn-success">ذخیره نهایی</button>
+    </form>
             </div>
         </div>
+        <section class="container rtl">
+    </section><!--container-->
+
+        </div>
+    </div><!--row-->
     </div>
+
+
+    <form>
+        <input type="text" id="vehicle" name="vehicle" value="">
+        <div id=""></div>
+      </form>
 </body>
 
 </html>
@@ -432,5 +517,70 @@ if (isset($_GET['page-nr'])) {
         let lin = document.querySelectorAll('li.next a');
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
+
+        $('#search').keyup(function(){  
+               search_table($(this).val());  
+          });  
+          function search_table(value){  
+               $('#employee_table tr').each(function(){  
+                    var found = 'false';  
+                    $(this).each(function(){  
+                         if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                         {  
+                              found = 'true';  
+                         }  
+                    });  
+                    if(found == 'true')  
+                    {  
+                         $(this).show();  
+                    }  
+                    else  
+                    {  
+                         $(this).hide();  
+                    }  
+               });  
+          }  
+
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        /// Live Search ///
+        $("#vehicle").keyup(function () {
+
+            var query = $(this).val();
+            if (query != "") {
+                $.ajax({
+                    url: "./costumer-search.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        query: query
+                    },
+                    success: function (data) {
+
+                        $("#vehicle-output").html(data);
+                        $('#vehicle-output').css('display', 'block');
+
+                        $("#vehicle").focusout(function () {
+                           // $('#vehicle-output').css('display', 'none');
+                        });
+                        $("#vehicle").focusin(function () {
+                            $('#vehicle-output').css('display', 'block');
+                        });
+                    }
+
+                });
+            } else {
+                $("#vehicle-output").html("");
+              //  $('#vehicle-output').css('display', 'none');
+            }
+
+        });
+        /// Click to enter result ///
+        $("#vehicle-output a").on("click", function () {
+            $("#vehicle").val($(this).html());
+        });
     });
 </script>
