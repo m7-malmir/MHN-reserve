@@ -39,6 +39,7 @@ $stmt = sqlsrv_query($conn, $sql);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
@@ -57,9 +58,6 @@ $stmt = sqlsrv_query($conn, $sql);
         .container-castum{
             max-width: 1400px;
             margin: 0 auto;
-        }
-        .table-responsive {
-            margin: 10px 0;
         }
 
         .table-wrapper {
@@ -316,7 +314,7 @@ if (isset($_GET['page-nr'])) {
 <body id="<?php echo $id; ?>">
     <div class="container-castum">
         <div class="table-responsive">
-            <div class="table-wrapper">
+            <div  class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
@@ -345,10 +343,10 @@ if (isset($_GET['page-nr'])) {
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><input name="" id="" class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
+                                <td><input  class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
                                 <td></td>
                                 <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
-                                <td><input class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                                <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
                                 <td></td>
                                 <td>
                                     <div class="form-check ">
@@ -359,28 +357,28 @@ if (isset($_GET['page-nr'])) {
                                 </td>
                             </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="result">
                         <?php
-                        $number = '';
-                        if ($stmt > 0) {
-                            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_BOTH)) {
-                                $number++;
-                                echo '<tr><td>' . $row['سال / ماه'] . '</td>';
-                                echo '<td>' . $row['سازمان فروش'] . '</td>';
-                                echo '<td>' . $row['ساختار فروش'] . '</td>';
-                                echo '<td>' . $row['صنف مشتری'] . ' </td>';
-                                echo '<td >' . $row['نام و نام خانوادگی فروشنده'] . '</td>';
-                                echo '<td>' . $row['نا و نام خانوادگی مشتری'] . ' </td>';
-                                echo '<td>' . $number . '</td>';
-                                echo '<td><div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                              <label class="form-check-label" for="flexCheckDefault">
-                              </label>
-                            </div></td></tr>';
-                            }
-                        } else {
-                            echo 'no data for fetch';
-                        }
+                        // $number = '';
+                        // if ($stmt > 0) {
+                        //     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_BOTH)) {
+                        //         $number++;
+                        //         echo '<tr><td>' . $row['سال / ماه'] . '</td>';
+                        //         echo '<td>' . $row['سازمان فروش'] . '</td>';
+                        //         echo '<td>' . $row['ساختار فروش'] . '</td>';
+                        //         echo '<td>' . $row['صنف مشتری'] . ' </td>';
+                        //         echo '<td >' . $row['نام و نام خانوادگی فروشنده'] . '</td>';
+                        //         echo '<td>' . $row['نا و نام خانوادگی مشتری'] . ' </td>';
+                        //         echo '<td>' . $number . '</td>';
+                        //         echo '<td><div class="form-check">
+                        //       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        //       <label class="form-check-label" for="flexCheckDefault">
+                        //       </label>
+                        //     </div></td></tr>';
+                        //     }
+                        // } else {
+                        //     echo 'no data for fetch';
+                        // }
                         ?>
 
                         <?php sqlsrv_close($conn);
@@ -545,42 +543,35 @@ if (isset($_GET['page-nr'])) {
     });
 </script>
 <script>
-    $(document).ready(function () {
-        /// Live Search ///
-        $("#vehicle").keyup(function () {
-
-            var query = $(this).val();
-            if (query != "") {
-                $.ajax({
-                    url: "./costumer-search.php",
-                    type: "POST",
-                    cache: false,
-                    data: {
-                        query: query
-                    },
-                    success: function (data) {
-
-                        $("#vehicle-output").html(data);
-                        $('#vehicle-output').css('display', 'block');
-
-                        $("#vehicle").focusout(function () {
-                           // $('#vehicle-output').css('display', 'none');
-                        });
-                        $("#vehicle").focusin(function () {
-                            $('#vehicle-output').css('display', 'block');
-                        });
-                    }
-
-                });
-            } else {
-                $("#vehicle-output").html("");
-              //  $('#vehicle-output').css('display', 'none');
-            }
-
-        });
-        /// Click to enter result ///
-        $("#vehicle-output a").on("click", function () {
-            $("#vehicle").val($(this).html());
-        });
+$(document).ready(function(){
+    $("#result").click(function(){
+            alert();
     });
+	load_data();
+	function load_data(query)
+	{
+		$.ajax({
+			url:"fetch.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{
+				$('#result').html(data);
+			}
+		});
+	}
+	
+	$('#search_text').keyup(function(){
+        //alert();
+		var search = $(this).val();
+		if(search != '')
+		{
+			load_data(search);
+		}
+		else
+		{
+			load_data();			
+		}
+	});
+});
 </script>
