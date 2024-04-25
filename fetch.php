@@ -7,7 +7,7 @@ $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", 
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 $start = 0;
 $perpage = 12;
-$records = "SELECT * FROM Faragostar.View_Unifier ";
+$records = "SELECT * FROM Faragostar.View_Unifier WHERE [شعبه]='قم'";
 $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
 $row_count = sqlsrv_num_rows($query);
 $pages = ceil($row_count / $perpage);
@@ -15,10 +15,9 @@ $pages = ceil($row_count / $perpage);
 $output = '';
 if (isset($_POST['query'])) {
     $search = sqlsrv_query($conn, $_POST["query"]);
-    $query = "SELECT TOP 100   شعبه FROM Faragostar.View_Unifier
+    $query = "SELECT TOP 100 شعبه FROM Faragostar.View_Unifier
     WHERE شعبه LIKE '%$search%'";
 } else {
-
     $query = "SELECT TOP " . $perpage . " [سال / ماه],[سازمان فروش],[ساختار فروش],[شعبه],[نام و نام خانوادگی فروشنده],[نا و نام خانوادگی مشتری] FROM Faragostar.View_Unifier";
 }
 $result = sqlsrv_query($conn, $query);
@@ -26,8 +25,7 @@ $number = '';
 if ($result > 0) {
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
         $number++;
-        $output .= '
-			<tr>
+        $output .= '<tr>
             <td>' . $row['سال / ماه'] . '</td>
             <td>' . $row['سازمان فروش'] . '</td>
             <td>' . $row['ساختار فروش'] . '</td>
@@ -40,8 +38,7 @@ if ($result > 0) {
           <label class="form-check-label" for="flexCheckDefault">
           </label>
         </div></td>
-			</tr>
-		';
+			</tr>';
     }
     echo $output;
 } else {
@@ -49,7 +46,6 @@ if ($result > 0) {
 }
 ?>
 <script>
-
 $(document).ready(function(){
         $('table ').find('#result tr').click(function(event){
             //alert();

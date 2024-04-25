@@ -5,6 +5,13 @@ $pwd = "Ff12345678";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+$start = 0;
+$perpage = 12;
+$records = "SELECT * FROM Faragostar.View_Unifier WHERE [شعبه]='قم'";
+$query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+$row_count = sqlsrv_num_rows($query);
+$pages = ceil($row_count / $perpage);
+
 if ($conn) {
     //conn ok
 } else {
@@ -358,22 +365,7 @@ if (isset($_GET['page-nr'])) {
                             </tr>
                     </thead>
                     <tbody id="result">
-                    <!-- <tr>
-                                <td>rrrrrr</td>
-                                <td>fffff</td>
-                                <td>sdfg</td>
-                                <td></td>
-                                <td>sdfg</td>
-                                <td>sdfg</td>
-                                <td>sdfgsdfg</td>
-                                <td>
-                                    <div class="form-check ">
-                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr> -->
+
                         <?php
                         // $number = '';
                         // if ($stmt > 0) {
@@ -506,13 +498,6 @@ if (isset($_GET['page-nr'])) {
 </html>
 <script>
     $(document).ready(function(){
-        // $('table ').find('#result tr').click(function(event){
-        //     //alert();
-        //     if (event.target.type !== 'checkbox') {
-        //         $(':checkbox', this).trigger('click');
-        //     }
-        // });
-
 
         let links = document.querySelectorAll('li.active a');
         let bodyId = parseInt(document.body.id) - 1;
@@ -526,28 +511,6 @@ if (isset($_GET['page-nr'])) {
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
 
-        // $('#search').keyup(function(){  
-        //        search_table($(this).val());  
-        //   });  
-        //   function search_table(value){  
-        //        $('#employee_table tr').each(function(){  
-        //             var found = 'false';  
-        //             $(this).each(function(){  
-        //                  if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-        //                  {  
-        //                       found = 'true';  
-        //                  }  
-        //             });  
-        //             if(found == 'true')  
-        //             {  
-        //                  $(this).show();  
-        //             }  
-        //             else  
-        //             {  
-        //                  $(this).hide();  
-        //             }  
-        //        });  
-        //   }  
 //load data
 load_data();
 	function load_data(query)
@@ -564,7 +527,7 @@ load_data();
 	}
 	
 	$('#search_text').keyup(function(){
-        //alert();
+
 		var search = $(this).val();
 		if(search != '')
 		{
