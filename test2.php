@@ -358,6 +358,22 @@ if (isset($_GET['page-nr'])) {
                             </tr>
                     </thead>
                     <tbody id="result">
+                    <!-- <tr>
+                                <td>rrrrrr</td>
+                                <td>fffff</td>
+                                <td>sdfg</td>
+                                <td></td>
+                                <td>sdfg</td>
+                                <td>sdfg</td>
+                                <td>sdfgsdfg</td>
+                                <td>
+                                    <div class="form-check ">
+                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr> -->
                         <?php
                         // $number = '';
                         // if ($stmt > 0) {
@@ -485,23 +501,17 @@ if (isset($_GET['page-nr'])) {
         </div>
     </div><!--row-->
     </div>
-
-
-    <form>
-        <input type="text" id="vehicle" name="vehicle" value="">
-        <div id=""></div>
-      </form>
 </body>
 
 </html>
 <script>
     $(document).ready(function(){
-        $('table tbody tr').click(function(event){
-            if (event.target.type !== 'checkbox') {
-                $(':checkbox', this).trigger('click');
-            }
-        });
-
+        // $('table ').find('#result tr').click(function(event){
+        //     //alert();
+        //     if (event.target.type !== 'checkbox') {
+        //         $(':checkbox', this).trigger('click');
+        //     }
+        // });
 
 
         let links = document.querySelectorAll('li.active a');
@@ -516,38 +526,30 @@ if (isset($_GET['page-nr'])) {
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
 
-        $('#search').keyup(function(){  
-               search_table($(this).val());  
-          });  
-          function search_table(value){  
-               $('#employee_table tr').each(function(){  
-                    var found = 'false';  
-                    $(this).each(function(){  
-                         if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-                         {  
-                              found = 'true';  
-                         }  
-                    });  
-                    if(found == 'true')  
-                    {  
-                         $(this).show();  
-                    }  
-                    else  
-                    {  
-                         $(this).hide();  
-                    }  
-               });  
-          }  
-
-
-    });
-</script>
-<script>
-$(document).ready(function(){
-    $("#result").click(function(){
-            alert();
-    });
-	load_data();
+        // $('#search').keyup(function(){  
+        //        search_table($(this).val());  
+        //   });  
+        //   function search_table(value){  
+        //        $('#employee_table tr').each(function(){  
+        //             var found = 'false';  
+        //             $(this).each(function(){  
+        //                  if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+        //                  {  
+        //                       found = 'true';  
+        //                  }  
+        //             });  
+        //             if(found == 'true')  
+        //             {  
+        //                  $(this).show();  
+        //             }  
+        //             else  
+        //             {  
+        //                  $(this).hide();  
+        //             }  
+        //        });  
+        //   }  
+//load data
+load_data();
 	function load_data(query)
 	{
 		$.ajax({
@@ -573,5 +575,6 @@ $(document).ready(function(){
 			load_data();			
 		}
 	});
-});
+
+    });
 </script>

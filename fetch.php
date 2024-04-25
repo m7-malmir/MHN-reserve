@@ -5,6 +5,13 @@ $pwd = "Ff12345678";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+$start = 0;
+$perpage = 12;
+$records = "SELECT * FROM Faragostar.View_Unifier ";
+$query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+$row_count = sqlsrv_num_rows($query);
+$pages = ceil($row_count / $perpage);
+
 $output = '';
 if (isset($_POST['query'])) {
     $search = sqlsrv_query($conn, $_POST["query"]);
@@ -12,11 +19,13 @@ if (isset($_POST['query'])) {
     WHERE شعبه LIKE '%$search%'";
 } else {
 
-    $query = "SELECT TOP 20 [سال / ماه],[سازمان فروش],[ساختار فروش],[شعبه],[نام و نام خانوادگی فروشنده],[نا و نام خانوادگی مشتری] FROM Faragostar.View_Unifier";
+    $query = "SELECT TOP " . $perpage . " [سال / ماه],[سازمان فروش],[ساختار فروش],[شعبه],[نام و نام خانوادگی فروشنده],[نا و نام خانوادگی مشتری] FROM Faragostar.View_Unifier";
 }
 $result = sqlsrv_query($conn, $query);
+$number = '';
 if ($result > 0) {
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
+        $number++;
         $output .= '
 			<tr>
             <td>' . $row['سال / ماه'] . '</td>
@@ -25,7 +34,7 @@ if ($result > 0) {
             <td>' . $row['شعبه'] . ' </td>
             <td >' . $row['نام و نام خانوادگی فروشنده'] . '</td>
             <td>' . $row['نا و نام خانوادگی مشتری'] . ' </td>
-            <td></td>
+            <td>' . $number . '</td>
             <td><div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
@@ -38,3 +47,15 @@ if ($result > 0) {
 } else {
     echo 'Data Not Found';
 }
+?>
+<script>
+
+$(document).ready(function(){
+        $('table ').find('#result tr').click(function(event){
+            //alert();
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+    });
+</script>
