@@ -1,8 +1,8 @@
 <?php
-$serverName = "192.168.27.217";
-$uid = "Faragostar";
-$pwd = "Ff12345678";
-$databaseName = "Reports";
+$serverName = "";
+$uid = "";
+$pwd = "";
+$databaseName = "";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 $start = 0;
