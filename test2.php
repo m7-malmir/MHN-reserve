@@ -7,31 +7,16 @@ $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", 
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 $start = 0;
 $perpage = 12;
-$records = "SELECT * FROM Faragostar.View_Unifier WHERE [شعبه]='قم'";
+$records = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
 $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
 $row_count = sqlsrv_num_rows($query);
 $pages = ceil($row_count / $perpage);
-
-if ($conn) {
-    //conn ok
-} else {
-    echo "Connection could not be established.\n";
-    die(print_r(sqlsrv_errors(), true));
-}
-$start = 0;
-$perpage = 12;
-$records = "SELECT * FROM Faragostar.View_Unifier ";
-$query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
-$row_count = sqlsrv_num_rows($query);
-$pages = ceil($row_count / $perpage);
-
 if (isset($_GET['page-nr'])) {
     $page = $_GET['page-nr'] - 1;
     $start = $page * $perpage;
 }
-$sql = " SELECT TOP " . $perpage . "  * FROM Faragostar.View_Unifier";
+$sql = " SELECT TOP " . $perpage . " FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
 $stmt = sqlsrv_query($conn, $sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +36,7 @@ $stmt = sqlsrv_query($conn, $sql);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
         body {
-            direction: ;
+           
             color: #566787;
             background: #f5f5f5;
             font-family: 'Yekan', sans-serif;
@@ -62,7 +47,8 @@ $stmt = sqlsrv_query($conn, $sql);
             font-family: Yekan;
             src: url(./font/Yekan.ttf);
         }
-        .container-castum{
+
+        .container-castum {
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -124,9 +110,11 @@ $stmt = sqlsrv_query($conn, $sql);
         table.table tr td {
             border-color: #e9e9e9;
         }
-        table tr:hover{
+
+        table tr:hover {
             cursor: pointer;
         }
+
         table.table-striped tbody tr:nth-of-type(odd) {
             background-color: #fcfcfc;
         }
@@ -154,6 +142,57 @@ $stmt = sqlsrv_query($conn, $sql);
         .table td,
         .table th {
             padding: .6rem !important;
+            align-content: center;
+        }
+
+        table {
+
+            width: 100%;
+        }
+
+        td:nth-child(14),
+        td:nth-child(13) {
+            width: 3%;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        td:nth-child(11) {
+            width: 3%;
+            overflow: hidden;
+            overflow-wrap: anywhere
+        }
+
+        td:nth-child(12),
+        td:nth-child(10) {
+            width: 8%;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        td:nth-child(6),
+        td:nth-child(7),
+        td:nth-child(8),
+        td:nth-child(9),
+        td:nth-child(2),
+        td:nth-child(4) {
+            width: 8%;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        td:nth-child(3),
+        td:nth-child(5) {
+            width: 5%;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        td:nth-child(1) {
+            width: 23%;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+
         }
 
         table.table td a.view {
@@ -235,20 +274,21 @@ $stmt = sqlsrv_query($conn, $sql);
             min-width: 100%;
 
         }
+
         .inner-search:focus {
             outline-width: 0;
-            box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
-            -webkit-box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
-            -moz-box-shadow: 0px 0px 5px 5px rgba(194,218,255,1);
+            box-shadow: 0px 0px 5px 5px rgba(194, 218, 255, 1);
+            -webkit-box-shadow: 0px 0px 5px 5px rgba(194, 218, 255, 1);
+            -moz-box-shadow: 0px 0px 5px 5px rgba(194, 218, 255, 1);
             border: none;
         }
+
         input[type=checkbox] {
             transform: scale(1.5);
         }
 
-        table th:nth-child(8) {
-            width: 5%;
-        }
+
+
         .filterIcon {
             height: 16px;
             width: 16px;
@@ -293,20 +333,20 @@ $stmt = sqlsrv_query($conn, $sql);
             height: 100%;
             opacity: 1000;
         }
-        .col-md-3{
+
+        .col-md-3 {
             text-align: right;
             margin-top: 1rem;
         }
     </style>
     <script>
         $(document).ready(function() {
-           // $('[data-toggle="tooltip"]').tooltip();
+            // $('[data-toggle="tooltip"]').tooltip();
             $("#allbox").click(function() {
                 //alert();
                 $('input:checkbox').not(this).prop('checked', this.checked);
             });
         });
-       
     </script>
 </head>
 <?php
@@ -321,7 +361,7 @@ if (isset($_GET['page-nr'])) {
 <body id="<?php echo $id; ?>">
     <div class="container-castum">
         <div class="table-responsive">
-            <div  class="table-wrapper">
+            <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
@@ -331,173 +371,234 @@ if (isset($_GET['page-nr'])) {
                             </div>
                         </div>
                         <div class="col-sm-4 text-right">
-                            <h2><b>شعبه :  </b>قم</h2>
+                            <h2><b>شعبه : </b>قم</h2>
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>سال / ماه</th>
-                            <th>سازمان فروش<i class="fa fa-sort"></i></th>
-                            <th>ساختار فروش</th>
-                            <th>صنف مشتری</th>
-                            <th>نام و نام خانوادگی فروشنده</th>
+                            <th>آدرس مشتری</th>
+                            <th>کد مشتریان/نمایندگان/پیمانکاران</th>
                             <th>نام و نام خانوادگی مشتری</th>
+                            <th>کد پرسنلی فروشنده</th>
+                            <th>نام و نام خانوادگی فروشنده</th>
+                            <th>صنف مشتری</th>
+                            <th>ساختار فروش</th>
+                            <th>شعبه</th>
+                            <th>سازمان فروش</th>
+                            <th>سال / ماه</th>
+                            <th>ماه</th>
+                            <th>سال </th>
                             <th>#</th>
                             <th>@</th>
                         </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><input  class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
-                                <td></td>
-                                <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
-                                <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
-                                <td></td>
-                                <td>
-                                    <div class="form-check ">
-                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                            <td></td>
+                            <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
+                            <td></td>
+                            <td><input class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="form-check ">
+                                    <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
                     </thead>
                     <tbody id="result">
 
-                        <?php
-                        // $number = '';
-                        // if ($stmt > 0) {
-                        //     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_BOTH)) {
-                        //         $number++;
-                        //         echo '<tr><td>' . $row['سال / ماه'] . '</td>';
-                        //         echo '<td>' . $row['سازمان فروش'] . '</td>';
-                        //         echo '<td>' . $row['ساختار فروش'] . '</td>';
-                        //         echo '<td>' . $row['صنف مشتری'] . ' </td>';
-                        //         echo '<td >' . $row['نام و نام خانوادگی فروشنده'] . '</td>';
-                        //         echo '<td>' . $row['نا و نام خانوادگی مشتری'] . ' </td>';
-                        //         echo '<td>' . $number . '</td>';
-                        //         echo '<td><div class="form-check">
-                        //       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        //       <label class="form-check-label" for="flexCheckDefault">
-                        //       </label>
-                        //     </div></td></tr>';
-                        //     }
-                        // } else {
-                        //     echo 'no data for fetch';
-                        // }
-                        ?>
-
-                        <?php sqlsrv_close($conn);
+                        <?php //sqlsrv_close($conn);
                         ?>
                     </tbody>
                 </table>
-                <div class="clearfix">
-                    <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                    <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+                <?php
+                if (isset($_POST['query'])) {
+                    $start = 0;
+                    $perpage = 12;
+                    $world = $_POST['query'];
+                    $records = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
+    WHERE [SellerName] LIKE N'%{$world}%' OR [CustomerName] LIKE N'%{$world}%' AND [BranchName]='زاهدان'";
+                    $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+                    $row_count = sqlsrv_num_rows($query);
+                    $pages = ceil($row_count / $perpage);
+                ?>
+                    <div class="clearfix">
+                        <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                        <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-                                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
-                            <?php } else { ?>
-                                <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                            <?php } ?>
-                        </li>
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                    <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                                <?php } else { ?>
+                                    <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                                <?php } ?>
+                            </li>
 
-                        <li class="prev page-item">
+                            <li class="prev page-item">
 
-                            <?php
-                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
-                            <?php
-                            }
-                            ?>
-                        </li>
-                        <li id="activ" class="page-item active">
-                            <?php
-                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
-                            <?php
-                            }
-                            ?>
-                        </li>
-                        <li class="next page-item">
-                            <?php
-                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                <a class="hide page-link" id="<?php echo $counter+1 ?>" href="?page-nr=<?php echo $counter+1 ?>"> <?php echo $counter + 1; ?></a>
-                            <?php
-                            }
-                            ?>
-                        </li>
-
-                        <li class="page-item">
-                            <?php if (!isset($_GET['page-nr'])) { ?>
-
-                                <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
-                                <?php } else {
-                                if ($_GET['page-nr'] >= $pages) {
-                                ?>
-                                    <a href=""><i class="fa fa-angle-double-right"></i></a>
                                 <?php
-                                } else {
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
+                                <?php
+                                }
                                 ?>
-                                    <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+                            </li>
+                            <li id="activ" class="page-item active">
+                                <?php
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                                <?php
+                                }
+                                ?>
+                            </li>
+                            <li class="next page-item">
+                                <?php
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                                <?php
+                                }
+                                ?>
+                            </li>
 
-                            <?php  }
-                            }
-                            ?>
-                        </li>
-                    </ul>
-                </div>
+                            <li class="page-item">
+                                <?php if (!isset($_GET['page-nr'])) { ?>
+
+                                    <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                    <?php } else {
+                                    if ($_GET['page-nr'] >= $pages) {
+                                    ?>
+                                        <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+
+                                <?php  }
+                                }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <div class="clearfix">
+                        <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                        <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                    <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                                <?php } else { ?>
+                                    <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                                <?php } ?>
+                            </li>
+
+                            <li class="prev page-item">
+
+                                <?php
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
+                                <?php
+                                }
+                                ?>
+                            </li>
+                            <li id="activ" class="page-item active">
+                                <?php
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                                <?php
+                                }
+                                ?>
+                            </li>
+                            <li class="next page-item">
+                                <?php
+                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                    <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                                <?php
+                                }
+                                ?>
+                            </li>
+
+                            <li class="page-item">
+                                <?php if (!isset($_GET['page-nr'])) { ?>
+
+                                    <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                    <?php } else {
+                                    if ($_GET['page-nr'] >= $pages) {
+                                    ?>
+                                        <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+
+                                <?php  }
+                                }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+
+                <?php           } ?>
                 <form action="" method="post" style="direction: rtl;">
-    <div class="container row mt-2" style="direction: rtl;">
-    <div id="mask"></div>
-    <table id="example" class="bordered material-table centered striped green lighten-1"></table>
-        <div class="mt-5"></div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
-            <input id="search-box" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div style="position:relative;" id="suggesstion-box"></div>
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
-            <input id="search-box2" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div style="position:relative;" id="suggesstion-box2"></div>
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
-            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
-            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
-            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-3">
-            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
-            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-8">
-        <button type="submit" class="btn btn-success">ذخیره نهایی</button>
-    </form>
+                    <div class="container row mt-2" style="direction: rtl;">
+                        <div id="mask"></div>
+                        <table id="example" class="bordered material-table centered striped green lighten-1"></table>
+                        <div class="mt-5"></div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
+                            <input id="search-box" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div style="position:relative;" id="suggesstion-box"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
+                            <input id="search-box2" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div style="position:relative;" id="suggesstion-box2"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
+                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
+                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
+                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
+                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="col-md-8">
+                            <button type="submit" class="btn btn-success">ذخیره نهایی</button>
+                </form>
             </div>
         </div>
         <section class="container rtl">
-    </section><!--container-->
+        </section><!--container-->
 
-        </div>
+    </div>
     </div><!--row-->
     </div>
 </body>
 
 </html>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         let links = document.querySelectorAll('li.active a');
         let bodyId = parseInt(document.body.id) - 1;
@@ -511,33 +612,31 @@ if (isset($_GET['page-nr'])) {
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
 
-//load data
-load_data();
-	function load_data(query)
-	{
-		$.ajax({
-			url:"fetch.php",
-			method:"post",
-			data:{query:query},
-			success:function(data)
-			{
-				$('#result').html(data);
-			}
-		});
-	}
-	
-	$('#search_text').keyup(function(){
+        //load data
+        load_data();
 
-		var search = $(this).val();
-		if(search != '')
-		{
-			load_data(search);
-		}
-		else
-		{
-			load_data();			
-		}
-	});
+        function load_data(query) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        $('#search_text').keyup(function() {
+
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
 
     });
 </script>
