@@ -2,16 +2,24 @@
 $serverName = "";
 $uid = "";
 $pwd = "";
-$databaseName = "";
+$databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+if( $conn === false ) {
+    //die( print_r( sqlsrv_errors(), true));
+echo 'shit';
+}
 $start = 0;
 $perpage = 12;
 $records = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
 $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
 $row_count = sqlsrv_num_rows($query);
+
+
+
+
 $pages = ceil($row_count / $perpage);
-if (isset($_GET['page-nr'])) {
+if(isset($_GET['page-nr'])){
     $page = $_GET['page-nr'] - 1;
     $start = $page * $perpage;
 }

@@ -2,25 +2,27 @@
 $serverName = "";
 $uid = "";
 $pwd = "";
-$databaseName = "";
+$databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-$start = 0;
-$perpage = 10;
-$records = "SELECT COUNT(*) FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
-$query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
-$row_count = sqlsrv_num_rows($query);
-$pages = ceil($row_count / $perpage);
+// $start = 0;
+// $perpage = 10;
+// $records = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
+// $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+// $row_count = sqlsrv_num_rows($query);
+// $pages = ceil($row_count / $perpage);
+
 
 $output = '';
 if (isset($_POST['query'])) {
     $world = $_POST['query'];
    // $search = sqlsrv_query($conn, $_POST["query"]);
-    $query = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
+    $query = "SELECT TOP 10 [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
     WHERE [SellerName] LIKE N'%{$world}%' OR [CustomerName] LIKE N'%{$world}%' AND [BranchName]='زاهدان'";
 } else {
-    $query="SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
+    $query="SELECT TOP 10 [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
 }
+
 $result = sqlsrv_query($conn, $query);
 $number = '';
 if ($result > 0) {
@@ -46,8 +48,6 @@ if ($result > 0) {
       </label>
     </div></td></tr>';
     }
-
-
     echo $output;
 } else {
     echo '<center>اطلاعات مورد نظر یافت نشد</center>';
