@@ -54,18 +54,15 @@ if ($result > 0) {
 }
 ?>
 <script>
-    $(document).ready(function() {
-
-        $('table ').find('#result tr').click(function(event) {
+$(document).ready(function(){
+        $('table ').find('#result tr').click(function(event){
+            //alert();
             if (event.target.type !== 'checkbox') {
                 $(':checkbox', this).trigger('click');
             }
         });
 
-        $(function() {
-            $('tr td [type=checkbox]').click(function() {
-                $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
-            });
-        });
+
+        
     });
 </script>

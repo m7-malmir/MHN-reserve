@@ -200,9 +200,7 @@ $stmt = sqlsrv_query($conn, $sql);
             max-width: 20rem;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
-            direction: rtl;
-            font-size: 11px;
+            overflow-wrap: anywhere;
 
         }
 
