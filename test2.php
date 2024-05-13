@@ -201,6 +201,8 @@ $stmt = sqlsrv_query($conn, $sql);
             white-space: nowrap;
             overflow: hidden;
             overflow-wrap: anywhere;
+            direction: rtl;
+             font-size: 11px;
 
         }
 
