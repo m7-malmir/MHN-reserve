@@ -1,13 +1,13 @@
 <?php
-$serverName = "";
-$uid = "";
-$pwd = "";
+$serverName = "192.168.27.217";
+$uid = "Faragostar";
+$pwd = "12341234";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-if( $conn === false ) {
+if ($conn === false) {
     //die( print_r( sqlsrv_errors(), true));
-echo 'shit';
+    echo 'shit';
 }
 $start = 0;
 $perpage = 12;
@@ -19,7 +19,7 @@ $row_count = sqlsrv_num_rows($query);
 
 
 $pages = ceil($row_count / $perpage);
-if(isset($_GET['page-nr'])){
+if (isset($_GET['page-nr'])) {
     $page = $_GET['page-nr'] - 1;
     $start = $page * $perpage;
 }
@@ -44,7 +44,7 @@ $stmt = sqlsrv_query($conn, $sql);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
         body {
-           
+
             color: #566787;
             background: #f5f5f5;
             font-family: 'Yekan', sans-serif;
@@ -57,7 +57,7 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         .container-castum {
-            max-width: 1400px;
+            max-width: 1700px;
             margin: 0 auto;
         }
 
@@ -160,22 +160,22 @@ $stmt = sqlsrv_query($conn, $sql);
 
         td:nth-child(14),
         td:nth-child(13) {
-            width: 3%;
+            width: 5%;
+            text-wrap: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere;
         }
 
         td:nth-child(11) {
             width: 3%;
+            text-wrap: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere
         }
 
         td:nth-child(12),
         td:nth-child(10) {
-            width: 8%;
+            width: 5%;
+            text-wrap: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere;
         }
 
         td:nth-child(6),
@@ -185,21 +185,24 @@ $stmt = sqlsrv_query($conn, $sql);
         td:nth-child(2),
         td:nth-child(4) {
             width: 8%;
+            text-wrap: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere;
         }
 
         td:nth-child(3),
         td:nth-child(5) {
             width: 5%;
+            text-wrap: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere;
         }
 
         td:nth-child(1) {
-            width: 23%;
+            max-width: 20rem;
+            white-space: nowrap;
             overflow: hidden;
-            overflow-wrap: anywhere;
+            text-overflow: ellipsis;
+            direction: rtl;
+            font-size: 11px;
 
         }
 
