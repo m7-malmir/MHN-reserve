@@ -1,7 +1,7 @@
 <?php
-$serverName = "";
-$uid = "";
-$pwd = "";
+$serverName = "192.168.27.217";
+$uid = "Faragostar";
+$pwd = "12341234";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
@@ -200,7 +200,7 @@ $stmt = sqlsrv_query($conn, $sql);
             width: 23%;
             overflow: hidden;
             overflow-wrap: anywhere;
-
+            font-size: 8px;
         }
 
         table.table td a.view {
