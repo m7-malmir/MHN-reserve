@@ -34,14 +34,14 @@ if ($result > 0) {
         <td>' . $row['CustomerCode'] . '</td>
         <td>' . $row['CustomerName'] . ' </td>
         <td>' . $row['Personnel_Code'] . '</td>
-        <td >' . $row['SellerName'] . '</td>
+        <td>' . $row['SellerName'] . '</td>
         <td>' . $row['ActivityName'] . '</td>
         <td>' . $row['Year/Month'] . '</td>
         <td>' . $row['Month'] . '</td>
         <td>' . $row['Year'] . '</td>
         <td>' . $number . '</td>
         <td><div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
       </label>
     </div></td></tr>';

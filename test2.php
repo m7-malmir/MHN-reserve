@@ -1,4 +1,10 @@
 <?php
+
+if(isset($_POST["submit"])){
+    var_dump($_POST);
+}
+
+
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -380,8 +386,11 @@ $stmt = sqlsrv_query($conn, $sql);
                                 <input type="text" class="form-control" placeholder="جستجو ...">
                             </div>
                         </div>
-                        <div class="col-sm-4 text-right">
-                            <h2><b>شعبه : </b>قم</h2>
+                        <div class="col-sm-2 text-right">
+                            <h2><b>لاین : </b>بستنی</h2>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                        <h2><b>شعبه : </b>قم</h2>
                         </div>
                     </div>
                 </div>
@@ -421,6 +430,7 @@ $stmt = sqlsrv_query($conn, $sql);
                             </td>
                         </tr>
                     </thead>
+                    <form action="result.php" method="post" style="direction: rtl;">
                     <tbody id="result">
 
                         <?php 
@@ -558,39 +568,39 @@ $stmt = sqlsrv_query($conn, $sql);
                     </div>
 
                 <?php           } ?>
-                <form action="" method="post" style="direction: rtl;">
+              
                     <div class="container row mt-2" style="direction: rtl;">
                         <div id="mask"></div>
                         <table id="example" class="bordered material-table centered striped green lighten-1"></table>
                         <div class="mt-5"></div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
-                            <input id="search-box" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <div style="position:relative;" id="suggesstion-box"></div>
                         </div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
-                            <input id="search-box2" type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <div style="position:relative;" id="suggesstion-box2"></div>
                         </div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
-                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
-                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
-                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="col-md-3">
                             <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
-                            <input type="email" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="col-md-8">
-                            <button type="submit" class="btn btn-success">ذخیره نهایی</button>
+                            <input type="submit" value="submit" class="btn btn-success">
                 </form>
             </div>
         </div>
@@ -673,10 +683,6 @@ $stmt = sqlsrv_query($conn, $sql);
                 }
             });
         }
-
-
-
-
 
 
 
