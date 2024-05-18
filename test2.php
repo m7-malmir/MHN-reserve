@@ -7,15 +7,13 @@ $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", 
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 if ($conn === false) {
     //die( print_r( sqlsrv_errors(), true));
-    echo 'shit';
+    echo 'not ok';
 }
 $start = 0;
 $perpage = 12;
 $records = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName]='زاهدان'";
 $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
 $row_count = sqlsrv_num_rows($query);
-
-
 
 
 $pages = ceil($row_count / $perpage);
@@ -356,17 +354,18 @@ $stmt = sqlsrv_query($conn, $sql);
             $("#allbox").click(function() {
                 //alert();
                 $('input:checkbox').not(this).prop('checked', this.checked);
+                $('input:checkbox').not(this).prop('background-color',"#baddfb");
             });
         });
     </script>
 </head>
 <?php
-if (isset($_GET['page-nr'])) {
+    if (isset($_GET['page-nr'])) {
 
-    $id = $_GET['page-nr'];
-} else {
-    $id = 1;
-}
+        $id = $_GET['page-nr'];
+    } else {
+        $id = 1;
+    }
 ?>
 
 <body id="<?php echo $id; ?>">
@@ -395,9 +394,6 @@ if (isset($_GET['page-nr'])) {
                             <th>کد پرسنلی فروشنده</th>
                             <th>نام و نام خانوادگی فروشنده</th>
                             <th>صنف مشتری</th>
-                            <th>ساختار فروش</th>
-                            <th>شعبه</th>
-                            <th>سازمان فروش</th>
                             <th>سال / ماه</th>
                             <th>ماه</th>
                             <th>سال </th>
@@ -406,16 +402,14 @@ if (isset($_GET['page-nr'])) {
                         </tr>
                         <tr>
                             <td></td>
-                            <td></td>
+                            <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
+                            <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
+                            <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
                             <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
                             <td></td>
-                            <td><input class="inner-search focus" type="text" placeholder="جستجو فروشنده"></td>
-                            <td></td>
-                            <td><input class="inner-search focus" type="text" placeholder="جستجو ساختار فروش"></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                           
                             <td></td>
                             <td></td>
                             <td>
@@ -429,7 +423,8 @@ if (isset($_GET['page-nr'])) {
                     </thead>
                     <tbody id="result">
 
-                        <?php //sqlsrv_close($conn);
+                        <?php 
+                        //sqlsrv_close($conn);
                         ?>
                     </tbody>
                 </table>
@@ -625,12 +620,12 @@ if (isset($_GET['page-nr'])) {
 
         //load data
         load_data();
-
+        
         function load_data(query) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
-                data: {
+                data: {  
                     query: query
                 },
                 success: function(data) {
@@ -638,16 +633,90 @@ if (isset($_GET['page-nr'])) {
                 }
             });
         }
+        load_data2();
+        
+        function load_data2(code) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {  
+                    code: code
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        function load_data3(customer) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {  
+                    customer: customer
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        function load_data4(cus_code) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {  
+                    cus_code: cus_code
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+
+
+
+
+
+
+
 
         $('#search_text').keyup(function() {
-
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } else {
+            }else{
                 load_data();
             }
         });
+        $('#search_code').keyup(function() {
+            var search2 = $(this).val();
+            if (search2 != '') {
+                load_data2(search2);
+            }else{
+                load_data2();
+            }
+        });
+
+        $('#costomer_text').keyup(function() {
+            var search3 = $(this).val();
+            if (search3 != '') {
+                load_data3(search3);
+            }else{
+                load_data3();
+            }
+        });
+
+        $('#costomer_code').keyup(function() {
+            var search4 = $(this).val();
+            if (search4 != '') {
+                load_data4(search4);
+            }else{
+                load_data4();
+            }
+        });
+
 
     });
 </script>
