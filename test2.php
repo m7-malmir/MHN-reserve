@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     var_dump($_POST);
 }
 
@@ -141,9 +141,9 @@ $stmt = sqlsrv_query($conn, $sql);
             cursor: pointer;
         }
 
-        table.table td:last-child {
+        /* table.table td:last-child {
             width: 130px;
-        }
+        } */
 
         table.table td a {
             color: #a0a5b1;
@@ -162,39 +162,39 @@ $stmt = sqlsrv_query($conn, $sql);
             width: 100%;
         }
 
-        td:nth-child(14),
-        td:nth-child(13) {
-            width: 5%;
-            text-wrap: nowrap;
-            overflow: hidden;
-        }
-
-        td:nth-child(11) {
+        td:nth-child(11),
+        td:nth-child(10) {
             width: 3%;
             text-wrap: nowrap;
             overflow: hidden;
         }
 
-        td:nth-child(12),
-        td:nth-child(10) {
+        td:nth-child(9) {
+            width: 3%;
+            text-wrap: nowrap;
+            overflow: hidden;
+        }
+
+        td:nth-child(8),
+        td:nth-child(7) {
             width: 5%;
             text-wrap: nowrap;
             overflow: hidden;
         }
 
         td:nth-child(6),
-        td:nth-child(7),
-        td:nth-child(8),
-        td:nth-child(9),
+        td:nth-child(5),
+        td:nth-child(4),
+        td:nth-child(3),
         td:nth-child(2),
-        td:nth-child(4) {
+        td:nth-child(1) {
             width: 8%;
             text-wrap: nowrap;
             overflow: hidden;
         }
 
         td:nth-child(3),
-        td:nth-child(5) {
+        td:nth-child(2) {
             width: 5%;
             text-wrap: nowrap;
             overflow: hidden;
@@ -206,7 +206,7 @@ $stmt = sqlsrv_query($conn, $sql);
             overflow: hidden;
             overflow-wrap: anywhere;
             direction: rtl;
-             font-size: 11px;
+            font-size: 11px;
 
         }
 
@@ -360,18 +360,18 @@ $stmt = sqlsrv_query($conn, $sql);
             $("#allbox").click(function() {
                 //alert();
                 $('input:checkbox').not(this).prop('checked', this.checked);
-                $('input:checkbox').not(this).prop('background-color',"#baddfb");
+                $('input:checkbox').not(this).prop('background-color', "#baddfb");
             });
         });
     </script>
 </head>
 <?php
-    if (isset($_GET['page-nr'])) {
+if (isset($_GET['page-nr'])) {
 
-        $id = $_GET['page-nr'];
-    } else {
-        $id = 1;
-    }
+    $id = $_GET['page-nr'];
+} else {
+    $id = 1;
+}
 ?>
 
 <body id="<?php echo $id; ?>">
@@ -390,7 +390,7 @@ $stmt = sqlsrv_query($conn, $sql);
                             <h2><b>لاین : </b>بستنی</h2>
                         </div>
                         <div class="col-sm-2 text-right">
-                        <h2><b>شعبه : </b>قم</h2>
+                            <h2><b>شعبه : </b>قم</h2>
                         </div>
                     </div>
                 </div>
@@ -410,16 +410,15 @@ $stmt = sqlsrv_query($conn, $sql);
                             <th>@</th>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td><input class="inner-search focus" id="costomer_address" type="text" placeholder="جستجو آدرس مشتریان"></td>
                             <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
                             <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
                             <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
                             <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                           
-                            <td></td>
+                            <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو کد پرسنلی"></td>
+                            <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو کد پرسنلی"></td>
+                            <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو کد پرسنلی"></td>
+                            <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو کد پرسنلی"></td>
                             <td></td>
                             <td>
                                 <div class="form-check ">
@@ -431,12 +430,12 @@ $stmt = sqlsrv_query($conn, $sql);
                         </tr>
                     </thead>
                     <form action="result.php" method="post" style="direction: rtl;">
-                    <tbody id="result">
+                        <tbody id="result">
 
-                        <?php 
-                        //sqlsrv_close($conn);
-                        ?>
-                    </tbody>
+                            <?php
+                            //sqlsrv_close($conn);
+                            ?>
+                        </tbody>
                 </table>
                 <?php
                 if (isset($_POST['query'])) {
@@ -568,47 +567,47 @@ $stmt = sqlsrv_query($conn, $sql);
                     </div>
 
                 <?php           } ?>
-              
-                    <div class="container row mt-2" style="direction: rtl;">
-                        <div id="mask"></div>
-                        <table id="example" class="bordered material-table centered striped green lighten-1"></table>
-                        <div class="mt-5"></div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
-                            <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div style="position:relative;" id="suggesstion-box"></div>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
-                            <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div style="position:relative;" id="suggesstion-box2"></div>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
-                            <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
-                            <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
-                            <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
-                            <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="col-md-8">
-                            <input type="submit" value="submit" class="btn btn-success">
-                </form>
-            </div>
-        </div>
-        <section class="container rtl">
-        </section><!--container-->
 
-    </div>
-    </div><!--row-->
+                <div class="container row mt-2" style="direction: rtl;">
+                    <div id="mask"></div>
+                    <table id="example" class="bordered material-table centered striped green lighten-1"></table>
+                    <div class="mt-5"></div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
+                        <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div style="position:relative;" id="suggesstion-box"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
+                        <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div style="position:relative;" id="suggesstion-box2"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
+                        <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
+                        <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
+                        <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
+                        <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-8">
+                        <input type="submit" value="submit" class="btn btn-success">
+                        </form>
+                    </div>
+                </div>
+                <section class="container rtl">
+                </section><!--container-->
+
+            </div>
+        </div><!--row-->
     </div>
 </body>
 
@@ -630,12 +629,12 @@ $stmt = sqlsrv_query($conn, $sql);
 
         //load data
         load_data();
-        
+
         function load_data(query) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
-                data: {  
+                data: {
                     query: query
                 },
                 success: function(data) {
@@ -644,12 +643,12 @@ $stmt = sqlsrv_query($conn, $sql);
             });
         }
         load_data2();
-        
+
         function load_data2(code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
-                data: {  
+                data: {
                     code: code
                 },
                 success: function(data) {
@@ -657,12 +656,13 @@ $stmt = sqlsrv_query($conn, $sql);
                 }
             });
         }
+        load_data3();
 
         function load_data3(customer) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
-                data: {  
+                data: {
                     customer: customer
                 },
                 success: function(data) {
@@ -670,12 +670,13 @@ $stmt = sqlsrv_query($conn, $sql);
                 }
             });
         }
+        load_data4();
 
         function load_data4(cus_code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
-                data: {  
+                data: {
                     cus_code: cus_code
                 },
                 success: function(data) {
@@ -684,6 +685,20 @@ $stmt = sqlsrv_query($conn, $sql);
             });
         }
 
+        load_data5();
+
+        function load_data5(address) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    address: address
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
 
 
 
@@ -692,7 +707,7 @@ $stmt = sqlsrv_query($conn, $sql);
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            }else{
+            } else {
                 load_data();
             }
         });
@@ -700,7 +715,7 @@ $stmt = sqlsrv_query($conn, $sql);
             var search2 = $(this).val();
             if (search2 != '') {
                 load_data2(search2);
-            }else{
+            } else {
                 load_data2();
             }
         });
@@ -709,7 +724,7 @@ $stmt = sqlsrv_query($conn, $sql);
             var search3 = $(this).val();
             if (search3 != '') {
                 load_data3(search3);
-            }else{
+            } else {
                 load_data3();
             }
         });
@@ -718,8 +733,18 @@ $stmt = sqlsrv_query($conn, $sql);
             var search4 = $(this).val();
             if (search4 != '') {
                 load_data4(search4);
-            }else{
+            } else {
                 load_data4();
+            }
+        });
+
+
+        $('#costomer_address').keyup(function() {
+            var search5 = $(this).val();
+            if (search5 != '') {
+                load_data5(search5);
+            } else {
+                load_data5();
             }
         });
 

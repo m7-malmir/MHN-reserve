@@ -14,12 +14,13 @@ $pages = ceil($row_count / $perpage);
 
 
 $output = '';
-if(isset($_POST['code']) || isset($_POST['query']) || isset($_POST['cus_code']) || isset($_POST['customer'])) {
+if(isset($_POST['code']) || isset($_POST['query']) || isset($_POST['cus_code']) || isset($_POST['customer']) || isset($_POST['address'])) {
     $code = $_POST['code'] ?? '';
     $world = $_POST['query'] ?? '';
     $customer = $_POST['customer'] ?? '';
     $cus_code = $_POST['cus_code'] ?? '';
-    $query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%'  AND LineName LIKE N'%بستن%' AND Personnel_Code LIKE N'%$code%'  AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%' AND CustomerCode LIKE N'%$cus_code%' ";
+    $address = $_POST['address'] ?? '';
+    $query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%'  AND LineName LIKE N'%بستن%' AND Personnel_Code LIKE N'%$code%'  AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%' AND CustomerCode LIKE N'%$cus_code%' AND CustomerCode LIKE N'%$cus_code%' AND Address LIKE N'%$address%'";
 }else{
     $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
      }
