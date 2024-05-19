@@ -20,7 +20,11 @@ if(isset($_POST['code']) || isset($_POST['query']) || isset($_POST['cus_code']) 
     $customer = $_POST['customer'] ?? '';
     $cus_code = $_POST['cus_code'] ?? '';
     $address = $_POST['address'] ?? '';
-    $query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%'  AND LineName LIKE N'%بستن%' AND Personnel_Code LIKE N'%$code%'  AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%' AND CustomerCode LIKE N'%$cus_code%' AND CustomerCode LIKE N'%$cus_code%' AND Address LIKE N'%$address%'";
+    $activity_name= $_POST['activity_name'] ?? '';
+    $year_month= $_POST['year_month'] ?? '';
+    $month= $_POST['month'] ?? '';
+    $year= $_POST['year'] ?? '';
+    $query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%'  AND LineName LIKE N'%بستن%' AND Personnel_Code LIKE N'%$code%'  AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%' AND Address LIKE N'%$address%' AND ActivityName LIKE N'%$activity_name%'";
 }else{
     $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
      }

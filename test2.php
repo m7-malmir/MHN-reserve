@@ -201,7 +201,7 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         td:nth-child(1) {
-            max-width: 20rem;
+            max-width: 15rem;
             white-space: nowrap;
             overflow: hidden;
             overflow-wrap: anywhere;
@@ -415,10 +415,10 @@ if (isset($_GET['page-nr'])) {
                             <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
                             <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
                             <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
-                            <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو کد پرسنلی"></td>
-                            <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو کد پرسنلی"></td>
-                            <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو کد پرسنلی"></td>
-                            <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو کد پرسنلی"></td>
+                            <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
+                            <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
+                            <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
+                            <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو سال"></td>
                             <td></td>
                             <td>
                                 <div class="form-check ">
@@ -700,7 +700,62 @@ if (isset($_GET['page-nr'])) {
             });
         }
 
+        load_data6();
 
+function load_data6(activity_name) {
+    $.ajax({
+        url: "fetch.php",
+        method: "post",
+        data: {
+            activity_name: activity_name
+        },
+        success: function(data) {
+            $('#result').html(data);
+        }
+    });
+}
+
+// load_data7();
+// function load_data7(year_month) {
+//     $.ajax({
+//         url: "fetch.php",
+//         method: "post",
+//         data: {
+//             year_month:  year_month
+//         },
+//         success: function(data) {
+//             $('#result').html(data);
+//         }
+//     });
+// }
+
+
+// load_data8();
+// function load_data8(month) {
+//     $.ajax({
+//         url: "fetch.php",
+//         method: "post",
+//         data: {
+//             month: month
+//         },
+//         success: function(data) {
+//             $('#result').html(data);
+//         }
+//     });
+// }
+// load_data9();
+// function load_data9(year) {
+//     $.ajax({
+//         url: "fetch.php",
+//         method: "post",
+//         data: {
+//             year: year
+//         },
+//         success: function(data) {
+//             $('#result').html(data);
+//         }
+//     });
+// }
 
 
         $('#search_text').keyup(function() {
@@ -747,6 +802,40 @@ if (isset($_GET['page-nr'])) {
                 load_data5();
             }
         });
+
+        $('#activity_name').keyup(function() {
+            var search6 = $(this).val();
+            if (search6 != '') {
+                load_data6(search6);
+            } else {
+                load_data6();
+            }
+        });
+        // $('#year_month').keyup(function() {
+        //     var search7 = $(this).val();
+        //     if (search7 != '') {
+        //         load_data7(search7);
+        //     } else {
+        //         load_data7();
+        //     }
+        // });
+        // $('#month').keyup(function() {
+        //     var search8 = $(this).val();
+        //     if (search8 != '') {
+        //         load_data8(search8);
+        //     } else {
+        //         load_data8();
+        //     }
+        // });
+        // $('#year').keyup(function() {
+        //     var search9 = $(this).val();
+        //     if (search9 != '') {
+        //         load_data9(search9);
+        //     } else {
+        //         load_data9();
+        //     }
+        // });
+
 
 
     });
