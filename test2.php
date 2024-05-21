@@ -201,6 +201,7 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         td:nth-child(1) {
+            min-width: 15rem;
             max-width: 15rem;
             white-space: nowrap;
             overflow: hidden;
@@ -715,47 +716,47 @@ function load_data6(activity_name) {
     });
 }
 
-// load_data7();
-// function load_data7(year_month) {
-//     $.ajax({
-//         url: "fetch.php",
-//         method: "post",
-//         data: {
-//             year_month:  year_month
-//         },
-//         success: function(data) {
-//             $('#result').html(data);
-//         }
-//     });
-// }
+load_data7();
+function load_data7(year_month) {
+    $.ajax({
+        url: "fetch.php",
+        method: "post",
+        data: {
+            year_month:  year_month
+        },
+        success: function(data) {
+            $('#result').html(data);
+        }
+    });
+}
 
 
-// load_data8();
-// function load_data8(month) {
-//     $.ajax({
-//         url: "fetch.php",
-//         method: "post",
-//         data: {
-//             month: month
-//         },
-//         success: function(data) {
-//             $('#result').html(data);
-//         }
-//     });
-// }
-// load_data9();
-// function load_data9(year) {
-//     $.ajax({
-//         url: "fetch.php",
-//         method: "post",
-//         data: {
-//             year: year
-//         },
-//         success: function(data) {
-//             $('#result').html(data);
-//         }
-//     });
-// }
+load_data8();
+function load_data8(month) {
+    $.ajax({
+        url: "fetch.php",
+        method: "post",
+        data: {
+            month: month
+        },
+        success: function(data) {
+            $('#result').html(data);
+        }
+    });
+}
+load_data9();
+function load_data9(year) {
+    $.ajax({
+        url: "fetch.php",
+        method: "post",
+        data: {
+            year: year
+        },
+        success: function(data) {
+            $('#result').html(data);
+        }
+    });
+}
 
 
         $('#search_text').keyup(function() {
@@ -811,30 +812,30 @@ function load_data6(activity_name) {
                 load_data6();
             }
         });
-        // $('#year_month').keyup(function() {
-        //     var search7 = $(this).val();
-        //     if (search7 != '') {
-        //         load_data7(search7);
-        //     } else {
-        //         load_data7();
-        //     }
-        // });
-        // $('#month').keyup(function() {
-        //     var search8 = $(this).val();
-        //     if (search8 != '') {
-        //         load_data8(search8);
-        //     } else {
-        //         load_data8();
-        //     }
-        // });
-        // $('#year').keyup(function() {
-        //     var search9 = $(this).val();
-        //     if (search9 != '') {
-        //         load_data9(search9);
-        //     } else {
-        //         load_data9();
-        //     }
-        // });
+        $('#year_month').keyup(function() {
+            var search7 = $(this).val();
+            if (search7 != '') {
+                load_data7(search7);
+            } else {
+                load_data7();
+            }
+        });
+        $('#month').keyup(function() {
+            var search8 = $(this).val();
+            if (search8 != '') {
+                load_data8(search8);
+            } else {
+                load_data8();
+            }
+        });
+        $('#year').keyup(function() {
+            var search9 = $(this).val();
+            if (search9 != '') {
+                load_data9(search9);
+            } else {
+                load_data9();
+            }
+        });
 
 
 
