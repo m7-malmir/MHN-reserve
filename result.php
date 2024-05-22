@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+$serverName = "192.168.27.217";
+$uid = "Faragostar";
+$pwd = "12341234";
+$databaseName = "Reports";
+$connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $users=$_POST['username'];
     $boss_sale=$_POST['boss_sale'];
@@ -7,10 +15,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $branch_manage=$_POST['branch_manage'];
     $manager_sale_area=$_POST['manager_sale_area'];
     $expert_area=$_POST['expert_area'];
-}
-echo "<pre>";
-//var_dump($users);
-echo "</pre>";
+
+    if (empty($_SESSION['users'])) {
+        $_SESSION['users']=$users;
+    }else{
+        $_SESSION['users']=array_merge($_SESSION['users'],  $users);
+    }
+    }
+   
+//var_dump($_SESSION['users']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -338,13 +352,28 @@ echo "</pre>";
             margin-top: 1rem;
         }
         .icons{
-            
+            width: 100%;
+            display: flex;
+            justify-content: right;
         }
+        
       
         .icons i{
         font-size: 25px;
         direction: rtl;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        color: #454545;
+        padding: 5px;
       }
+      .icons i:hover{
+        background-color: #454545;
+        color: aqua;
+        transition: 0.5ms;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
     </style>
     <script>
         $(document).ready(function() {
@@ -373,10 +402,10 @@ echo "</pre>";
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
-                            <div class="search-box">
+                            <!-- <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 <input type="text" class="form-control" placeholder="جستجو ...">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-sm-2 text-right">
                             <h2><b>لاین : </b>بستنی</h2>
@@ -387,9 +416,9 @@ echo "</pre>";
                     </div>
                 </div>
                 <span class="icons">
-                <i class="bi bi-arrow-clockwise"></i>
-                         <i class="bi bi-trash3-fill"></i>
-                         <i class="bi bi-plus-square-fill"></i>
+            <a href=""><i class="bi bi-arrow-clockwise"></i></a> 
+               <a href=""><i class="bi bi-trash3-fill"></i></a> 
+                <a href="test2.php">  <i class="bi bi-plus-square-fill"></i></a>
                    
                         
                 </span>
@@ -413,7 +442,7 @@ echo "</pre>";
 
 <tbody id="result">
 
-    <tr>
+    <!-- <tr>
         <td>dfghd</td>
         <td>dfghd</td>
         <td>dfgh</td>
@@ -429,34 +458,47 @@ echo "</pre>";
         <label class="form-check-label" for="flexCheckDefault">
         </label>
         </div></td>
-    </tr>
+    </tr> -->
 <?php
-// $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
-// $result = sqlsrv_query($conn, $query);
-// $number = '';
-// if ($result > 0) {
-//     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
-//         $number++;
-//         $output .= '<tr>
-//         <td>' . $row['Address'] . '</td>
-//         <td>' . $row['CustomerCode'] . '</td>
-//         <td>' . $row['CustomerName'] . ' </td>
-//         <td>' . $row['Personnel_Code'] . '</td>
-//         <td>' . $row['SellerName'] . '</td>
-//         <td>' . $row['ActivityName'] . '</td>
-//         <td>' . $row['Year/Month'] . '</td>
-//         <td>' . $row['Month'] . '</td>
-//         <td>' . $row['Year'] . '</td>
-//         <td>' . $number . '</td>
-//         <td><div class="form-check">
-//       <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
-//       <label class="form-check-label" for="flexCheckDefault">
-//       </label>
-//     </div></td></tr>';
-//     }
-//     echo $output;
 
-//                             sqlsrv_close($conn);
+
+
+$query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
+
+$allrecords=$_SESSION['users'];
+
+foreach ($allrecords as $key) {
+          $query.=" ID='".$key."' OR ";
+}
+$query=substr($query,0, -3);
+$result = sqlsrv_query($conn, $query);
+$number = '';
+
+if ($result > 0) {
+    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
+        $number++;
+        echo '<tr>
+        <td>' . $row['Address'] . '</td>
+        <td>' . $row['CustomerCode'] . '</td>
+        <td>' . $row['CustomerName'] . ' </td>
+        <td>' . $row['Personnel_Code'] . '</td>
+        <td>' . $row['SellerName'] . '</td>
+        <td>' . $row['ActivityName'] . '</td>
+        <td>' . $row['Year/Month'] . '</td>
+        <td>' . $row['Month'] . '</td>
+        <td>' . $row['Year'] . '</td>
+        <td>' . $number . '</td>
+        <td><div class="form-check">
+      <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+      </label>
+    </div></td></tr>';
+    }
+
+}else{
+    echo 'result nothing';
+}
+ sqlsrv_close($conn);
                             ?>
                         </tbody>
                 </table>
@@ -466,12 +508,10 @@ echo "</pre>";
                 </form>
                 <section class="container rtl">
                 </section><!--container-->
-
             </div>
         </div><!--row-->
     </div>
 </body>
-
 </html>
 <script>
     $(document).ready(function() {
