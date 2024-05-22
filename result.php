@@ -372,6 +372,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         transition: 0.5ms;
         cursor: pointer;
         border-radius: 5px;
+        padding:3px 5px 0px 5px;
       }
 
     </style>
