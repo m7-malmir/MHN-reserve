@@ -25,20 +25,23 @@ if(isset($_POST['code']) || isset($_POST['query']) || isset($_POST['customer']) 
     $month= $_POST['month'] ?? '' ;
     $year= $_POST['year'] ?? '' ;
     $query = "SELECT * FROM Faragostar.View_Unifier WHERE BranchName LIKE N'%قم%' AND LineName LIKE N'%بستن%'  
-    AND Personnel_Code LIKE N'%$code%'  AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%'  AND CustomerCode LIKE N'%$cus_code%' AND [Address] LIKE N'%$address%' AND ActivityName LIKE N'%$activity_name%' AND [Year/Month] LIKE N'%$year_month%' AND Year LIKE N'%$year%' AND Month LIKE N'%$month%' ";
+    AND Personnel_Code LIKE N'%$code%' AND SellerName LIKE N'%$world%' AND CustomerName LIKE N'%$customer%'  AND CustomerCode LIKE N'%$cus_code%' AND [Address] LIKE N'%$address%' AND ActivityName LIKE N'%$activity_name%' AND [Year/Month] LIKE N'%$year_month%' AND Year LIKE N'%$year%' AND Month LIKE N'%$month%' ";
 }else{
     $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
      }
-//var_dump($query);
+ //var_dump($query);
 $result = sqlsrv_query($conn, $query);
 $number = '';
 if ($result > 0) {
+
+    $output ='';
+    print_r($output) ;
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
         $number++;
         $output .= '<tr>
         <td>' . $row['Address'] . '</td>
         <td>' . $row['CustomerCode'] . '</td>
-        <td>' . $row['CustomerName'] . ' </td>
+        <td>' . $row['CustomerName'] . '</td>
         <td>' . $row['Personnel_Code'] . '</td>
         <td>' . $row['SellerName'] . '</td>
         <td>' . $row['ActivityName'] . '</td>
@@ -46,11 +49,15 @@ if ($result > 0) {
         <td>' . $row['Month'] . '</td>
         <td>' . $row['Year'] . '</td>
         <td>' . $number . '</td>
-        <td><div class="form-check">
-      <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-      </label>
-    </div></td></tr>';
+        <td>
+            <div class="form-check">
+        
+                <input name="username[]" value="'.$row['ID'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                </label>
+            </div>
+        </td>
+        </tr>';
     }
     echo $output;
 } else {
@@ -72,6 +79,8 @@ $(document).ready(function(){
 });
 
 
-        
+    $(" #jkjk").click(function () {
+              alert("asdas");
+            });
     });
 </script>

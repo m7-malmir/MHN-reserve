@@ -395,6 +395,7 @@ if (isset($_GET['page-nr'])) {
                         </div>
                     </div>
                 </div>
+                <form action="result.php" method="post">
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
@@ -415,7 +416,7 @@ if (isset($_GET['page-nr'])) {
                             <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
                             <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
                             <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
-                            <td><input name="search_text" id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                            <td><input id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
                             <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
                             <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
                             <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
@@ -430,11 +431,53 @@ if (isset($_GET['page-nr'])) {
                             </td>
                         </tr>
                     </thead>
-                    <form action="result.php" method="post" style="direction: rtl;">
-                        <tbody id="result">
 
-                            <?php
-                            //sqlsrv_close($conn);
+<tbody id="result">
+
+    <!-- <tr>
+        <td>dfghd</td>
+        <td>dfghd</td>
+        <td>dfgh</td>
+        <td>dfgh</td>
+        <td>dfgh</td>
+        <td>dfgh</td>
+        <td>dfgh</td>
+        <td>dfgh</td>
+        <td>gdfh</td>
+        <td>dfgh</td>
+        <td><div class="form-check">
+        <input name="username[]" value="4567467" class="form-check-input" type="checkbox" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+        </label>
+        </div></td>
+    </tr> -->
+<?php
+// $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
+// $result = sqlsrv_query($conn, $query);
+// $number = '';
+// if ($result > 0) {
+//     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
+//         $number++;
+//         $output .= '<tr>
+//         <td>' . $row['Address'] . '</td>
+//         <td>' . $row['CustomerCode'] . '</td>
+//         <td>' . $row['CustomerName'] . ' </td>
+//         <td>' . $row['Personnel_Code'] . '</td>
+//         <td>' . $row['SellerName'] . '</td>
+//         <td>' . $row['ActivityName'] . '</td>
+//         <td>' . $row['Year/Month'] . '</td>
+//         <td>' . $row['Month'] . '</td>
+//         <td>' . $row['Year'] . '</td>
+//         <td>' . $number . '</td>
+//         <td><div class="form-check">
+//       <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+//       <label class="form-check-label" for="flexCheckDefault">
+//       </label>
+//     </div></td></tr>';
+//     }
+//     echo $output;
+
+//                             sqlsrv_close($conn);
                             ?>
                         </tbody>
                 </table>
@@ -600,10 +643,11 @@ if (isset($_GET['page-nr'])) {
                         <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="col-md-8">
-                        <input type="submit" value="submit" class="btn btn-success">
-                        </form>
+                        <input id="submit" type="submit" value="submit" class="btn btn-success">
+                     
                     </div>
                 </div>
+                </form>
                 <section class="container rtl">
                 </section><!--container-->
 
@@ -627,58 +671,63 @@ if (isset($_GET['page-nr'])) {
         let lin = document.querySelectorAll('li.next a');
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
+      
 
-        //load data
+
+       
+
         load_data();
-
         function load_data(query) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    query: query
+                    query: query,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
                 }
             });
         }
-        load_data2();
 
+        load_data2();
         function load_data2(code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    code: code
+                    code: code,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
                 }
             });
         }
-        load_data3();
 
+        load_data3();
         function load_data3(customer) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    customer: customer
+                    customer: customer,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
                 }
             });
         }
-        load_data4();
 
+        load_data4();
         function load_data4(cus_code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    cus_code: cus_code
+                    cus_code: cus_code,typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
@@ -687,13 +736,12 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data5();
-
         function load_data5(address) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    address: address
+                    address: address,typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
@@ -702,15 +750,15 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data6();
-
 function load_data6(activity_name) {
     $.ajax({
         url: "fetch.php",
         method: "post",
         data: {
-            activity_name: activity_name
+            activity_name: activity_name,typeOfSearch: $('input#flexCheckDefault').prop('checked')
         },
         success: function(data) {
+           
             $('#result').html(data);
         }
     });
@@ -722,7 +770,7 @@ function load_data7(year_month) {
         url: "fetch.php",
         method: "post",
         data: {
-            year_month:  year_month
+            year_month:  year_month,typeOfSearch: $('input#flexCheckDefault').prop('checked')
         },
         success: function(data) {
             $('#result').html(data);
@@ -737,20 +785,21 @@ function load_data8(month) {
         url: "fetch.php",
         method: "post",
         data: {
-            month: month
+            month: month,typeOfSearch: $('input#flexCheckDefault').prop('checked')
         },
         success: function(data) {
             $('#result').html(data);
         }
     });
 }
+
 load_data9();
 function load_data9(year) {
     $.ajax({
         url: "fetch.php",
         method: "post",
         data: {
-            year: year
+            year: year,typeOfSearch: $('input#flexCheckDefault').prop('checked')
         },
         success: function(data) {
             $('#result').html(data);
@@ -837,7 +886,12 @@ function load_data9(year) {
             }
         });
 
-
+    
+          
+     
 
     });
+
+
+
 </script>
