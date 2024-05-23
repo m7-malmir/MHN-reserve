@@ -75,12 +75,7 @@ $(document).ready(function(){
         $(function() {
         $('tr [type=checkbox]').click(function() {
             $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
-        });
-});
-
-
-    $(" #jkjk").click(function () {
-              alert("asdas");
             });
+        });
     });
 </script>

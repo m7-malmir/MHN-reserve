@@ -357,7 +357,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             justify-content: right;
         }
         
-      
         .icons i{
         font-size: 25px;
         direction: rtl;
@@ -378,7 +377,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     </style>
     <script>
         $(document).ready(function() {
-            // $('[data-toggle="tooltip"]').tooltip();
+            //$('[data-toggle="tooltip"]').tooltip();
             $("#allbox").click(function() {
                 //alert();
                 $('input:checkbox').not(this).prop('checked', this.checked);
@@ -403,10 +402,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
-                            <!-- <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" placeholder="جستجو ...">
-                            </div> -->
+                        <!-- <div class="search-box">
+                            <i class="material-icons">&#xE8B6;</i>
+                            <input type="text" class="form-control" placeholder="جستجو ...">
+                        </div> -->
                         </div>
                         <div class="col-sm-2 text-right">
                             <h2><b>لاین : </b>بستنی</h2>
@@ -418,10 +417,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 </div>
                 <span class="icons">
             <a href=""><i class="bi bi-arrow-clockwise"></i></a> 
-               <a href=""><i class="bi bi-trash3-fill"></i></a> 
-                <a href="test2.php">  <i class="bi bi-plus-square-fill"></i></a>
-                   
-                        
+            <a href="result.php?delete"><i class="bi bi-trash3-fill"></i></a> 
+            <a href="test2.php"><i class="bi bi-plus-square-fill"></i></a>
+                          
                 </span>
                 <form action="result.php" method="post">
                 <table class="table table-striped table-hover table-bordered">
@@ -442,39 +440,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     </thead>
 
 <tbody id="result">
-
-    <!-- <tr>
-        <td>dfghd</td>
-        <td>dfghd</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>gdfh</td>
-        <td>dfgh</td>
-        <td><div class="form-check">
-        <input name="username[]" value="4567467" class="form-check-input" type="checkbox" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-        </label>
-        </div></td>
-    </tr> -->
 <?php
-
-
-
 $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
-
 $allrecords=$_SESSION['users'];
-
 foreach ($allrecords as $key) {
           $query.=" ID='".$key."' OR ";
 }
 $query=substr($query,0, -3);
 $result = sqlsrv_query($conn, $query);
 $number = '';
-
 if ($result > 0) {
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
         $number++;
@@ -490,7 +464,7 @@ if ($result > 0) {
         <td>' . $row['Year'] . '</td>
         <td>' . $number . '</td>
         <td><div class="form-check">
-      <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+      <input name="username[]" value="'.$row['ID'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
       </label>
     </div></td></tr>';
@@ -517,21 +491,42 @@ if ($result > 0) {
 <script>
     $(document).ready(function() {
 
-        let links = document.querySelectorAll('li.active a');
-        let bodyId = parseInt(document.body.id) - 1;
-        links[bodyId].classList.add("shownum");
+        // let links = document.querySelectorAll('li.active a');
+        // let bodyId = parseInt(document.body.id) - 1;
+        // links[bodyId].classList.add("shownum");
 
-        let link = document.querySelectorAll('li.prev a');
-        let bodyI = parseInt(document.body.id) - 1;
-        link[bodyI].classList.add("shownum");
+        // let link = document.querySelectorAll('li.prev a');
+        // let bodyI = parseInt(document.body.id) - 1;
+        // link[bodyI].classList.add("shownum");
 
-        let lin = document.querySelectorAll('li.next a');
-        let body = parseInt(document.body.id) - 1;
-        lin[body].classList.add("shownum");
+        // let lin = document.querySelectorAll('li.next a');
+        // let body = parseInt(document.body.id) - 1;
+        // lin[body].classList.add("shownum");
       
+        $('#result tr').click(function(event){
+            var getID=$(this).find('.form-check [type=checkbox]').attr('value');
+            <?php 
+                if(isset($_GET['delete'])){
+                    $_SESSION['getid']="<script>document.write(getID)</script>"; 
+                     
+                }
+            ?>
+            if (event.target.type !== 'checkbox') {
+               $(':checkbox', this).trigger('click');
+            } 
+        });
+        $(function() {
+        $('tr [type=checkbox]').click(function() {
+            $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
+            });
+        });
 
     });
 
 
 
 </script>
+<?php
+
+print_r($_SESSION['getid']);
+?>

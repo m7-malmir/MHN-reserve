@@ -4,7 +4,6 @@ if (isset($_POST["submit"])) {
     var_dump($_POST);
 }
 
-
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -32,7 +31,6 @@ $stmt = sqlsrv_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -659,7 +657,6 @@ if (isset($_GET['page-nr'])) {
 </html>
 <script>
     $(document).ready(function() {
-
         let links = document.querySelectorAll('li.active a');
         let bodyId = parseInt(document.body.id) - 1;
         links[bodyId].classList.add("shownum");
@@ -672,9 +669,6 @@ if (isset($_GET['page-nr'])) {
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
       
-
-
-       
 
         load_data();
         function load_data(query) {
