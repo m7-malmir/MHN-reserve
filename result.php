@@ -505,12 +505,9 @@ if ($result > 0) {
       
         $('#result tr').click(function(event){
             var getID=$(this).find('.form-check [type=checkbox]').attr('value');
-            <?php 
-                if(isset($_GET['delete'])){
-                    $_SESSION['getid']="<script>document.write(getID)</script>"; 
-                     
-                }
-            ?>
+           <?php
+            $_SESSION['getID']="<script>getID</script>";
+           ?>
             if (event.target.type !== 'checkbox') {
                $(':checkbox', this).trigger('click');
             } 
@@ -528,5 +525,10 @@ if ($result > 0) {
 </script>
 <?php
 
-print_r($_SESSION['getid']);
+if(isset($_GET['delete'])){
+    echo '<pre>';
+    var_dump($_SESSION['getID']);
+    echo '</pre>';  
+}
+
 ?>
