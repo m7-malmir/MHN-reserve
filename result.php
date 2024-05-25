@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+//session_destroy()
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -38,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -394,7 +395,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $id = 1;
     }
 ?>
-
 <body id="<?php echo $id; ?>">
     <div class="container-castum">
         <div class="table-responsive">
@@ -477,9 +477,6 @@ if ($result > 0) {
                             ?>
                         </tbody>
                 </table>
-              
-
-               
                 </form>
                 <section class="container rtl">
                 </section><!--container-->
@@ -488,7 +485,7 @@ if ($result > 0) {
     </div>
 </body>
 </html>
-<script>
+<script  type="text/javascript">
     $(document).ready(function() {
 
         // let links = document.querySelectorAll('li.active a');
@@ -505,30 +502,27 @@ if ($result > 0) {
       
         $('#result tr').click(function(event){
             var getID=$(this).find('.form-check [type=checkbox]').attr('value');
-           <?php
-            $_SESSION['getID']="<script>getID</script>";
-           ?>
+
             if (event.target.type !== 'checkbox') {
                $(':checkbox', this).trigger('click');
             } 
+
         });
         $(function() {
         $('tr [type=checkbox]').click(function() {
             $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
             });
         });
-
-    });
-
-
-
+        });
+        var sdf='asdfasdfasdf';
+<?php $abc = "<script>document.write(getID)</script>"?>
 </script>
 <?php
 
 if(isset($_GET['delete'])){
-    echo '<pre>';
-    var_dump($_SESSION['getID']);
-    echo '</pre>';  
+    //echo '<pre>';
+  var_dump($abc); 
+    //echo '</pre>';  
 }
 
 ?>
