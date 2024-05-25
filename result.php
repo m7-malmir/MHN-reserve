@@ -1,7 +1,6 @@
 <?php
-
 session_start();
-//session_destroy()
+//session_destroy();
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -417,11 +416,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 </div>
                 <span class="icons">
             <a href=""><i class="bi bi-arrow-clockwise"></i></a> 
-            <a href="result.php?delete"><i class="bi bi-trash3-fill"></i></a> 
+            <a id="trash" href="result.php?delete"><i class="bi bi-trash3-fill"></i></a> 
             <a href="test2.php"><i class="bi bi-plus-square-fill"></i></a>
                           
                 </span>
-                <form action="result.php" method="post">
+                
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
@@ -477,12 +476,20 @@ if ($result > 0) {
                             ?>
                         </tbody>
                 </table>
-                </form>
+               
                 <section class="container rtl">
                 </section><!--container-->
             </div>
         </div><!--row-->
     </div>
+
+    <div id="chatbox">
+        <div id="me">
+            <p>
+
+            </p>
+        </div>
+    </div>  
 </body>
 </html>
 <script  type="text/javascript">
@@ -501,7 +508,7 @@ if ($result > 0) {
         // lin[body].classList.add("shownum");
       
         $('#result tr').click(function(event){
-            var getID=$(this).find('.form-check [type=checkbox]').attr('value');
+            //var getID=$(this).find('.form-check [type=checkbox]').attr('value');
 
             if (event.target.type !== 'checkbox') {
                $(':checkbox', this).trigger('click');
@@ -509,20 +516,50 @@ if ($result > 0) {
 
         });
         $(function() {
-        $('tr [type=checkbox]').click(function() {
+            $('tr [type=checkbox]').click(function() {
             $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
+                });
             });
         });
-        });
-        var sdf='asdfasdfasdf';
-<?php $abc = "<script>document.write(getID)</script>"?>
+
+$('#trash').on('click', function get_msg(e) {
+    e.preventDefault();
+    var getID=new Array();
+    $(this).parent().parent().find('.form-check [type=checkbox]:checked').each(function(i) {
+        getID.push($(this).val());
+    });
+    
+    $.ajax({
+    type: "POST",
+    url: "delete-chat.php",
+    data: {
+        getID: getID 
+    },
+    success: function(data){
+    //console.log(getID);
+    // $( "#chatbox #me p" ).each(function( index ) {
+    // if($(this).attr('id')==getID){
+        alert(data);
+        // $(this).parent().remove();
+    // }
+    // });   
+    },
+    error: function(xhr, status, error){
+        console.error(xhr);
+    }
+    });
+});
 </script>
+
 <?php
+$delete_users=array('0'=>'1402124161347825999476901472299','1'=>'1402121161347809383829184877600');
+print_r($_SESSION['users']);
+foreach ($delete_users as $key ) {
+    
+    if(in_array("$key", $_SESSION['users'])){
+        unset($_SESSION['variable_name'][$key]);
+    }
 
-if(isset($_GET['delete'])){
-    //echo '<pre>';
-  var_dump($abc); 
-    //echo '</pre>';  
 }
-
 ?>
+
