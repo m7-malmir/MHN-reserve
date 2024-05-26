@@ -68,13 +68,26 @@ $stmt = sqlsrv_query($conn, $sql);
             padding: 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         }
-
         .table-title {
             padding-bottom: 10px;
             margin: 0 0 10px;
             min-width: 100%;
         }
-
+        .re_data{
+            background-color: #5f3636db;
+            text-align: center;
+            font-size: 25px;
+            color: #fff;
+            position: absolute;
+            width: 40%;
+            border-radius: 5px;
+            right: 110px;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 20px;
+            }
         .table-title h2 {
             margin: 10px 15px 0px 0px;
             font-size: 22px;
@@ -398,9 +411,11 @@ if (isset($_GET['page-nr'])) {
 
     <div class="container-castum">
         <div class="table-responsive">
+         
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
+       
                         <div class="col-sm-2 text-center badge">
                         <a href="result.php"><i class="bi bi-clipboard2-check-fill">
                                 <?php
@@ -432,6 +447,9 @@ if (isset($_GET['page-nr'])) {
                     </div>
                 
                 </div>
+                <?php print_r($_SESSION['reapet_case'] ?? '');
+                    unset($_SESSION['reapet_case']);
+                ?>
                 <form action="result.php" method="post" onsubmit="window.opener.location.reload();">
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -695,6 +713,9 @@ if (isset($_GET['page-nr'])) {
 
 </html>
 <script>
+    $(".re_data").fadeTo(2000, 500).slideUp(1500, function(){
+       $(".re_data").slide(1600);
+     });
     document.onreadystatechange = function () {
   var state = document.readyState
   if (state == 'interactive') {

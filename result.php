@@ -19,7 +19,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (empty($_SESSION['users'])) {
         $_SESSION['users']=$users;
     }else{
-        $_SESSION['users']=array_merge($_SESSION['users'],  $users);
+        foreach ($_SESSION['users'] as $key => $val ) {
+            var_dump($key.' => '. $val);
+            if(in_array($val, $users)){  
+              $_SESSION['reapet_case']='<div class="re_data">این مورد تکراری است</div>';
+              header("Location: test2.php"); 
+            }else{
+                $_SESSION['users']=array_merge($_SESSION['users'],  $users);
+            }
+        }
+       
     }
     }
    
@@ -359,6 +368,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         border-radius: 5px;
         padding:3px 5px 0px 5px;
       }
+      .no_data{
+        background-color: #2ee33a;
+        text-align: center;
+        font-size: 22px;
+      }
 
     </style>
     <script>
@@ -401,7 +415,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     </div>
                 </div>
                 <span class="icons">
-            <a href=""><i class="bi bi-arrow-clockwise"></i></a> 
+            <a  href="result.php"><i class="bi bi-arrow-clockwise"></i></a> 
+           
             <a id="trash" href="result.php?delete"><i class="bi bi-trash3-fill"></i></a> 
             <a href="test2.php"><i class="bi bi-plus-square-fill"></i></a>
                           
@@ -462,26 +477,22 @@ if ($result > 0) {
 }
  sqlsrv_close($conn);
 }else{
-    echo '<div>موردی برای نمایش وجود ندارد</div>';
+    $no_data= '<div class="no_data">موردی برای نمایش وجود ندارد</div>';
 }
 
                             ?>
+                       
                         </tbody>
                 </table>
                
                 <section class="container rtl">
                 </section><!--container-->
-            </div>
+            </div >
+            <?=  $no_data ?? ''; ?>
         </div><!--row-->
     </div>
-
-    <div id="chatbox">
-        <div id="me">
-            <p>
-
-            </p>
-        </div>
-    </div>  
+  
+    
 </body>
 </html>
 <script  type="text/javascript">
@@ -527,8 +538,8 @@ $('#trash').on('click', function get_msg(e) {
         getID: getID 
     },
     success: function(data){
-    //console.log(getID);
-    $( "#result tr" ).each(function( index ) {
+
+    $( "#result tr" ).each(function( data ) {
     if($(this).attr('id')==getID){
         //alert();
         $(this).remove();
@@ -544,6 +555,6 @@ $('#trash').on('click', function get_msg(e) {
 
 <?php
 
-
+print_r($_SESSION);
 ?>
 
