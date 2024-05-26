@@ -1,15 +1,18 @@
 <?php
+session_start();
+//session_destroy();
+print_r($_SESSION['users']);
 if (isset($_POST['getID'])){
     $delete_users=$_POST['getID'] ?? '';
-   // print_r($_SESSION['users']);
-    print_r($delete_users);
-    // foreach ($delete_users as $key ) {
-    
-    //     if(in_array("$key", $_SESSION['users'])){
-    //         unset($_SESSION['variable_name'][$key]);
-    //     }
 
-    // }
+    foreach ($delete_users as $key => $val ) {
+        //print_r($key);
+        if(in_array("$val", $_SESSION['users'])){
+            //echo 'ok';
+            echo $key;
+            unset($_SESSION['users'][$key]);
+        }
+    }
 
 }
 

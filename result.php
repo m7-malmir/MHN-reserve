@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     }
    
-//var_dump($_SESSION['users']);
+
 
 ?>
 <!DOCTYPE html>
@@ -272,11 +272,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         .hide {
             display: none;
         }
-
         .shownum {
             display: block !important;
         }
-
         .inner-search {
             box-shadow: inset 0px 1px 11px 0px rgba(0, 0, 0, .24);
             border: none;
@@ -287,7 +285,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             min-width: 100%;
 
         }
-
         .inner-search:focus {
             outline-width: 0;
             box-shadow: 0px 0px 5px 5px rgba(194, 218, 255, 1);
@@ -295,18 +292,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             -moz-box-shadow: 0px 0px 5px 5px rgba(194, 218, 255, 1);
             border: none;
         }
-
         input[type=checkbox] {
             transform: scale(1.5);
         }
-
-
-
         .filterIcon {
             height: 16px;
             width: 16px;
         }
-
         .modalFilter {
             display: none;
             height: auto;
@@ -316,25 +308,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             position: absolute;
             z-index: 1001;
         }
-
         .modalFilter .modal-content {
             max-height: 250px;
             overflow-y: auto;
         }
-
         .modalFilter .modal-footer {
             background: #FFF;
             height: 35px;
             padding-top: 6px;
         }
-
         .modalFilter .btn {
             padding: 0 1em;
             height: 28px;
             line-height: 28px;
             text-transform: none;
         }
-
         #mask {
             display: none;
             background: transparent;
@@ -346,7 +334,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             height: 100%;
             opacity: 1000;
         }
-
         .col-md-3 {
             text-align: right;
             margin-top: 1rem;
@@ -356,7 +343,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             display: flex;
             justify-content: right;
         }
-        
         .icons i{
         font-size: 25px;
         direction: rtl;
@@ -552,14 +538,6 @@ $('#trash').on('click', function get_msg(e) {
 </script>
 
 <?php
-$delete_users=array('0'=>'1402124161347825999476901472299','1'=>'1402121161347809383829184877600');
-print_r($_SESSION['users']);
-foreach ($delete_users as $key ) {
-    
-    if(in_array("$key", $_SESSION['users'])){
-        unset($_SESSION['variable_name'][$key]);
-    }
 
-}
 ?>
 

@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (isset($_POST["submit"])) {
-    var_dump($_POST);
-}
+//session_destroy();
+echo '<pre>';
+var_export($_SESSION);
+echo '</pre>';
+
 
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
@@ -44,6 +46,7 @@ $stmt = sqlsrv_query($conn, $sql);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
 
@@ -352,6 +355,22 @@ $stmt = sqlsrv_query($conn, $sql);
             text-align: right;
             margin-top: 1rem;
         }
+        .badge i {
+            font-size: 30px;
+            position: relative;
+        }
+        .badge span{
+            position: absolute;
+            font-size: 13px;
+            background-color: red;
+            color: #fff;
+            border-radius: 50%;
+            font-family: monospace;
+            padding: 6px;
+            right: -11px;
+            bottom: -3px;
+        }
+
     </style>
     <script>
         $(document).ready(function() {
@@ -379,7 +398,22 @@ if (isset($_GET['page-nr'])) {
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
-                        <div class="col-sm-8">
+                        <div class="col-sm-2 text-center badge">
+                        <a href="result.php"><i class="bi bi-clipboard2-check-fill">
+                                <?php
+                                if(isset($_SESSION['users'])){?>
+                                 <span><?php print_r(count($_SESSION['users'])); ?></span>                                    
+                           <?php   }else{ ?>
+                          
+                            <?php
+                
+                                }
+                         
+                                ?>
+                              </i></a>
+                            
+                        </div>
+                        <div class="col-sm-6">
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 <input type="text" class="form-control" placeholder="جستجو ...">
@@ -391,7 +425,9 @@ if (isset($_GET['page-nr'])) {
                         <div class="col-sm-2 text-right">
                             <h2><b>شعبه : </b>قم</h2>
                         </div>
+                     
                     </div>
+                
                 </div>
                 <form action="result.php" method="post">
                 <table class="table table-striped table-hover table-bordered">
