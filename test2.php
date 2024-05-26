@@ -1,10 +1,6 @@
 <?php
 session_start();
 //session_destroy();
-echo '<pre>';
-var_export($_SESSION);
-echo '</pre>';
-
 
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
@@ -370,7 +366,13 @@ $stmt = sqlsrv_query($conn, $sql);
             right: -11px;
             bottom: -3px;
         }
-
+        #load{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:9999;
+    background:url("/loading.gif") no-repeat center center rgba(0,0,0,0.25)
+}
     </style>
     <script>
         $(document).ready(function() {
@@ -393,6 +395,7 @@ if (isset($_GET['page-nr'])) {
 ?>
 
 <body id="<?php echo $id; ?>">
+
     <div class="container-castum">
         <div class="table-responsive">
             <div class="table-wrapper">
@@ -429,7 +432,7 @@ if (isset($_GET['page-nr'])) {
                     </div>
                 
                 </div>
-                <form action="result.php" method="post">
+                <form action="result.php" method="post" onsubmit="window.opener.location.reload();">
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
@@ -692,6 +695,18 @@ if (isset($_GET['page-nr'])) {
 
 </html>
 <script>
+    document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+       document.getElementById('contents').style.visibility="hidden";
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+         document.getElementById('contents').style.visibility="visible";
+      },1000);
+  }
+}
     $(document).ready(function() {
         let links = document.querySelectorAll('li.active a');
         let bodyId = parseInt(document.body.id) - 1;
@@ -704,7 +719,10 @@ if (isset($_GET['page-nr'])) {
         let lin = document.querySelectorAll('li.next a');
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
-      
+       
+        $('form').submit(function() {
+            window.opener.location.reload();
+        });     
 
         load_data();
         function load_data(query) {

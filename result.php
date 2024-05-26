@@ -431,13 +431,15 @@ $allrecords=$_SESSION['users'];
 foreach ($allrecords as $key) {
           $query.=" ID='".$key."' OR ";
 }
-$query=substr($query,0, -3);
+if(count($_SESSION['users']) > 0){
+    $query=substr($query,0, -3);
+    
 $result = sqlsrv_query($conn, $query);
 $number = '';
 if ($result > 0) {
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
         $number++;
-        echo '<tr>
+        echo '<tr id="'.$row['ID'].'">
         <td>' . $row['Address'] . '</td>
         <td>' . $row['CustomerCode'] . '</td>
         <td>' . $row['CustomerName'] . ' </td>
@@ -459,6 +461,10 @@ if ($result > 0) {
     echo 'result nothing';
 }
  sqlsrv_close($conn);
+}else{
+    echo '<div>موردی برای نمایش وجود ندارد</div>';
+}
+
                             ?>
                         </tbody>
                 </table>
@@ -514,7 +520,6 @@ $('#trash').on('click', function get_msg(e) {
     $(this).parent().parent().find('.form-check [type=checkbox]:checked').each(function(i) {
         getID.push($(this).val());
     });
-    
     $.ajax({
     type: "POST",
     url: "delete-chat.php",
@@ -523,12 +528,12 @@ $('#trash').on('click', function get_msg(e) {
     },
     success: function(data){
     //console.log(getID);
-    // $( "#chatbox #me p" ).each(function( index ) {
-    // if($(this).attr('id')==getID){
-        alert(data);
-        // $(this).parent().remove();
-    // }
-    // });   
+    $( "#result tr" ).each(function( index ) {
+    if($(this).attr('id')==getID){
+        //alert();
+        $(this).remove();
+    }
+    });   
     },
     error: function(xhr, status, error){
         console.error(xhr);
@@ -538,6 +543,7 @@ $('#trash').on('click', function get_msg(e) {
 </script>
 
 <?php
+
 
 ?>
 
