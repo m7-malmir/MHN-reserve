@@ -55,7 +55,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             font-family: 'Yekan', sans-serif;
             font-size: 13px;
         }
-
+        center{
+            background-color: antiquewhite;
+            width: 45%;
+            margin: 0 auto;
+            padding: 3px 0px 10px 0px;
+            border-radius: 6px;
+        }
         @font-face {
             font-family: Yekan;
             src: url(./font/Yekan.ttf);
@@ -391,15 +397,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 <body id="<?php echo $id; ?>">
     <div class="container-castum">
+     
         <div class="table-responsive">
+   
             <div class="table-wrapper">
+
+
                 <div class="table-title">
+                <center><div><h2>ویرایش موارد انتخابی</h2></div> </center>
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-8">
-                        <!-- <div class="search-box">
-                            <i class="material-icons">&#xE8B6;</i>
-                            <input type="text" class="form-control" placeholder="جستجو ...">
-                        </div> -->
                         </div>
                         <div class="col-sm-2 text-right">
                             <h2><b>لاین : </b>بستنی</h2>
@@ -409,11 +416,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         </div>
                     </div>
                 </div>
+
+
                 <span class="icons">
-            <a  href="result.php"><i class="bi bi-arrow-clockwise"></i></a> 
+            <a  href="result.php" title="رفرش"><i class="bi bi-arrow-clockwise" ></i></a> 
            
-            <a id="trash" href="result.php?delete"><i class="bi bi-trash3-fill"></i></a> 
-            <a href="test2.php"><i class="bi bi-plus-square-fill"></i></a>
+            <a id="trash" href="result.php?delete" title="حذف موارد انتخابی""><i class="bi bi-trash3-fill"></i></a> 
+            <a href="test2.php"  title="افزودن موارد دیگر"><i class="bi bi-plus-square-fill"></i></a>
                           
                 </span>
                 
@@ -505,11 +514,9 @@ if ($result > 0) {
         
             $('#result tr').click(function(event){
                 //var getID=$(this).find('.form-check [type=checkbox]').attr('value');
-
                 if (event.target.type !== 'checkbox') {
                 $(':checkbox', this).trigger('click');
                 } 
-
             });
             $(function() {
                 $('tr [type=checkbox]').click(function() {
@@ -531,7 +538,6 @@ if ($result > 0) {
             getID: getID 
         },
         success: function(data){
-
         var some = [];
         $("#result ").find('.form-check [type=checkbox]:checked').each(function(i) {
             some.push($(this).val());

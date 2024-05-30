@@ -450,24 +450,25 @@ if (isset($_GET['page-nr'])) {
         <section id="header">
         <div class="table-responsive">
             <div class="table-wrapper">
+
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
-                        <div class="col-sm-6">
+
+                        <div class="col-sm-8">
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 <input type="text" class="form-control" placeholder="جستجو ...">
                             </div>
                         </div>
-                        <!-- <div class="col-sm-2 text-right">
-                            <h2><b>لاین : </b>بستنی</h2>
-                        </div> -->
-                        <div class="col-sm-5 text-right">
+
+                        <div class="col-sm-4 text-right">
                             <h6><b>شعبه : </b>قم</h6>
                             <h6><b>لاین : </b>بستنی</h6>
-                        
                         </div>
+
                     </div>
                 </div>
+                
                 <?php print_r($_SESSION['reapet_case'] ?? '');
                 unset($_SESSION['reapet_case']);
                 ?>
