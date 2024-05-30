@@ -37,12 +37,12 @@ if ($result > 0) {
     $output ='';
 
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
-        
-            if(!in_array($row['ID'], $_SESSION['users'])){ 
-               
+        if (isset($_SESSION['users'])) {
+            
+            if (!in_array($row['ID'], $_SESSION['users'])) {
                 $number++;
                 $output .= '<tr>
-                <td>' .$row['Address'] . '</td>
+                <td>' . $row['Address'] . '</td>
                 <td>' . $row['CustomerCode'] . '</td>
                 <td>' . $row['CustomerName'] . '</td>
                 <td>' . $row['Personnel_Code'] . '</td>
@@ -54,37 +54,60 @@ if ($result > 0) {
                 <td>' . $number . '</td>
                 <td>
                     <div class="form-check">
-                        <input name="username[]" value="'.$row['ID'].'" class="form-check-input" type="checkbox" id="flexCheckDefault" >
+                        <input name="username[]" value="' . $row['ID'] . '" class="form-check-input" type="checkbox" id="flexCheckDefault" >
                         <label class="form-check-label" for="flexCheckDefault">
                         </label>
                     </div>
                 </td>
                 </tr>';
-            }else{
-                $disable='style="background-color:#82e74c4d;pointer-events:none;"';
-        $number++;
-        $output .= '<tr '.$disable.'>
-        <td>' .$row['Address'] . '</td>
-        <td>' . $row['CustomerCode'] . '</td>
-        <td>' . $row['CustomerName'] . '</td>
-        <td>' . $row['Personnel_Code'] . '</td>
-        <td>' . $row['SellerName'] . '</td>
-        <td>' . $row['ActivityName'] . '</td>
-        <td>' . $row['Year/Month'] . '</td>
-        <td>' . $row['Month'] . '</td>
-        <td>' . $row['Year'] . '</td>
-        <td>' . $number . '</td>
-        <td>
-            <div class="form-check">
-              
-                <label class="form-check-label" for="flexCheckDefault">
-                </label>
-            </div>
-        </td>
-        </tr>';
-       
-    } }   
-            
+            } 
+            else {
+                        $disable = 'style="background-color:#82e74c4d;pointer-events:none;"';
+                        $number++;
+                        $output .= '<tr ' . $disable . '>
+                <td>' . $row['Address'] . '</td>
+                <td>' . $row['CustomerCode'] . '</td>
+                <td>' . $row['CustomerName'] . '</td>
+                <td>' . $row['Personnel_Code'] . '</td>
+                <td>' . $row['SellerName'] . '</td>
+                <td>' . $row['ActivityName'] . '</td>
+                <td>' . $row['Year/Month'] . '</td>
+                <td>' . $row['Month'] . '</td>
+                <td>' . $row['Year'] . '</td>
+                <td>' . $number . '</td>
+                <td>
+                    <div class="form-check">
+                    
+                        <label class="form-check-label" for="flexCheckDefault">
+                        </label>
+                    </div>
+                </td>
+                </tr>';
+            }
+        } else {
+            $number++;
+            $output .= '<tr>
+                <td>' . $row['Address'] . '</td>
+                <td>' . $row['CustomerCode'] . '</td>
+                <td>' . $row['CustomerName'] . '</td>
+                <td>' . $row['Personnel_Code'] . '</td>
+                <td>' . $row['SellerName'] . '</td>
+                <td>' . $row['ActivityName'] . '</td>
+                <td>' . $row['Year/Month'] . '</td>
+                <td>' . $row['Month'] . '</td>
+                <td>' . $row['Year'] . '</td>
+                <td>' . $number . '</td>
+                <td>
+                    <div class="form-check">
+                        <input name="username[]" value="' . $row['ID'] . '" class="form-check-input" type="checkbox" id="flexCheckDefault" >
+                        <label class="form-check-label" for="flexCheckDefault">
+                        </label>
+                    </div>
+                </td>
+                </tr>';
+        }
+    }
+
     echo $output;
 } else {
     echo '<center>اطلاعات مورد نظر یافت نشد</center>';

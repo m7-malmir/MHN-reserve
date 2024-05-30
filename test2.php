@@ -470,7 +470,8 @@ if (isset($_GET['page-nr'])) {
                     </div>
                 </div>
                 
-                <?php print_r($_SESSION['reapet_case'] ?? '');
+                <?php
+                print_r($_SESSION['reapet_case'] ?? '');
                 unset($_SESSION['reapet_case']);
                 ?>
            

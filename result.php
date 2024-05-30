@@ -1,7 +1,10 @@
 <?php
 session_start();
+if(isset($_SESSION['users'] )){
+
 //var_dump($_POST);
 //session_destroy();
+
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -416,8 +419,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         </div>
                     </div>
                 </div>
-
-
                 <span class="icons">
             <a  href="result.php" title="رفرش"><i class="bi bi-arrow-clockwise" ></i></a> 
            
@@ -446,21 +447,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <tbody id="result">
 <?php
 
-$query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
-$allrecords=$_SESSION['users'];
-foreach ($allrecords as $key) {
-          $query.=" ID='".$key."' OR ";
+$query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
+if(isset($_SESSION['users'] )){
+    $allrecords = $_SESSION['users'] ?? '';
+}else{
+    $allrecords[]='';
 }
 
-if(count($_SESSION['users']) > 0){
-    $query=substr($query,0, -3);
-    
-$result = sqlsrv_query($conn, $query);
-$number = '';
-if ($result > 0) {
-    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
-        $number++;
-        echo '<tr id="'.$row['ID'].'">
+foreach ($allrecords as $key) {
+    $query .= " ID='" . $key . "' OR ";
+}
+if (isset($_SESSION['users']) && count($_SESSION['users']) > 0) {
+  
+        $query = substr($query, 0, -3);
+
+        $result = sqlsrv_query($conn, $query);
+        $number = '';
+        if ($result > 0) {
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
+                $number++;
+                echo '<tr id="' . $row['ID'] . '">
         <td>' . $row['Address'] . '</td>
         <td>' . $row['CustomerCode'] . '</td>
         <td>' . $row['CustomerName'] . ' </td>
@@ -472,18 +478,21 @@ if ($result > 0) {
         <td>' . $row['Year'] . '</td>
         <td>' . $number . '</td>
         <td><div class="form-check">
-      <input name="username[]" value="'.$row['ID'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+      <input name="username[]" value="' . $row['ID'] . '" class="form-check-input" type="checkbox" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
       </label>
     </div></td></tr>';
+            }
+        
+    } else {
+        echo 'result nothing';
     }
 }else{
-    echo 'result nothing';
+    $no_data = '<div class="no_data">موردی برای نمایش وجود ندارد</div>';
+    //header("location:test2.php");
+
 }
- sqlsrv_close($conn);
-}else{
-    $no_data= '<div class="no_data">موردی برای نمایش وجود ندارد</div>';
-}
+sqlsrv_close($conn);
 ?>
                        
                         </tbody>
@@ -552,7 +561,11 @@ if ($result > 0) {
 
 </script>
 <?php
-
+}else{
+    $_SESSION['empty_row']='هیچ ردیفی انتخاب نشده است';
+    header("location:test2.php");
+    exit;
+}
 
 ?>
 
