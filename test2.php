@@ -1,7 +1,7 @@
 <?php
 session_start();
 //session_destroy();
-
+//var_dump($_POST);
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -33,11 +33,11 @@ $stmt = sqlsrv_query($conn, $sql);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap Simple Data Table</title>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -68,12 +68,14 @@ $stmt = sqlsrv_query($conn, $sql);
             padding: 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         }
+
         .table-title {
             padding-bottom: 10px;
             margin: 0 0 10px;
             min-width: 100%;
         }
-        .re_data{
+
+        .re_data {
             background-color: #5f3636db;
             text-align: center;
             font-size: 25px;
@@ -87,7 +89,8 @@ $stmt = sqlsrv_query($conn, $sql);
             align-items: center;
             justify-content: center;
             top: 20px;
-            }
+        }
+
         .table-title h2 {
             margin: 10px 15px 0px 0px;
             font-size: 22px;
@@ -109,11 +112,11 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         /* .search-box input:focus {
-            border-color: #3FBAE4;
-            box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
-            -webkit-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
-            -moz-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
-        } */
+    border-color: #3FBAE4;
+    box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px 0px 7px 6px rgba(0,0,0,0.59);
+    } */
 
         .search-box i {
             color: #a0a5b1;
@@ -152,8 +155,8 @@ $stmt = sqlsrv_query($conn, $sql);
         }
 
         /* table.table td:last-child {
-            width: 130px;
-        } */
+    width: 130px;
+    } */
 
         table.table td a {
             color: #a0a5b1;
@@ -368,340 +371,372 @@ $stmt = sqlsrv_query($conn, $sql);
             font-size: 30px;
             position: relative;
         }
-        .badge span{
-            position: absolute;
-            font-size: 13px;
-            background-color: red;
-            color: #fff;
-            border-radius: 50%;
-            font-family: monospace;
-            padding: 6px;
-            right: -11px;
-            bottom: -3px;
+
+        #load {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9999;
+            background: url("/loading.gif") no-repeat center center rgba(0, 0, 0, 0.25)
         }
-        #load{
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index:9999;
-    background:url("/loading.gif") no-repeat center center rgba(0,0,0,0.25)
-}
+        .form-align{
+            width: 100% !important;
+            justify-content: space-around;
+            direction: rtl;
+            text-align: justify;
+            
+        }
+        .sticky_header{
+        position: fixed;
+        width: 89%;
+        background-color: #fff;
+        padding: 10px;
+        z-index: 99999999;
+        top: 14%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+     }
+     .sticky_header2{
+        position: fixed;
+        width: 89%;
+        background-color: #fff;
+        padding: 10px;
+        z-index: 99999999;
+        top: 32%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+     }
+     .add-list{
+        background-color: #789af3;
+        color: #fff;
+        padding: 9px;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none;
+        width: 20%;
+        text-align: center;
+        position: relative;
+     }
+     .add-list:hover{
+        text-decoration: none;
+        color: #fff;
+     }
+     .add-list span {
+        position: absolute;
+    font-size: 13px;
+    background-color: #ebdbdb;
+    color: #000;
+    border-radius: 25%;
+    font-family: sans-serif;
+    padding: 6px;
+    left: 5px;
+    bottom: 5px;
+    z-index: 99999;
+        }
     </style>
-    <script>
-        $(document).ready(function() {
-            // $('[data-toggle="tooltip"]').tooltip();
-            $("#allbox").click(function() {
-                //alert();
-                $('input:checkbox').not(this).prop('checked', this.checked);
-                $('input:checkbox').not(this).prop('background-color', "#baddfb");
-            });
-        });
-    </script>
 </head>
 <?php
 if (isset($_GET['page-nr'])) {
-
     $id = $_GET['page-nr'];
 } else {
     $id = 1;
 }
 ?>
-
 <body id="<?php echo $id; ?>">
-
-    <div class="container-castum">
+<form action="result.php" method="post">
+    <div  class="container-castum">
+        <section id="header">
         <div class="table-responsive">
-         
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row d-flex justify-content-end">
-       
-                        <div class="col-sm-2 text-center badge">
-                        <a href="result.php"><i class="bi bi-clipboard2-check-fill">
-                                <?php
-                                if(isset($_SESSION['users'])){?>
-                                 <span><?php print_r(count($_SESSION['users'])); ?></span>                                    
-                           <?php   }else{ ?>
-                          
-                            <?php
-                
-                                }
-                         
-                                ?>
-                              </i></a>
-                            
-                        </div>
                         <div class="col-sm-6">
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 <input type="text" class="form-control" placeholder="جستجو ...">
                             </div>
                         </div>
-                        <div class="col-sm-2 text-right">
+                        <!-- <div class="col-sm-2 text-right">
                             <h2><b>لاین : </b>بستنی</h2>
-                        </div>
-                        <div class="col-sm-2 text-right">
+                        </div> -->
+                        <div class="col-sm-5 text-right">
                             <h2><b>شعبه : </b>قم</h2>
                         </div>
-                     
                     </div>
-                
                 </div>
                 <?php print_r($_SESSION['reapet_case'] ?? '');
-                    unset($_SESSION['reapet_case']);
+                unset($_SESSION['reapet_case']);
                 ?>
-                <form action="result.php" method="post" onsubmit="window.opener.location.reload();">
-                <table class="table table-striped table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>آدرس مشتری</th>
-                            <th>کد مشتریان/نمایندگان/پیمانکاران</th>
-                            <th>نام و نام خانوادگی مشتری</th>
-                            <th>کد پرسنلی فروشنده</th>
-                            <th>نام و نام خانوادگی فروشنده</th>
-                            <th>صنف مشتری</th>
-                            <th>سال / ماه</th>
-                            <th>ماه</th>
-                            <th>سال </th>
-                            <th>#</th>
-                            <th>@</th>
-                        </tr>
-                        <tr>
-                            <td><input class="inner-search focus" id="costomer_address" type="text" placeholder="جستجو آدرس مشتریان"></td>
-                            <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
-                            <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
-                            <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
-                            <td><input id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
-                            <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
-                            <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
-                            <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
-                            <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو سال"></td>
-                            <td></td>
-                            <td>
-                                <div class="form-check ">
-                                    <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
+           
+                    <div class="container row mt-2" style="direction: rtl;min-width:100%; ">
+                    <div class="d-flex form-align mb-2">
+                    <div class="">
+                            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
+                            <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="">
+                            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
+                            <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div style="position:relative;" id="suggesstion-box"></div>
+                        </div>
+                        <div class="">
+                            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
+                            <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div style="position:relative;" id="suggesstion-box2"></div>
+                        </div>
+                      
+                        <div class="">
+                            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
+                            <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="">
+                            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
+                            <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="">
+                            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
+                            <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                       
+                        </div><!--d-flex-->
+                        <div style="margin: 0 auto;" class="mt-3 w-50 mb-3 d-flex justify-content-center">
+                           
+                            <a class="add-list" href="result.php">نمایش لیست 
+                                    <?php
+                                    if (isset($_SESSION['users'])) {
+                                        foreach ($_SESSION['users'] as $key => $val) {
+                                            if (in_array($val, $_SESSION['users'])) {
+                                                $_SESSION['users'];
+                                            } else {
+                                                $_SESSION['users'] = array_unique(array_merge($_SESSION['users'], $users), SORT_REGULAR);
+                                            }
+                                        }
+                                    ?>
+                                        <span><?php print_r(count($_SESSION['users'])); ?></span>
+                                    <?php   } else { ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </a>
+                                <input style="width: 20%;margin-right: 10px;" id="submit" type="submit" value="ثبت " class="btn btn-success">
+                        </div>
+                    </div>
+                    </section>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead id="thead">
+                            <tr>
+                                <th>آدرس مشتری</th>
+                                <th>کد مشتریان/نمایندگان/پیمانکاران</th>
+                                <th>نام و نام خانوادگی مشتری</th>
+                                <th>کد پرسنلی فروشنده</th>
+                                <th>نام و نام خانوادگی فروشنده</th>
+                                <th>صنف مشتری</th>
+                                <th>سال / ماه</th>
+                                <th>ماه</th>
+                                <th>سال </th>
+                                <th>#</th>
+                                <th>@</th>
+                            </tr>
+                            <tr>
+                                <td><input class="inner-search focus" id="costomer_address" type="text" placeholder="جستجو آدرس مشتریان"></td>
+                                <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
+                                <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
+                                <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
+                                <td><input id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                                <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
+                                <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
+                                <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
+                                <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو سال"></td>
+                                <td></td>
+                                <td>
+                                    <div class="form-check ">
+                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody id="result">
+<!--<tr>
+    <td>dfghd</td>
+    <td>dfghd</td>
+    <td>dfgh</td>
+    <td>dfgh</td>
+    <td>dfgh</td>
+    <td>dfgh</td>
+    <td>dfgh</td>
+    <td>dfgh</td>
+    <td>gdfh</td>
+    <td>dfgh</td>
+    <td><div class="form-check">
+    <input name="username[]" value="4567467" class="form-check-input" type="checkbox" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+    </label>
+    </div></td>
+</tr>-->
+     <?php
+                            // $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
+                            // $result = sqlsrv_query($conn, $query);
+                            // $number = '';
+                            // if ($result > 0) {
+                            //     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
+                            //         $number++;
+                            //         $output .= '<tr>
+                            //         <td>' . $row['Address'] . '</td>
+                            //         <td>' . $row['CustomerCode'] . '</td>
+                            //         <td>' . $row['CustomerName'] . ' </td>
+                            //         <td>' . $row['Personnel_Code'] . '</td>
+                            //         <td>' . $row['SellerName'] . '</td>
+                            //         <td>' . $row['ActivityName'] . '</td>
+                            //         <td>' . $row['Year/Month'] . '</td>
+                            //         <td>' . $row['Month'] . '</td>
+                            //         <td>' . $row['Year'] . '</td>
+                            //         <td>' . $number . '</td>
+                            //         <td><div class="form-check">
+                            //       <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                            //       <label class="form-check-label" for="flexCheckDefault">
+                            //       </label>
+                            //     </div></td></tr>';
+                            //     }
+                            //     echo $output;
 
-<tbody id="result">
-
-    <!-- <tr>
-        <td>dfghd</td>
-        <td>dfghd</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>dfgh</td>
-        <td>gdfh</td>
-        <td>dfgh</td>
-        <td><div class="form-check">
-        <input name="username[]" value="4567467" class="form-check-input" type="checkbox" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-        </label>
-        </div></td>
-    </tr> -->
-<?php
-// $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
-// $result = sqlsrv_query($conn, $query);
-// $number = '';
-// if ($result > 0) {
-//     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
-//         $number++;
-//         $output .= '<tr>
-//         <td>' . $row['Address'] . '</td>
-//         <td>' . $row['CustomerCode'] . '</td>
-//         <td>' . $row['CustomerName'] . ' </td>
-//         <td>' . $row['Personnel_Code'] . '</td>
-//         <td>' . $row['SellerName'] . '</td>
-//         <td>' . $row['ActivityName'] . '</td>
-//         <td>' . $row['Year/Month'] . '</td>
-//         <td>' . $row['Month'] . '</td>
-//         <td>' . $row['Year'] . '</td>
-//         <td>' . $number . '</td>
-//         <td><div class="form-check">
-//       <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
-//       <label class="form-check-label" for="flexCheckDefault">
-//       </label>
-//     </div></td></tr>';
-//     }
-//     echo $output;
-
-//                             sqlsrv_close($conn);
+                            //                             sqlsrv_close($conn);
                             ?>
                         </tbody>
-                </table>
-                <?php
-                if (isset($_POST['query'])) {
-                    $start = 0;
-                    $perpage = 12;
-                    $world = $_POST['query'];
-                    $records = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
+                    </table>
+                    <?php
+                    if (isset($_POST['query'])) {
+                        $start = 0;
+                        $perpage = 12;
+                        $world = $_POST['query'];
+                        $records = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
     WHERE [SellerName] LIKE N'%{$world}%' OR [CustomerName] LIKE N'%{$world}%' AND [BranchName]='زاهدان'";
-                    $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
-                    $row_count = sqlsrv_num_rows($query);
-                    $pages = ceil($row_count / $perpage);
-                ?>
-                    <div class="clearfix">
-                        <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                        <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+                        $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+                        $row_count = sqlsrv_num_rows($query);
+                        $pages = ceil($row_count / $perpage);
+                    ?>
+                        <div class="clearfix">
+                            <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                            <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-                                    <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
-                                <?php } else { ?>
-                                    <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                <?php } ?>
-                            </li>
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                        <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                                    <?php } else { ?>
+                                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                                    <?php } ?>
+                                </li>
 
-                            <li class="prev page-item">
+                                <li class="prev page-item">
 
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-                            <li id="activ" class="page-item active">
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-                            <li class="next page-item">
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-
-                            <li class="page-item">
-                                <?php if (!isset($_GET['page-nr'])) { ?>
-
-                                    <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
-                                    <?php } else {
-                                    if ($_GET['page-nr'] >= $pages) {
-                                    ?>
-                                        <a href=""><i class="fa fa-angle-double-right"></i></a>
                                     <?php
-                                    } else {
-                                    ?>
-                                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
-
-                                <?php  }
-                                }
-                                ?>
-                            </li>
-                        </ul>
-                    </div>
-                <?php } else { ?>
-                    <div class="clearfix">
-                        <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                        <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
-
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-                                    <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
-                                <?php } else { ?>
-                                    <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                <?php } ?>
-                            </li>
-
-                            <li class="prev page-item">
-
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-                            <li id="activ" class="page-item active">
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-                            <li class="next page-item">
-                                <?php
-                                for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                    <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-
-                            <li class="page-item">
-                                <?php if (!isset($_GET['page-nr'])) { ?>
-
-                                    <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
-                                    <?php } else {
-                                    if ($_GET['page-nr'] >= $pages) {
-                                    ?>
-                                        <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
                                     <?php
-                                    } else {
+                                    }
                                     ?>
-                                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+                                </li>
+                                <li id="activ" class="page-item active">
+                                    <?php
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </li>
+                                <li class="next page-item">
+                                    <?php
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </li>
 
-                                <?php  }
-                                }
-                                ?>
-                            </li>
-                        </ul>
-                    </div>
+                                <li class="page-item">
+                                    <?php if (!isset($_GET['page-nr'])) { ?>
 
-                <?php           } ?>
+                                        <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                        <?php } else {
+                                        if ($_GET['page-nr'] >= $pages) {
+                                        ?>
+                                            <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
 
-                <div class="container row mt-2" style="direction: rtl;">
-                    <div id="mask"></div>
-                    <table id="example" class="bordered material-table centered striped green lighten-1"></table>
-                    <div class="mt-5"></div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
-                        <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div style="position:relative;" id="suggesstion-box"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
-                        <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div style="position:relative;" id="suggesstion-box2"></div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
-                        <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
-                        <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
-                        <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
-                        <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col-md-8">
-                        <input id="submit" type="submit" value="submit" class="btn btn-success">
-                     
-                    </div>
-                </div>
+                                    <?php  }
+                                    }
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php } else { ?>
+                        <div class="clearfix">
+                            <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                            <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                        <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                                    <?php } else { ?>
+                                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                                    <?php } ?>
+                                </li>
+
+                                <li class="prev page-item">
+
+                                    <?php
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </li>
+                                <li id="activ" class="page-item active">
+                                    <?php
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </li>
+                                <li class="next page-item">
+                                    <?php
+                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                        <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </li>
+
+                                <li class="page-item">
+                                    <?php if (!isset($_GET['page-nr'])) { ?>
+
+                                        <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                        <?php } else {
+                                        if ($_GET['page-nr'] >= $pages) {
+                                        ?>
+                                            <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+
+                                    <?php  }
+                                    }
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                    <?php           } ?>
+
+
                 </form>
                 <section class="container rtl">
                 </section><!--container-->
@@ -713,21 +748,46 @@ if (isset($_GET['page-nr'])) {
 
 </html>
 <script>
-    $(".re_data").fadeTo(2000, 500).slideUp(1500, function(){
-       $(".re_data").slide(1600);
-     });
-    document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'interactive') {
-       document.getElementById('contents').style.visibility="hidden";
-  } else if (state == 'complete') {
-      setTimeout(function(){
-         document.getElementById('interactive');
-         document.getElementById('load').style.visibility="hidden";
-         document.getElementById('contents').style.visibility="visible";
-      },1000);
-  }
-}
+$(window).scroll(function(){
+   if ($(this).scrollTop() > 1){
+        $('#header').addClass("sticky_header");
+    }else{
+        $('#header').removeClass("sticky_header");
+    }
+ });
+
+ $(window).scroll(function(){
+   if ($(this).scrollTop() > 1){
+        $('#thead').addClass("sticky_header2");
+    }else{
+        $('#thead').removeClass("sticky_header2");
+    }
+ });
+    $(document).ready(function() {
+        // $('[data-toggle="tooltip"]').tooltip();
+        $("#allbox").click(function() {
+            //alert();
+            $('input:checkbox').not(this).prop('checked', this.checked);
+            $('input:checkbox').not(this).prop('background-color', "#baddfb");
+        });
+    });
+
+
+    $(".re_data").fadeTo(2000, 500).slideUp(1500, function() {
+        $(".re_data").slide(1600);
+    });
+    document.onreadystatechange = function() {
+        var state = document.readyState
+        if (state == 'interactive') {
+            document.getElementById('contents').style.visibility = "hidden";
+        } else if (state == 'complete') {
+            setTimeout(function() {
+                document.getElementById('interactive');
+                document.getElementById('load').style.visibility = "hidden";
+                document.getElementById('contents').style.visibility = "visible";
+            }, 1000);
+        }
+    }
     $(document).ready(function() {
         let links = document.querySelectorAll('li.active a');
         let bodyId = parseInt(document.body.id) - 1;
@@ -740,12 +800,13 @@ if (isset($_GET['page-nr'])) {
         let lin = document.querySelectorAll('li.next a');
         let body = parseInt(document.body.id) - 1;
         lin[body].classList.add("shownum");
-       
+
         $('form').submit(function() {
             window.opener.location.reload();
-        });     
+        });
 
         load_data();
+
         function load_data(query) {
             $.ajax({
                 url: "fetch.php",
@@ -761,6 +822,7 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data2();
+
         function load_data2(code) {
             $.ajax({
                 url: "fetch.php",
@@ -776,6 +838,7 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data3();
+
         function load_data3(customer) {
             $.ajax({
                 url: "fetch.php",
@@ -791,12 +854,14 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data4();
+
         function load_data4(cus_code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    cus_code: cus_code,typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                    cus_code: cus_code,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
@@ -805,12 +870,14 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data5();
+
         function load_data5(address) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    address: address,typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                    address: address,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
                     $('#result').html(data);
@@ -819,62 +886,70 @@ if (isset($_GET['page-nr'])) {
         }
 
         load_data6();
-function load_data6(activity_name) {
-    $.ajax({
-        url: "fetch.php",
-        method: "post",
-        data: {
-            activity_name: activity_name,typeOfSearch: $('input#flexCheckDefault').prop('checked')
-        },
-        success: function(data) {
-           
-            $('#result').html(data);
-        }
-    });
-}
 
-load_data7();
-function load_data7(year_month) {
-    $.ajax({
-        url: "fetch.php",
-        method: "post",
-        data: {
-            year_month:  year_month,typeOfSearch: $('input#flexCheckDefault').prop('checked')
-        },
-        success: function(data) {
-            $('#result').html(data);
+        function load_data6(activity_name) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    activity_name: activity_name,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                },
+                success: function(data) {
+
+                    $('#result').html(data);
+                }
+            });
         }
-    });
-}
+
+        load_data7();
+
+        function load_data7(year_month) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    year_month: year_month,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
 
 
-load_data8();
-function load_data8(month) {
-    $.ajax({
-        url: "fetch.php",
-        method: "post",
-        data: {
-            month: month,typeOfSearch: $('input#flexCheckDefault').prop('checked')
-        },
-        success: function(data) {
-            $('#result').html(data);
-        }
-    });
-}
+        load_data8();
 
-load_data9();
-function load_data9(year) {
-    $.ajax({
-        url: "fetch.php",
-        method: "post",
-        data: {
-            year: year,typeOfSearch: $('input#flexCheckDefault').prop('checked')
-        },
-        success: function(data) {
-            $('#result').html(data);
+        function load_data8(month) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    month: month,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
         }
-    });
-}
+
+        load_data9();
+
+        function load_data9(year) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    year: year,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
 
 
         $('#search_text').keyup(function() {
@@ -955,12 +1030,9 @@ function load_data9(year) {
             }
         });
 
-    
-          
-     
 
-    });
 
 
 
+    });
 </script>

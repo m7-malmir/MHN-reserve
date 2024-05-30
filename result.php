@@ -1,5 +1,6 @@
 <?php
 session_start();
+//var_dump($_POST);
 //session_destroy();
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
@@ -15,25 +16,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $branch_manage=$_POST['branch_manage'];
     $manager_sale_area=$_POST['manager_sale_area'];
     $expert_area=$_POST['expert_area'];
-
     if (empty($_SESSION['users'])) {
         $_SESSION['users']=$users;
     }else{
         foreach ($_SESSION['users'] as $key => $val ) {
-            var_dump($key.' => '. $val);
-            if(in_array($val, $users)){  
-              $_SESSION['reapet_case']='<div class="re_data">این مورد تکراری است</div>';
-              header("Location: test2.php"); 
+           // var_dump($key.' => '. $val);
+            if(!in_array($val, $users)){ 
+                $_SESSION['users']=array_unique(array_merge($_SESSION['users'], $users), SORT_REGULAR);
             }else{
-                $_SESSION['users']=array_merge($_SESSION['users'],  $users);
+                $_SESSION['reapet_case']='<div class="re_data">این مورد تکراری است</div>';
+                //header("Location: test2.php");
             }
         }
-       
     }
     }
-   
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,13 +37,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap Simple Data Table</title>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -441,11 +436,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 <tbody id="result">
 <?php
+
 $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
 $allrecords=$_SESSION['users'];
 foreach ($allrecords as $key) {
           $query.=" ID='".$key."' OR ";
 }
+
 if(count($_SESSION['users']) > 0){
     $query=substr($query,0, -3);
     
@@ -471,7 +468,6 @@ if ($result > 0) {
       </label>
     </div></td></tr>';
     }
-
 }else{
     echo 'result nothing';
 }
@@ -479,82 +475,89 @@ if ($result > 0) {
 }else{
     $no_data= '<div class="no_data">موردی برای نمایش وجود ندارد</div>';
 }
-
-                            ?>
+?>
                        
                         </tbody>
-                </table>
-               
+                </table>    
                 <section class="container rtl">
                 </section><!--container-->
             </div >
             <?=  $no_data ?? ''; ?>
         </div><!--row-->
     </div>
-  
-    
+   
 </body>
 </html>
-<script  type="text/javascript">
-    $(document).ready(function() {
+<script type="text/javascript">
+        $(document).ready(function() {
 
-        // let links = document.querySelectorAll('li.active a');
-        // let bodyId = parseInt(document.body.id) - 1;
-        // links[bodyId].classList.add("shownum");
+            // let links = document.querySelectorAll('li.active a');
+            // let bodyId = parseInt(document.body.id) - 1;
+            // links[bodyId].classList.add("shownum");
 
-        // let link = document.querySelectorAll('li.prev a');
-        // let bodyI = parseInt(document.body.id) - 1;
-        // link[bodyI].classList.add("shownum");
+            // let link = document.querySelectorAll('li.prev a');
+            // let bodyI = parseInt(document.body.id) - 1;
+            // link[bodyI].classList.add("shownum");
 
-        // let lin = document.querySelectorAll('li.next a');
-        // let body = parseInt(document.body.id) - 1;
-        // lin[body].classList.add("shownum");
-      
-        $('#result tr').click(function(event){
-            //var getID=$(this).find('.form-check [type=checkbox]').attr('value');
+            // let lin = document.querySelectorAll('li.next a');
+            // let body = parseInt(document.body.id) - 1;
+            // lin[body].classList.add("shownum");
+        
+            $('#result tr').click(function(event){
+                //var getID=$(this).find('.form-check [type=checkbox]').attr('value');
 
-            if (event.target.type !== 'checkbox') {
-               $(':checkbox', this).trigger('click');
-            } 
+                if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+                } 
 
-        });
-        $(function() {
-            $('tr [type=checkbox]').click(function() {
-            $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
+            });
+            $(function() {
+                $('tr [type=checkbox]').click(function() {
+                $(this).closest('tr').css('background-color', $(this).prop('checked') ? "#baddfb" : "#fff");
+                    });
                 });
             });
+
+    $('#trash').on('click', function get_msg(e) {
+        e.preventDefault();
+        var getID=new Array();
+        $(this).parent().parent().find('.form-check [type=checkbox]:checked').each(function(i) {
+            getID.push($(this).val());
         });
+        $.ajax({
+        type: "POST",
+        url: "delete-chat.php",
+        data: {
+            getID: getID 
+        },
+        success: function(data){
 
-$('#trash').on('click', function get_msg(e) {
-    e.preventDefault();
-    var getID=new Array();
-    $(this).parent().parent().find('.form-check [type=checkbox]:checked').each(function(i) {
-        getID.push($(this).val());
+        $( "#result tr" ).each(function( data ) {
+            var some = [];
+            $('#result tr').each(function () {
+            some.push($(this).attr("id"));
+            some.push(this.id);
+            some.forEach((item, index)=>{
+                console.log(index, item)
+            });
+   
+            if($(this).attr('id')==getID){
+                //some.forEach((item, index)=>{
+                //console.log(index, item)
+            });
+            //$(this).remove();
+        }
+        });   
+        },
+        error: function(xhr, status, error){
+            console.error(xhr);
+        }
+        });
     });
-    $.ajax({
-    type: "POST",
-    url: "delete-chat.php",
-    data: {
-        getID: getID 
-    },
-    success: function(data){
 
-    $( "#result tr" ).each(function( data ) {
-    if($(this).attr('id')==getID){
-        //alert();
-        $(this).remove();
-    }
-    });   
-    },
-    error: function(xhr, status, error){
-        console.error(xhr);
-    }
-    });
-});
+
+
 </script>
 
-<?php
 
-print_r($_SESSION);
-?>
 

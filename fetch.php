@@ -1,4 +1,5 @@
 <?php
+session_start();
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -29,13 +30,12 @@ if(isset($_POST['code']) || isset($_POST['query']) || isset($_POST['customer']) 
 }else{
     $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
      }
- //var_dump($query);
+
 $result = sqlsrv_query($conn, $query);
 $number = '';
 if ($result > 0) {
-
     $output ='';
-    print_r($output) ;
+
     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
         $number++;
         $output .= '<tr>
