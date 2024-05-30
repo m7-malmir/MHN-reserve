@@ -421,7 +421,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <span class="icons">
             <a  href="result.php" title="رفرش"><i class="bi bi-arrow-clockwise" ></i></a> 
            
-            <a id="trash" href="result.php?delete" title="حذف موارد انتخابی""><i class="bi bi-trash3-fill"></i></a> 
+            <a id="trash" href="result.php?delete" title="حذف موارد انتخابی" onclick="return confirm('Are you sure you want to delete this item?');"><i class="bi bi-trash3-fill"></i></a> 
             <a href="test2.php"  title="افزودن موارد دیگر"><i class="bi bi-plus-square-fill"></i></a>
                           
                 </span>

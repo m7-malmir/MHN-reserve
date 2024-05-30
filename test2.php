@@ -381,7 +381,7 @@ $stmt = sqlsrv_query($conn, $sql);
         }
         .form-align{
             width: 100% !important;
-            justify-content: space-around;
+            justify-content: space-between;
             direction: rtl;
             text-align: justify;
             
@@ -425,15 +425,16 @@ $stmt = sqlsrv_query($conn, $sql);
      }
      .add-list span {
         position: absolute;
-    font-size: 13px;
-    background-color: #ebdbdb;
-    color: #000;
-    border-radius: 25%;
-    font-family: sans-serif;
-    padding: 6px;
-    left: 5px;
-    bottom: 5px;
-    z-index: 99999;
+        font-size: 13px;
+        background-color: #dfe2f3;
+        color: #000;
+        border-radius: 23%;
+        font-family: sans-serif;
+        padding: 6px;
+        left: 7px;
+        bottom: 28px;
+        z-index: 99999;
+        display: table;
         }
     </style>
 </head>
@@ -504,7 +505,7 @@ if (isset($_GET['page-nr'])) {
                         </div>
                        
                         </div><!--d-flex-->
-                        <div style="margin: 0 auto;" class="mt-3 w-50 mb-3 d-flex justify-content-center">
+                        <div class="mt-4 w-50 mb-2 d-flex ">
                            
                             <a class="add-list" href="result.php" title="نمایش موارد انتخابی">نمایش لیست 
                                     <?php
@@ -563,51 +564,6 @@ if (isset($_GET['page-nr'])) {
                             </tr>
                         </thead>
                         <tbody id="result">
-<!--<tr>
-    <td>dfghd</td>
-    <td>dfghd</td>
-    <td>dfgh</td>
-    <td>dfgh</td>
-    <td>dfgh</td>
-    <td>dfgh</td>
-    <td>dfgh</td>
-    <td>dfgh</td>
-    <td>gdfh</td>
-    <td>dfgh</td>
-    <td><div class="form-check">
-    <input name="username[]" value="4567467" class="form-check-input" type="checkbox" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-    </label>
-    </div></td>
-</tr>-->
-     <?php
-                            // $query ="SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%'";
-                            // $result = sqlsrv_query($conn, $query);
-                            // $number = '';
-                            // if ($result > 0) {
-                            //     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_BOTH)) {
-                            //         $number++;
-                            //         $output .= '<tr>
-                            //         <td>' . $row['Address'] . '</td>
-                            //         <td>' . $row['CustomerCode'] . '</td>
-                            //         <td>' . $row['CustomerName'] . ' </td>
-                            //         <td>' . $row['Personnel_Code'] . '</td>
-                            //         <td>' . $row['SellerName'] . '</td>
-                            //         <td>' . $row['ActivityName'] . '</td>
-                            //         <td>' . $row['Year/Month'] . '</td>
-                            //         <td>' . $row['Month'] . '</td>
-                            //         <td>' . $row['Year'] . '</td>
-                            //         <td>' . $number . '</td>
-                            //         <td><div class="form-check">
-                            //       <input name="username[]" value="'.$row['Personnel_Code'].'" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                            //       <label class="form-check-label" for="flexCheckDefault">
-                            //       </label>
-                            //     </div></td></tr>';
-                            //     }
-                            //     echo $output;
-
-                            //                             sqlsrv_close($conn);
-                            ?>
                         </tbody>
                     </table>
                     <?php
