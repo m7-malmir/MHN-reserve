@@ -532,22 +532,11 @@ if ($result > 0) {
         },
         success: function(data){
 
-        $( "#result tr" ).each(function( data ) {
-            var some = [];
-            $('#result tr').each(function () {
-            some.push($(this).attr("id"));
-            some.push(this.id);
-            some.forEach((item, index)=>{
-                console.log(index, item)
-            });
-   
-            if($(this).attr('id')==getID){
-                //some.forEach((item, index)=>{
-                //console.log(index, item)
-            });
-            //$(this).remove();
-        }
-        });   
+        var some = [];
+        $("#result ").find('.form-check [type=checkbox]:checked').each(function(i) {
+            some.push($(this).val());
+            $(this).parent().parent().parent().remove();
+        });  
         },
         error: function(xhr, status, error){
             console.error(xhr);
@@ -555,9 +544,10 @@ if ($result > 0) {
         });
     });
 
-
-
 </script>
+<?php
 
+
+?>
 
 

@@ -395,6 +395,7 @@ $stmt = sqlsrv_query($conn, $sql);
         top: 14%;
         left: 50%;
         transform: translate(-50%, -50%);
+        transition: 500ms;
      }
      .sticky_header2{
         position: fixed;
@@ -405,9 +406,10 @@ $stmt = sqlsrv_query($conn, $sql);
         top: 32%;
         left: 50%;
         transform: translate(-50%, -50%);
+        transition: 500ms;
      }
      .add-list{
-        background-color: #789af3;
+        background-color: #adadad;
         color: #fff;
         padding: 9px;
         border-radius: 5px;
@@ -460,7 +462,9 @@ if (isset($_GET['page-nr'])) {
                             <h2><b>لاین : </b>بستنی</h2>
                         </div> -->
                         <div class="col-sm-5 text-right">
-                            <h2><b>شعبه : </b>قم</h2>
+                            <h6><b>شعبه : </b>قم</h6>
+                            <h6><b>لاین : </b>بستنی</h6>
+                        
                         </div>
                     </div>
                 </div>
@@ -501,7 +505,7 @@ if (isset($_GET['page-nr'])) {
                         </div><!--d-flex-->
                         <div style="margin: 0 auto;" class="mt-3 w-50 mb-3 d-flex justify-content-center">
                            
-                            <a class="add-list" href="result.php">نمایش لیست 
+                            <a class="add-list" href="result.php" title="نمایش موارد انتخابی">نمایش لیست 
                                     <?php
                                     if (isset($_SESSION['users'])) {
                                         foreach ($_SESSION['users'] as $key => $val) {
@@ -518,7 +522,7 @@ if (isset($_GET['page-nr'])) {
                                     }
                                     ?>
                                 </a>
-                                <input style="width: 20%;margin-right: 10px;" id="submit" type="submit" value="ثبت " class="btn btn-success">
+                                <input style="width: 20%;margin-right: 10px;" id="submit" type="submit" value="ثبت " class="btn btn-success" title="ثبت موارد انتخابی">
                         </div>
                     </div>
                     </section>
