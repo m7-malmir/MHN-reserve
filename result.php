@@ -1,8 +1,11 @@
 <?php
 session_start();
-if(isset($_SESSION['users'] )){
-
-//var_dump($_POST);
+if (!empty($_POST)) {
+    //echo 'post true';
+    $_SESSION['empty_row']='هیچ ردیفی انتخاب نشده است';
+    header("location:test2.php");
+    exit;
+}
 //session_destroy();
 
 $serverName = "192.168.27.217";
@@ -11,27 +14,27 @@ $pwd = "12341234";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $users=$_POST['username'];
-    $boss_sale=$_POST['boss_sale'];
-    $charge_line=$_POST['charge_line'];
-    $branch_name=$_POST['branch_name'];
-    $branch_manage=$_POST['branch_manage'];
-    $manager_sale_area=$_POST['manager_sale_area'];
-    $expert_area=$_POST['expert_area'];
-    if (empty($_SESSION['users'])) {
-        $_SESSION['users']=$users;
-    }else{
-        foreach ($_SESSION['users'] as $key => $val ) {
-           // var_dump($key.' => '. $val);
-            if(!in_array($val, $users)){ 
-                $_SESSION['users']=array_unique(array_merge($_SESSION['users'], $users), SORT_REGULAR);
-            }else{
-                $_SESSION['reapet_case']='<div class="re_data">این مورد تکراری است</div>';
-                //header("Location: test2.php");
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $users=$_POST['username'] ?? '';
+        $boss_sale=$_POST['boss_sale'];
+        $charge_line=$_POST['charge_line'];
+        $branch_name=$_POST['branch_name'];
+        $branch_manage=$_POST['branch_manage'];
+        $manager_sale_area=$_POST['manager_sale_area'];
+        $expert_area=$_POST['expert_area'];
+        if (empty($_SESSION['users'])) {
+            $_SESSION['users']=$users;
+        }else{
+            foreach ($_SESSION['users'] as $key => $val ) {
+            // var_dump($key.' => '. $val);
+                if(!in_array($val, $users)){ 
+                    $_SESSION['users']=array_unique(array_merge($_SESSION['users'], $users), SORT_REGULAR);
+                }else{
+                    $_SESSION['reapet_case']='<div class="re_data">این مورد تکراری است</div>';
+                    //header("Location: test2.php");
+                }
             }
         }
-    }
     }
 ?>
 <!DOCTYPE html>
@@ -450,13 +453,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 $query = "SELECT * FROM Faragostar.View_Unifier WHERE [BranchName] LIKE N'%قم%' AND LineName LIKE N'%بستن%' AND";
 if(isset($_SESSION['users'] )){
     $allrecords = $_SESSION['users'] ?? '';
+    foreach ($allrecords as $key) {
+        $query .= " ID='" . $key . "' OR ";
+    }
 }else{
-    $allrecords[]='';
+   // $allrecords[]='';
 }
 
-foreach ($allrecords as $key) {
-    $query .= " ID='" . $key . "' OR ";
-}
+
 if (isset($_SESSION['users']) && count($_SESSION['users']) > 0) {
   
         $query = substr($query, 0, -3);
@@ -561,11 +565,6 @@ sqlsrv_close($conn);
 
 </script>
 <?php
-}else{
-    $_SESSION['empty_row']='هیچ ردیفی انتخاب نشده است';
-    header("location:test2.php");
-    exit;
-}
 
 ?>
 

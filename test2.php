@@ -8,6 +8,8 @@ $pwd = "12341234";
 $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+
 if ($conn === false) {
     //die( print_r( sqlsrv_errors(), true));
     echo 'not ok';
