@@ -9,7 +9,6 @@ $databaseName = "Reports";
 $connectionInfo = array("Database" => $databaseName, "CharacterSet" => "UTF-8", "UID" => $uid, "PWD" => $pwd);
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-
 if ($conn === false) {
     //die( print_r( sqlsrv_errors(), true));
     echo 'not ok';
@@ -31,6 +30,7 @@ $stmt = sqlsrv_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -369,6 +369,7 @@ $stmt = sqlsrv_query($conn, $sql);
             text-align: right;
             margin-top: 1rem;
         }
+
         .badge i {
             font-size: 30px;
             position: relative;
@@ -381,62 +382,68 @@ $stmt = sqlsrv_query($conn, $sql);
             z-index: 9999;
             background: url("/loading.gif") no-repeat center center rgba(0, 0, 0, 0.25)
         }
-        .form-align{
+
+        .form-align {
             width: 100% !important;
             justify-content: space-between;
             direction: rtl;
             text-align: justify;
-            
+
         }
-        .sticky_header{
-        position: fixed;
-        width: 89%;
-        background-color: #fff;
-        padding: 10px;
-        z-index: 99999999;
-        top: 14%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: 500ms;
-     }
-     .sticky_header2{
-        position: fixed;
-        width: 89%;
-        background-color: #fff;
-        padding: 10px;
-        z-index: 99999999;
-        top: 32%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: 500ms;
-     }
-     .add-list{
-        background-color: #adadad;
-        color: #fff;
-        padding: 9px;
-        border-radius: 5px;
-        font-size: 16px;
-        text-decoration: none;
-        width: 20%;
-        text-align: center;
-        position: relative;
-     }
-     .add-list:hover{
-        text-decoration: none;
-        color: #fff;
-     }
-     .add-list span {
-        position: absolute;
-        font-size: 13px;
-        background-color: #dfe2f3;
-        color: #000;
-        border-radius: 23%;
-        font-family: sans-serif;
-        padding: 6px;
-        left: 7px;
-        bottom: 28px;
-        z-index: 99999;
-        display: table;
+
+        .sticky_header {
+            position: fixed;
+            width: 1700px;
+            background-color: #fff;
+            padding: 10px;
+            z-index: 99999999;
+            top: 14%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .sticky_header2 {
+            position: fixed;
+            width: 1700px;
+            background-color: #fff;
+            padding: 10px;
+            z-index: 99999999;
+            top: 32%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .add-list {
+            background-color: #adadad;
+            color: #fff;
+            padding: 9px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            width: 20%;
+            text-align: center;
+            position: relative;
+        }
+
+        .add-list:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .add-list span {
+            position: absolute;
+            font-size: 13px;
+            background-color: #dfe2f3;
+            color: #000;
+            border-radius: 23%;
+            font-family: sans-serif;
+            padding: 6px;
+            left: 7px;
+            bottom: 28px;
+            z-index: 99999;
+            display: table;
         }
     </style>
 </head>
@@ -447,70 +454,71 @@ if (isset($_GET['page-nr'])) {
     $id = 1;
 }
 ?>
+
 <body id="<?php echo $id; ?>">
-<form action="result.php" method="post">
-    <div  class="container-castum">
-        <section id="header">
-        <div class="table-responsive">
-            <div class="table-wrapper">
+    <form action="result.php" method="post">
+        <div class="container-castum">
+            <section id="header">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
 
-                <div class="table-title">
-                    <div class="row d-flex justify-content-end">
+                        <div class="table-title">
+                            <div class="row d-flex justify-content-end">
 
-                        <div class="col-sm-8">
-                            <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                <input type="text" class="form-control" placeholder="جستجو ...">
+                                <div class="col-sm-8">
+                                    <div class="search-box">
+                                        <i class="material-icons">&#xE8B6;</i>
+                                        <input type="text" class="form-control" placeholder="جستجو ...">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 text-right">
+                                    <h6><b>شعبه : </b>قم</h6>
+                                    <h6><b> </b>بستنی میهن</h6>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="col-sm-4 text-right">
-                            <h6><b>شعبه : </b>قم</h6>
-                            <h6><b>لاین : </b>بستنی</h6>
-                        </div>
+                        <?php
+                        print_r($_SESSION['reapet_case'] ?? '');
+                        unset($_SESSION['reapet_case']);
+                        ?>
 
-                    </div>
-                </div>
-                
-                <?php
-                print_r($_SESSION['reapet_case'] ?? '');
-                unset($_SESSION['reapet_case']);
-                ?>
-           
-                    <div class="container row mt-2" style="direction: rtl;min-width:100%; ">
-                    <div class="d-flex form-align mb-2">
-                    <div class="">
-                            <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
-                            <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
-                            <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div style="position:relative;" id="suggesstion-box"></div>
-                        </div>
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
-                            <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div style="position:relative;" id="suggesstion-box2"></div>
-                        </div>
-                      
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
-                            <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
-                            <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
-                            <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                       
-                        </div><!--d-flex-->
-                        <div class="mt-4 w-50 mb-2 d-flex ">
-                           
-                            <a class="add-list" href="result.php" title="نمایش موارد انتخابی">نمایش لیست 
+                        <div class="container row mt-2" style="direction: rtl;min-width:100%; ">
+                            <div class="d-flex form-align mb-2">
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">نام شعبه &#9733;</label>
+                                    <input name="branch_name" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">سرپرست فروش &#9733;</label>
+                                    <input name="boss_sale" id="search-box" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <div style="position:relative;" id="suggesstion-box"></div>
+                                </div>
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">مسئول لاین &#9733;</label>
+                                    <input name="charge_line" id="search-box2" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <div style="position:relative;" id="suggesstion-box2"></div>
+                                </div>
+
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">مدیر شعبه &#9733;</label>
+                                    <input name="branch_manage" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">کارشناس منطقه &#9733;</label>
+                                    <input type="text" name="expert_area" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                                <div class="">
+                                    <label for="exampleInputEmail1" class="form-label">مدیر منطقه فروش &#9733;</label>
+                                    <input name="manager_sale_area" type="text" class="form-control border" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+
+                            </div><!--d-flex-->
+                            <div class="mt-4 w-50 mb-2 d-flex ">
+                                <input style="width: 20%;margin-right: 10px;" id="submit" type="submit" value="ثبت " class="btn btn-success" title="ثبت موارد انتخابی">
+                                <a class="add-list" href="result.php" title="نمایش موارد انتخابی">نمایش لیست
                                     <?php
                                     if (isset($_SESSION['users'])) {
                                         foreach ($_SESSION['users'] as $key => $val) {
@@ -527,206 +535,206 @@ if (isset($_GET['page-nr'])) {
                                     }
                                     ?>
                                 </a>
-                                <input style="width: 20%;margin-right: 10px;" id="submit" type="submit" value="ثبت " class="btn btn-success" title="ثبت موارد انتخابی">
+
+                            </div>
                         </div>
-                    </div>
-                    </section>
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead id="thead">
-                            <tr>
-                                <th>آدرس مشتری</th>
-                                <th>کد مشتریان/نمایندگان/پیمانکاران</th>
-                                <th>نام و نام خانوادگی مشتری</th>
-                                <th>کد پرسنلی فروشنده</th>
-                                <th>نام و نام خانوادگی فروشنده</th>
-                                <th>صنف مشتری</th>
-                                <th>سال / ماه</th>
-                                <th>ماه</th>
-                                <th>سال </th>
-                                <th>#</th>
-                                <th>@</th>
-                            </tr>
-                            <tr>
-                                <td><input class="inner-search focus" id="costomer_address" type="text" placeholder="جستجو آدرس مشتریان"></td>
-                                <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
-                                <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
-                                <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
-                                <td><input id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
-                                <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
-                                <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
-                                <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
-                                <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو سال"></td>
-                                <td></td>
-                                <td>
-                                    <div class="form-check ">
-                                        <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody id="result">
-                        </tbody>
-                    </table>
-                    <?php
-                    if (isset($_POST['query'])) {
-                        $start = 0;
-                        $perpage = 12;
-                        $world = $_POST['query'];
-                        $records = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
+            </section>
+            <table class="table table-striped table-hover table-bordered">
+                <thead id="thead">
+                    <tr>
+                        <th>آدرس مشتری</th>
+                        <th>کد مشتریان/نمایندگان/پیمانکاران</th>
+                        <th>نام و نام خانوادگی مشتری</th>
+                        <th>کد پرسنلی فروشنده</th>
+                        <th>نام و نام خانوادگی فروشنده</th>
+                        <th>صنف مشتری</th>
+                        <th>سال / ماه</th>
+                        <th>ماه</th>
+                        <th>سال </th>
+                        <th>#</th>
+                        <th>@</th>
+                    </tr>
+                    <tr>
+                        <td><input class="inner-search focus" id="costomer_address" type="text" placeholder="جستجو آدرس مشتریان"></td>
+                        <td><input class="inner-search focus" id="costomer_code" type="text" placeholder="جستجو کد مشتریان"></td>
+                        <td><input class="inner-search focus" id="costomer_text" type="text" placeholder="جستجو فروشنده"></td>
+                        <td><input class="inner-search focus" id="search_code" type="text" placeholder="جستجو کد پرسنلی"></td>
+                        <td><input id="search_text" class="inner-search focus" type="text" placeholder="جستجو مشتری ..."></td>
+                        <td><input class="inner-search focus" id="activity_name" type="text" placeholder="جستجو"></td>
+                        <td><input class="inner-search focus" id="year_month" type="text" placeholder="جستجو سال/ماه"></td>
+                        <td><input class="inner-search focus" id="month" type="text" placeholder="جستجو ماه"></td>
+                        <td><input class="inner-search focus" id="year" type="text" placeholder="جستجو سال"></td>
+                        <td></td>
+                        <td>
+                            <div class="form-check ">
+                                <input id="allbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+            <?php
+            if (isset($_POST['query'])) {
+                $start = 0;
+                $perpage = 12;
+                $world = $_POST['query'];
+                $records = "SELECT TOP {$perpage} [Year],[Month],[Year/Month],[LineName],[BranchName],[StructureName],[ActivityName],[SellerName],[Personnel_Code],[CustomerName],[CustomerCode],[Address] FROM Faragostar.View_Unifier
     WHERE [SellerName] LIKE N'%{$world}%' OR [CustomerName] LIKE N'%{$world}%' AND [BranchName]='زاهدان'";
-                        $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
-                        $row_count = sqlsrv_num_rows($query);
-                        $pages = ceil($row_count / $perpage);
-                    ?>
-                        <div class="clearfix">
-                            <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                            <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+                $query = sqlsrv_query($conn, $records, array(), array("Scrollable" => 'static'));
+                $row_count = sqlsrv_num_rows($query);
+                $pages = ceil($row_count / $perpage);
+            ?>
+                <div class="clearfix">
+                    <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                    <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-                                        <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
-                                    <?php } else { ?>
-                                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                    <?php } ?>
-                                </li>
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                            <?php } else { ?>
+                                <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                            <?php } ?>
+                        </li>
 
-                                <li class="prev page-item">
+                        <li class="prev page-item">
 
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
-                                <li id="activ" class="page-item active">
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
-                                <li class="next page-item">
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                        <li id="activ" class="page-item active">
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                        <li class="next page-item">
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
 
-                                <li class="page-item">
-                                    <?php if (!isset($_GET['page-nr'])) { ?>
+                        <li class="page-item">
+                            <?php if (!isset($_GET['page-nr'])) { ?>
 
-                                        <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
-                                        <?php } else {
-                                        if ($_GET['page-nr'] >= $pages) {
-                                        ?>
-                                            <a href=""><i class="fa fa-angle-double-right"></i></a>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+                                <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                <?php } else {
+                                if ($_GET['page-nr'] >= $pages) {
+                                ?>
+                                    <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
 
-                                    <?php  }
-                                    }
-                                    ?>
-                                </li>
-                            </ul>
-                        </div>
-                    <?php } else { ?>
-                        <div class="clearfix">
-                            <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-                            <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
+                            <?php  }
+                            }
+                            ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php } else { ?>
+                <div class="clearfix">
+                    <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                    <div class="hint-text">نمایش <b><?php echo $page ?? ''; ?></b> از <b><?php echo $pages; ?></b></div>
 
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
-                                        <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
-                                    <?php } else { ?>
-                                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                    <?php } ?>
-                                </li>
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <?php if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) { ?>
+                                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>"><i class="fa fa-angle-double-left"></i></a>
+                            <?php } else { ?>
+                                <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                            <?php } ?>
+                        </li>
 
-                                <li class="prev page-item">
+                        <li class="prev page-item">
 
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
-                                <li id="activ" class="page-item active">
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
-                                <li class="next page-item">
-                                    <?php
-                                    for ($counter = 1; $counter <= $pages; $counter++) { ?>
-                                        <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
-                                    <?php
-                                    }
-                                    ?>
-                                </li>
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter - 1; ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                        <li id="activ" class="page-item active">
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" value="<?php echo $counter ?>" id="<?php echo $counter ?>" href="?page-nr=<?php echo $counter ?>"> <?php echo $counter ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                        <li class="next page-item">
+                            <?php
+                            for ($counter = 1; $counter <= $pages; $counter++) { ?>
+                                <a class="hide page-link" id="<?php echo $counter + 1 ?>" href="?page-nr=<?php echo $counter + 1 ?>"> <?php echo $counter + 1; ?></a>
+                            <?php
+                            }
+                            ?>
+                        </li>
 
-                                <li class="page-item">
-                                    <?php if (!isset($_GET['page-nr'])) { ?>
+                        <li class="page-item">
+                            <?php if (!isset($_GET['page-nr'])) { ?>
 
-                                        <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
-                                        <?php } else {
-                                        if ($_GET['page-nr'] >= $pages) {
-                                        ?>
-                                            <a href=""><i class="fa fa-angle-double-right"></i></a>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
+                                <a href="?page-nr=2" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                                <?php } else {
+                                if ($_GET['page-nr'] >= $pages) {
+                                ?>
+                                    <a href=""><i class="fa fa-angle-double-right"></i></a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>"><i class="fa fa-angle-double-right"></i></a>
 
-                                    <?php  }
-                                    }
-                                    ?>
-                                </li>
-                            </ul>
-                        </div>
+                            <?php  }
+                            }
+                            ?>
+                        </li>
+                    </ul>
+                </div>
 
-                    <?php           } ?>
+            <?php           } ?>
 
 
-                </form>
-                <section class="container rtl">
-                </section><!--container-->
+    </form>
+    <section class="container rtl">
+    </section><!--container-->
 
-            </div>
-        </div><!--row-->
+    </div>
+    </div><!--row-->
     </div>
 </body>
 
 </html>
 <script>
-$(window).scroll(function(){
-   if ($(this).scrollTop() > 1){
-        $('#header').addClass("sticky_header");
-    }else{
-        $('#header').removeClass("sticky_header");
-    }
- });
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 1) {
+            $('#header').addClass("sticky_header");
+        } else {
+            $('#header').removeClass("sticky_header");
+        }
+    });
 
- $(window).scroll(function(){
-   if ($(this).scrollTop() > 1){
-        $('#thead').addClass("sticky_header2");
-    }else{
-        $('#thead').removeClass("sticky_header2");
-    }
- });
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 1) {
+            $('#thead').addClass("sticky_header2");
+        } else {
+            $('#thead').removeClass("sticky_header2");
+        }
+    });
     $(document).ready(function() {
         // $('[data-toggle="tooltip"]').tooltip();
         $("#allbox").click(function() {
@@ -769,14 +777,15 @@ $(window).scroll(function(){
             window.opener.location.reload();
         });
 
+
         load_data();
 
-        function load_data(query) {
+        function load_data(code) {
             $.ajax({
                 url: "fetch.php",
                 method: "post",
                 data: {
-                    query: query,
+                    code: code,
                     typeOfSearch: $('input#flexCheckDefault').prop('checked')
                 },
                 success: function(data) {
@@ -785,6 +794,40 @@ $(window).scroll(function(){
             });
         }
 
+
+        $('#search_text').keyup(function() {
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
+        load_data3();
+
+        function load_data3(customer) {
+            $.ajax({
+                url: "fetch.php",
+                method: "post",
+                data: {
+                    customer: customer,
+                    typeOfSearch: $('input#flexCheckDefault').prop('checked')
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        $('#costomer_text').keyup(function() {
+            var search3 = $(this).val();
+            if (search3 != '') {
+                load_data3(search3);
+            } else {
+                load_data3();
+            }
+        });
+        /*
         load_data2();
 
         function load_data2(code) {
@@ -993,7 +1036,7 @@ $(window).scroll(function(){
                 load_data9();
             }
         });
-
+*/
 
 
 

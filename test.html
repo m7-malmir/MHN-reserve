@@ -21,46 +21,29 @@
 </style>
 
 <body>
-  <form id="dfgf" action="">
+  <h1><input type="yeets" name="_mdjm_event_cost" id="yett" class="mdjm-input-currency required" readonly="readonly" value="" placeholder="Totaal €0.00" style="
+    height: 100px;
+    width: 150px;
+    margin-top: -40px;
+    color: black;
+    font-weight: bold;"/>
+  </h1>
 
-    <div id="panel0000000001">
-
-      <div class="form-check" dir="rtl">
-        <input class="form-check-input" type="checkbox" data-def='0' value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-      هزینه مکالمه بخشنامه ای      </label>
-      </div>
-    </div>
-
-    <div id="panel0000000002">
-
-      <div class="form-check" id="ok" dir="rtl">
-        <input id="btn" class="form-check-input" type="test">
-        <label class="form-check-label" for="flexCheckDefault">
-
-      </div>
-    </div>
-
-  </form>
+  <select name="iFenceCorners" id="FenceCorners" class="AutosubmitCalculator" tabindex="3">
+    <option value="0" selected="selected" data-price="00.00">Geen hoeken</option>
+    <option value="1" data-price="20.00">1 hoek</option><option value="2" data-price="40.00">2 hoeken</option><option value="3" data-price="60.00">3 hoeken</option><option value="4" data-price="80.00">4 hoeken</option>
+    <option value="5" data-price="100.00">5 hoeken</option><option value="6" data-price="120.00">6 hoeken</option><option value="7" data-price="140.00">7 hoeken</option><option value="8" data-price="160.00">8 hoeken</option>
+    <option value="9" data-price="180.00">9 hoeken</option><option value="10" data-price="200.00">10 hoeken</option>
+  </select>
 </body>
 </html>
 <script>
 
 
-// $('#btn').on('input', function() {
-//   alert();
-//   $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
-// });
-$('#btn').on('input', function() {
- // alert();
-  var c = this.selectionStart,
-      r = /[^0-9]/gi,
-      v = $(this).val();
-  if(r.test(v)) {
-    $(this).val(v.replace(r, ''));
-    c--;
-  }
-  this.setSelectionRange(c, c);
+base = 0;
+$("#FenceCorners").on("change", function () {
+    var total = (base * 100 + $(this).find(":selected").data("price") * 100) / 100;
+    $("#yett").val('Total €' + total.toFixed(2).replace(/\./g, ','));
 });
 
 
