@@ -1,7 +1,5 @@
 <?php
 session_start();
-//session_destroy();
-//var_dump($_POST);
 $serverName = "192.168.27.217";
 $uid = "Faragostar";
 $pwd = "12341234";
@@ -716,35 +714,34 @@ if (isset($_GET['page-nr'])) {
     </div>
     </div><!--row-->
     </div>
+    <button id="button0000000002" type="button">click me</button>
 </body>
 
 </html>
 <script>
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 1) {
-            $('#header').addClass("sticky_header");
-        } else {
-            $('#header').removeClass("sticky_header");
-        }
-    });
+    // $(window).scroll(function() {
+    //     if ($(this).scrollTop() > 1) {
+    //         $('#header').addClass("sticky_header");
+    //     } else {
+    //         $('#header').removeClass("sticky_header");
+    //     }
+    // });
 
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 1) {
-            $('#thead').addClass("sticky_header2");
-        } else {
-            $('#thead').removeClass("sticky_header2");
-        }
-    });
-    $(document).ready(function() {
-        // $('[data-toggle="tooltip"]').tooltip();
-        $("#allbox").click(function() {
-            //alert();
-            $('input:checkbox').not(this).prop('checked', this.checked);
-            $('input:checkbox').not(this).prop('background-color', "#baddfb");
-        });
-    });
-
-
+    // $(window).scroll(function() {
+    //     if ($(this).scrollTop() > 1) {
+    //         $('#thead').addClass("sticky_header2");
+    //     } else {
+    //         $('#thead').removeClass("sticky_header2");
+    //     }
+    // });
+    // $(document).ready(function() {
+    //     // $('[data-toggle="tooltip"]').tooltip();
+    //     $("#allbox").click(function() {
+    //         //alert();
+    //         $('input:checkbox').not(this).prop('checked', this.checked);
+    //         $('input:checkbox').not(this).prop('background-color', "#baddfb");
+    //     });
+    // });
     $(".re_data").fadeTo(2000, 500).slideUp(1500, function() {
         $(".re_data").slide(1600);
     });
@@ -777,9 +774,7 @@ if (isset($_GET['page-nr'])) {
             window.opener.location.reload();
         });
 
-
         load_data();
-
         function load_data(code) {
             $.ajax({
                 url: "fetch.php",
@@ -794,18 +789,8 @@ if (isset($_GET['page-nr'])) {
             });
         }
 
-
-        $('#search_text').keyup(function() {
-            var search = $(this).val();
-            if (search != '') {
-                load_data(search);
-            } else {
-                load_data();
-            }
-        });
-        load_data3();
-
         function load_data3(customer) {
+
             $.ajax({
                 url: "fetch.php",
                 method: "post",
@@ -819,6 +804,16 @@ if (isset($_GET['page-nr'])) {
             });
         }
 
+        $('#search_text').keyup(function() {
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
+
+        load_data3();
         $('#costomer_text').keyup(function() {
             var search3 = $(this).val();
             if (search3 != '') {
@@ -827,6 +822,7 @@ if (isset($_GET['page-nr'])) {
                 load_data3();
             }
         });
+
         /*
         load_data2();
 
@@ -1039,6 +1035,19 @@ if (isset($_GET['page-nr'])) {
 */
 
 
+$('#button0000000002').click(function(){
+
+    $(function(){
+    $.ajax({
+        type:'GET',
+        url: 'https://mocki.io/v1/605e00ca-2e92-448e-9e25-c2a60b0a9278',
+        success: function (data){
+        console.log('success',data);
+        }
+    });
+});
+
+});
 
 
     });
