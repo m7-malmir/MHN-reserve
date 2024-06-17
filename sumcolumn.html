@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
+<div id="TargetGrid1-body">
     <div class="pmdynaform-grid-row row form-group show-grid pmdynaform-grid-static">
         <div class="pmdynaform-grid-field-static index index-row" style="width: 33px;">
             <div class="row form-group">
@@ -433,7 +435,7 @@
                 <div id="[TargetGrid1][1][TotalRow_currency]" class="pmdynaform-field-text pmdynaform-disabled-text ">
 
                     <div>
-                        <input id="form[TargetGrid1][1][TotalRow_currency]"
+                        <input id="formTargetGrid11TotalRow_currency"
                             name="form[TargetGrid1][1][TotalRow_currency]" type="text"
                             class="pmdynaform-control-text form-control" placeholder="" value="" disabled=""
                             autocomplete="off">
@@ -477,7 +479,486 @@
                             name="form[TargetGrid1][1][Medium_Expensive_currency]" type="text"
                             class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
 
+                        <input type="hidden" id="form[TargetGrid1][1][Medium_Expensive_currency_label]"
+                            name="form[TargetGrid1][1][Medium_Expensive_currency_label]" value="">
 
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-removerow-static remove-row"><button
+                class="glyphicon glyphicon-trash btn btn-danger btn-sm" data-row="1"></button></div>
+    </div>
+    <div class="pmdynaform-grid-row row form-group show-grid pmdynaform-grid-static">
+        <div class="pmdynaform-grid-field-static index index-row" style="width: 33px;">
+            <div class="row form-group">
+                <div>
+                    <div class="col-xs-4 col-sm-12 col-md-12 col-lg-12 pmdynaform-grid-label rowIndex"><span>1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 200px; max-width: 200px;">
+            <div class="row form-group" style="width: 200px;">
+                <div id="[TargetGrid1][1][SellerName]"
+                    class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                    <div>
+                        <select id="form[TargetGrid1][1][SellerName]" name="form[TargetGrid1][1][SellerName]"
+                            class="pmdynaform-control-dropdown form-control">
+
+                            <option disabled="" id="placeholder-option" value="">---</option>
+
+
+                        </select>
+
+                        <input type="hidden" value="" id="form[TargetGrid1][1][SellerName_label]"
+                            name="form[TargetGrid1][1][SellerName_label]">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 200px; max-width: 200px;">
+            <div class="row form-group" style="width: 200px;">
+                <div id="[TargetGrid1][1][seller_position]"
+                    class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                    <div>
+                        <select id="form[TargetGrid1][1][seller_position]" name="form[TargetGrid1][1][seller_position]"
+                            class="pmdynaform-control-dropdown form-control">
+
+                            <option disabled="" id="placeholder-option" value="">---</option>
+
+
+                        </select>
+
+                        <input type="hidden" value="" id="form[TargetGrid1][1][seller_position_label]"
+                            name="form[TargetGrid1][1][seller_position_label]">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 100px; max-width: 100px;">
+            <div class="row form-group" style="width: 100px;">
+                <div id="[TargetGrid1][1][SellerCode]" class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][SellerCode]" name="form[TargetGrid1][1][SellerCode]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" disabled=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][SellerCode_label]"
+                            name="form[TargetGrid1][1][SellerCode_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][PersonalCode]" class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][PersonalCode]" name="form[TargetGrid1][1][PersonalCode]"
+                            type="text" class="pmdynaform-control-text form-control" placeholder="" value="" disabled=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][PersonalCode_label]"
+                            name="form[TargetGrid1][1][PersonalCode_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Structure]"
+                    class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                    <div>
+                        <select id="form[TargetGrid1][1][Structure]" name="form[TargetGrid1][1][Structure]"
+                            class="pmdynaform-control-dropdown form-control">
+
+                            <option disabled="" id="placeholder-option" value="">----</option>
+
+
+                        </select>
+
+                        <input type="hidden" value="" id="form[TargetGrid1][1][Structure_label]"
+                            name="form[TargetGrid1][1][Structure_label]">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Activity]"
+                    class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                    <div>
+                        <select id="form[TargetGrid1][1][Activity]" name="form[TargetGrid1][1][Activity]"
+                            class="pmdynaform-control-dropdown form-control">
+
+                            <option disabled="" id="placeholder-option" value="">----</option>
+
+
+                            <option value="1245">تره بار</option>
+
+                            <option value="607">تعاونی کارکنان</option>
+
+                            <option value="347">خرده</option>
+
+                            <option value="355">رستوران</option>
+
+                            <option value="350">زنجیره ای</option>
+
+                            <option value="1716">سازمانی</option>
+
+                            <option value="1225">صادرات</option>
+
+                            <option value="348">عمده</option>
+
+                            <option value="1222">مراکز حمل و نقل</option>
+
+                            <option value="1224">مراکز درمانی</option>
+
+                            <option value="349">مراکز دولتی</option>
+
+                            <option value="1221">مراکز علمی و آموزشی</option>
+
+                            <option value="1223">مراکز ورزشی و تفریحی </option>
+
+                            <option value="1226">مصرف کننده</option>
+
+                            <option value="351">نماینده 1</option>
+
+                            <option value="353">پیمانکار 1</option>
+
+                            <option value="354">پیمانکار 2</option>
+
+                            <option value="1378">کترینگ</option>
+
+                        </select>
+
+                        <input type="hidden" value="" id="form[TargetGrid1][1][Activity_label]"
+                            name="form[TargetGrid1][1][Activity_label]">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][TypeVisit]"
+                    class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                    <div>
+                        <select id="form[TargetGrid1][1][TypeVisit]" name="form[TargetGrid1][1][TypeVisit]"
+                            class="pmdynaform-control-dropdown form-control">
+
+                            <option disabled="" id="placeholder-option" value="">----</option>
+
+
+                            <option value="1">سرد</option>
+
+                            <option value="2">گرم</option>
+
+                        </select>
+
+                        <input type="hidden" value="" id="form[TargetGrid1][1][TypeVisit_label]"
+                            name="form[TargetGrid1][1][TypeVisit_label]">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Family_Ice_Cream]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Family_Ice_Cream]" name="form[TargetGrid1][1][Family_Ice_Cream]"
+                            type="text" class="pmdynaform-control-text form-control" placeholder="" value=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Family_Ice_Cream_label]"
+                            name="form[TargetGrid1][1][Family_Ice_Cream_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Premium]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Premium]" name="form[TargetGrid1][1][Premium]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Premium_label]"
+                            name="form[TargetGrid1][1][Premium_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Fantasy]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Fantasy]" name="form[TargetGrid1][1][Fantasy]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Fantasy_label]"
+                            name="form[TargetGrid1][1][Fantasy_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Mirax]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Mirax]" name="form[TargetGrid1][1][Mirax]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Mirax_label]"
+                            name="form[TargetGrid1][1][Mirax_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Fruttare]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Fruttare]" name="form[TargetGrid1][1][Fruttare]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Fruttare_label]"
+                            name="form[TargetGrid1][1][Fruttare_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Butter_Lafaf_currency]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Butter_Lafaf_currency]"
+                            name="form[TargetGrid1][1][Butter_Lafaf_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Butter_Lafaf_currency_label]"
+                            name="form[TargetGrid1][1][Butter_Lafaf_currency_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Butter_FormSil_currency]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Butter_FormSil_currency]"
+                            name="form[TargetGrid1][1][Butter_FormSil_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Butter_FormSil_currency_label]"
+                            name="form[TargetGrid1][1][Butter_FormSil_currency_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Cheese_Pizza_currency]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Cheese_Pizza_currency]"
+                            name="form[TargetGrid1][1][Cheese_Pizza_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Cheese_Pizza_currency_label]"
+                            name="form[TargetGrid1][1][Cheese_Pizza_currency_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Eggs_Bulk]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Eggs_Bulk]" name="form[TargetGrid1][1][Eggs_Bulk]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Eggs_Package]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Eggs_Package]" name="form[TargetGrid1][1][Eggs_Package]"
+                            type="text" class="pmdynaform-control-text form-control" placeholder="" value=""
+                            autocomplete="off">
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Row_Factor]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Row_Factor]" name="form[TargetGrid1][1][Row_Factor]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Row_Factor_label]"
+                            name="form[TargetGrid1][1][Row_Factor_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Total_Factor]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Total_Factor]" name="form[TargetGrid1][1][Total_Factor]"
+                            type="text" class="pmdynaform-control-text form-control" placeholder="" value=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Total_Factor_label]"
+                            name="form[TargetGrid1][1][Total_Factor_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px;">
+            <div class="row form-group" style="width: 150px;">
+                <div id="[TargetGrid1][1][Total_Customers]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Total_Customers]" name="form[TargetGrid1][1][Total_Customers]"
+                            type="text" class="pmdynaform-control-text form-control" placeholder="" value=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Total_Customers_label]"
+                            name="form[TargetGrid1][1][Total_Customers_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 100px; max-width: 100px;">
+            <div class="row form-group" style="width: 100px;">
+                <div id="[TargetGrid1][1][TotalRow_currency]" class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                    <div>
+                        <input id="formTargetGrid11TotalRow_currency"
+                            name="form[TargetGrid1][2][TotalRow_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" disabled=""
+                            autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][TotalRow_currency_label]"
+                            name="form[TargetGrid1][1][TotalRow_currency_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px; display: none;">
+            <div class="row form-group" style="width: 150px; display: none;">
+                <div id="[TargetGrid1][1][Total_IceCream_currency]" class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Total_IceCream_currency]"
+                            name="form[TargetGrid1][1][Total_IceCream_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
+
+
+
+                        <input type="hidden" id="form[TargetGrid1][1][Total_IceCream_currency_label]"
+                            name="form[TargetGrid1][1][Total_IceCream_currency_label]" value="">
+
+                        <span class="content-print"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmdynaform-grid-field-static" style="min-width: 150px; max-width: 150px; display: none;">
+            <div class="row form-group" style="width: 150px; display: none;">
+                <div id="[TargetGrid1][1][Medium_Expensive_currency]"
+                    class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                    <div>
+                        <input id="form[TargetGrid1][1][Medium_Expensive_currency]"
+                            name="form[TargetGrid1][1][Medium_Expensive_currency]" type="text"
+                            class="pmdynaform-control-text form-control" placeholder="" value="" autocomplete="off">
 
                         <input type="hidden" id="form[TargetGrid1][1][Medium_Expensive_currency_label]"
                             name="form[TargetGrid1][1][Medium_Expensive_currency_label]" value="">
@@ -490,23 +971,31 @@
         <div class="pmdynaform-grid-removerow-static remove-row"><button
                 class="glyphicon glyphicon-trash btn btn-danger btn-sm" data-row="1"></button></div>
     </div>
+</div><!---->
 </body>
 </html>
 <script>
 
+
+
+  
     $(document).ready(function () {
-       $('input[name="form[TargetGrid1][1][TotalRow_currency]"]').val(calcSum());
-           $('.pmdynaform-field-text div input').change(function () { 
-             $('input[name="form[TargetGrid1][1][TotalRow_currency]"]').val(calcSum());
-           });
-       });
-    
-    function calcSum() {
-      var tamount = 0;
-      $('.pmdynaform-field-text div input').each(function() {
-        tamount += parseInt(($(this).val() ? $(this).val() : 0));
-      });
-      return tamount;
-    }
-    
-    </script>
+    var x=0;
+    for (var i = 0; i < 5; i++) {
+        x++;
+            $('.pmdynaform-grid-row:nth-child('+x+')').find('.pmdynaform-grid-field-static:not(:nth-child(22)) input[type="text"]').change(function () {  
+                $('input[name="form[TargetGrid1]['+x+'][TotalRow_currency]"]').val(calcSum());
+            });
+            function calcSum(){
+            var tamount = 0;
+            $('.pmdynaform-grid-row:nth-child('+x+') ').find('.pmdynaform-grid-field-static:not(:nth-child(22)) input[type="text"]').each(function() {
+                tamount += parseInt(($(this).val() ? $(this).val() : 0));
+            });
+            return tamount;
+            }
+        }
+    });
+
+</script>
+
+

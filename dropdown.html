@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+                        .main {
+                            display: none;
+                        }
+                        .active{}
+                        .panel-body.active h4:after{
+                            -webkit-transform: rotate(180deg);
+                            -moz-transform: rotate(180deg);
+                            transform: rotate(180deg);     
+                        }
+                        .bac_red{
+                            background-color: red;
+                        }
+                        .pmdynaform-grid-title {
+                            font-weight: bold;
+                            font-size: 20px;
+                            background-color: #82e32187;
+                            text-align-last: center;
+                        }
+
+                        .pmdynaform-grid-title {
+                            font-weight: bold;
+                            font-size: 20px;
+                            background-color: #82e32187;
+                            text-align-last: center;
+                        }
+                        .pmdynaform-grid .pmdynaform-grid-thead-static div {
+                            display: flex;
+                            align-items: center;
+                        }
+                        .pmdynaform-grid .pmdynaform-grid-thead-static .pmdynaform-grid-field-static span:nth-child(2) {
+                            display: none;
+                        }
+                        .wrapper {
+                            width: 70%;
+                        }
+                        .panel-heading {
+                            padding: 0;
+                            border: 0;
+                        }
+
+                        .panel-body>h4 {
+                            display: block;
+                            padding: 15px;
+                            color: #555;
+                            font-size: 16px;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            word-spacing: 3px;
+                            text-decoration: none;
+                        }
+                        .downn {
+                            font-family: 'Glyphicons Halflings';
+                            content: "\e114";
+                            float: right;
+                            transition: all 0.5s;
+                        }
+                        .upp {
+                            -webkit-transform: rotate(180deg);
+                            -moz-transform: rotate(180deg);
+                            transform: rotate(180deg);
+                        }
+                        .panel-body h4:after {
+                            font-family: 'Glyphicons Halflings';
+                            content: "\e114";
+                            float: right;
+                            transition: all 0.5s;
+                        }
+</style>
+
+<body>
+    <form role="form" class="form-horizontal pmdynaform-form" action="" method="get" id="65472412166699ef8c6cb19003028977"
+    style="height: auto;">
+    <div class="pmdynaform-field row show-grid">
+        <div>
+            <div id="Requester_Panel"
+                class="panel panel-default pmdynaform-panel  pmdynaform-field-panel form-group col-sm-12 col-md-12 col-lg-12 pmdynaform-field"
+                style="border-width:1px">
+                <div class="panel-heading" style="display:none;">
+                    <h3 class="panel-title">
+                        <div class="header-content">
+                            <span>untitled-panel</span>
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <h4 style="text-align:right; color: blue;padding: 0px;margin-top: 5px;">
+                        ثبت اهداف
+                    </h4>
+                    <hr style="border: 0.1em solid blue">
+
+                </div>
+                <div class="panel-footer" style="display:none">
+                    <div class="footer-content">
+
+                    </div>
+                    <div>footer pmdynaform!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div>
+            <div id="Target_Year"
+                class="pmdynaform-field-dropdown  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-disabled-dropdown pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Target_Year]" class="control-label pmdynaform-label">
+                        <span class="textlabel">سال هدف گذاری :</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <select id="form[Target_Year]" name="form[Target_Year]"
+                        class="pmdynaform-control-dropdown form-control" disabled="">
+
+                        <option disabled="" id="placeholder-option" value="">--انتخاب کنید --</option>
+
+
+                        <option value="1">1401</option>
+
+                        <option value="2">1402</option>
+
+                        <option value="3" selected="">1403</option>
+
+                        <option value="4">1404</option>
+
+                        <option value="5">1405</option>
+
+                    </select>
+
+
+
+                    <input type="hidden" value="1403" id="form[Target_Year_label]" name="form[Target_Year_label]">
+                    <span class="content-print">1403</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Target_Month"
+                class="pmdynaform-field-dropdown  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-disabled-dropdown pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Target_Month]" class="control-label pmdynaform-label">
+                        <span class="textlabel">ماه هدف گذاری:</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <select id="form[Target_Month]" name="form[Target_Month]"
+                        class="pmdynaform-control-dropdown form-control" disabled="">
+
+                        <option disabled="" id="placeholder-option" value="">-- انتخاب کنید --</option>
+
+
+                        <option value="1">فروردین</option>
+
+                        <option value="2">اردیبهشت</option>
+
+                        <option value="3" selected="">خرداد</option>
+
+                        <option value="4">تیر</option>
+
+                        <option value="5">مرداد</option>
+
+                        <option value="6">شهریور</option>
+
+                        <option value="7">مهر</option>
+
+                        <option value="8">آبان</option>
+
+                        <option value="9">آذر</option>
+
+                        <option value="10">دی</option>
+
+                        <option value="11">بهمن</option>
+
+                        <option value="12">اسفند</option>
+
+                    </select>
+
+
+
+                    <input type="hidden" value="خرداد" id="form[Target_Month_label]" name="form[Target_Month_label]">
+                    <span class="content-print">خرداد</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Branch_Name"
+                class="pmdynaform-field-dropdown  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-disabled-dropdown pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Branch_Name]" class="control-label pmdynaform-label">
+                        <span class="textlabel">نام شعبه:</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <select id="form[Branch_Name]" name="form[Branch_Name]"
+                        class="pmdynaform-control-dropdown form-control" disabled="">
+
+                        <option disabled="" id="placeholder-option" value="">-- انتخاب کنید --</option>
+
+
+                        <option value="1">ستاد</option>
+
+                        <option value="84">شعبه آبادان</option>
+
+                        <option value="86">شعبه آباده</option>
+
+                        <option value="91">شعبه آمل</option>
+
+                        <option value="78">شعبه اراک</option>
+
+                        <option value="72">شعبه اردبیل</option>
+
+                        <option value="33">شعبه ارومیه</option>
+
+                        <option value="6">شعبه اصفهان</option>
+
+                        <option value="5">شعبه البرز</option>
+
+                        <option value="13">شعبه اهواز</option>
+
+                        <option value="88">شعبه ایرانشهر</option>
+
+                        <option value="79">شعبه ایلام</option>
+
+                        <option value="26">شعبه بجنورد</option>
+
+                        <option value="85">شعبه بروجرد</option>
+
+                        <option value="18">شعبه بندرعباس</option>
+
+                        <option value="94">شعبه بندرلنگه</option>
+
+                        <option value="92">شعبه بهبهان</option>
+
+                        <option value="77">شعبه بوشهر</option>
+
+                        <option value="36">شعبه بوکان</option>
+
+                        <option value="80">شعبه بیرجند</option>
+
+                        <option value="37">شعبه تالش</option>
+
+                        <option value="38">شعبه تبریز</option>
+
+                        <option value="22">شعبه تنکابن</option>
+
+                        <option value="3">شعبه تهران شرق</option>
+
+                        <option value="2">شعبه تهران غرب</option>
+
+                        <option value="30">شعبه جیرفت</option>
+
+                        <option value="75">شعبه خرم آباد</option>
+
+                        <option value="17">شعبه خمین</option>
+
+                        <option value="35">شعبه خوی</option>
+
+                        <option value="19">شعبه دزفول</option>
+
+                        <option value="32">شعبه رشت</option>
+
+                        <option value="89">شعبه زابل</option>
+
+                        <option value="82">شعبه زاهدان</option>
+
+                        <option value="41">شعبه زنجان</option>
+
+                        <option value="23">شعبه ساری</option>
+
+                        <option value="14">شعبه ساوه</option>
+
+                        <option value="93">شعبه سبزوار</option>
+
+                        <option value="25">شعبه سمنان</option>
+
+                        <option value="74">شعبه سنندج</option>
+
+                        <option value="27">شعبه شاهرود</option>
+
+                        <option value="122">شعبه شهرلبنی</option>
+
+                        <option value="81">شعبه شهرکرد</option>
+
+                        <option value="71">شعبه شیراز</option>
+
+                        <option value="90">شعبه فسا</option>
+
+                        <option value="40">شعبه قزوین</option>
+
+                        <option value="16">شعبه قم</option>
+
+                        <option value="34">شعبه لنگرود</option>
+
+                        <option value="125">شعبه مایان تبریز</option>
+
+                        <option value="83">شعبه مراغه</option>
+
+                        <option value="28">شعبه مشهد</option>
+
+                        <option value="39">شعبه همدان</option>
+
+                        <option value="4">شعبه ورامین</option>
+
+                        <option value="87">شعبه پارس آباد</option>
+
+                        <option value="29">شعبه چابهار</option>
+
+                        <option value="20">شعبه کاشان</option>
+
+                        <option value="31">شعبه کرمان</option>
+
+                        <option value="73">شعبه کرمانشاه</option>
+
+                        <option value="76">شعبه گرگان</option>
+
+                        <option value="24">شعبه گنبد</option>
+
+                        <option value="21">شعبه یاسوج</option>
+
+                        <option value="15">شعبه یزد</option>
+
+                    </select>
+
+
+
+                    <input type="hidden" value="" id="form[Branch_Name_label]" name="form[Branch_Name_label]">
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div>
+            <div id="Branch_Manager_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field"
+                style="display: block;">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Branch_Manager_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">مدیر شعبه:</span>
+
+                        <span class="pmdynaform-field-required" style="display: inline-block;">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Branch_Manager_Per_label]" name="form[Branch_Manager_Per_label]" type="suggest"
+                        class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --" value=""
+                        autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Branch_Manager_Per]" name="form[Branch_Manager_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Sale_Expert_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Sale_Expert_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">کارشناس فروش
+                            :</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Sale_Expert_Per_label]" name="form[Sale_Expert_Per_label]" type="suggest"
+                        class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --" value=""
+                        autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Sale_Expert_Per]" name="form[Sale_Expert_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Sales_Area_Manager_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Sales_Area_Manager_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">مدیر منطقه
+                            فروش:</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Sales_Area_Manager_Per_label]" name="form[Sales_Area_Manager_Per_label]"
+                        type="suggest" class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --"
+                        value="" autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Sales_Area_Manager_Per]" name="form[Sales_Area_Manager_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div>
+            <div id="Req_Management_Org_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Req_Management_Org_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">مدیر سازمان فروش
+                            :</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Req_Management_Org_Per_label]" name="form[Req_Management_Org_Per_label]"
+                        type="suggest" class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --"
+                        value="" autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Req_Management_Org_Per]" name="form[Req_Management_Org_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Branch_Fin_Res_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field"
+                style="display: block;">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Branch_Fin_Res_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">مسئول
+                            مالی:</span>
+
+                        <span class="pmdynaform-field-required" style="display: inline-block;">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Branch_Fin_Res_Per_label]" name="form[Branch_Fin_Res_Per_label]" type="suggest"
+                        class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --" value=""
+                        autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Branch_Fin_Res_Per]" name="form[Branch_Fin_Res_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="Acc_Per"
+                class="pmdynaform-field-suggest pmdynaform-edit-suggest  form-group col-sm-4 col-md-4 col-lg-4  pmdynaform-field">
+
+                <div class="col-sm-4  col-md-4 col-lg-4">
+                    <label for="form[Acc_Per]" class="control-label pmdynaform-label">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" class="textlabel">حسابداری
+                            پخش:</span>
+
+                        <span class="pmdynaform-field-required">*</span>
+
+                    </label>
+                </div>
+
+                <div class="col-sm-8 col-md-8 col-lg-8 pmdynaform-field-control">
+                    <input id="form[Acc_Per_label]" name="form[Acc_Per_label]" type="suggest"
+                        class="pmdynaform-control-suggest form-control" placeholder="--جستجو کنید --" value=""
+                        autocomplete="off">
+
+                    <input type="hidden" value="" id="form[Acc_Per]" name="form[Acc_Per]">
+
+
+
+                    <span class="spinner-icon"></span>
+
+
+
+
+                    <span class="content-print"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div>
+            <div id="TargetGrid1"
+                class="pmdynaform-field-grid form-group col-sm-12 col-md-12 col-lg-12 pmdynaform-edit-grid static">
+                <div class="pmdynaform-grid-new">
+                    <p class="pmdynaform-grid-title"><span>خرده و عمده</span>
+
+
+                    </p>
+
+
+
+
+                </div>
+                <div class="pmdynaform-grid-fields">
+                    <div class="pmdynaform-grid">
+                        <div class="row pmdynaform-grid-thead pmdynaform-grid-thead-static"
+                            style="display: flex; margin-right: 0px;">
+                            <div class="pmdynaform-grid-field-static wildcard" style="min-width: 33px;"><span></span>
+                            </div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 200px;"><span
+                                    class="title-column" title="نام فروشنده/نماینده/پیمانکار"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 160px; text-align: center;">نام
+                                    فروشنده/نماینده/پیمانکار</span><span class="pmdynaform-field-required">*</span>
+                            </div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 200px;"><span
+                                    class="title-column" title="سمت سازمانی"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 160px; text-align: center;">سمت
+                                    سازمانی</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 100px;"><span
+                                    class="title-column" title="sellerID"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 60px; text-align: center;">sellerID</span>
+                            </div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="کد شخص"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">کد
+                                    شخص</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="ساختار"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">ساختار</span>
+                            </div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="صنف"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">صنف</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="نوع ویزیت"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">نوع
+                                    ویزیت</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="خانواده"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">خانواده</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="پریمیوم"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">پریمیوم</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="فانتزی"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">فانتزی</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="میرکس"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">میرکس</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="فروتاره"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">فروتاره</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="لفاف"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">لفاف</span><span
+                                    class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="فرم سیل"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">فرم
+                                    سیل</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="پنیر پیتزا"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">پنیر
+                                    پیتزا</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="تخم مرغ فله"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">تخم
+                                    مرغ فله</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="تخم مرغ بسته بندی"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">تخم
+                                    مرغ بسته بندی</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="تعداد سطر فاکتور"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">تعداد
+                                    سطر فاکتور</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="تعداد فاکتور"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">تعداد
+                                    فاکتور</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px;"><span
+                                    class="title-column" title="تعداد مشتریان خرید کرده"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">تعداد
+                                    مشتریان خرید کرده</span><span class="pmdynaform-field-required">*</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 100px;"><span
+                                    class="title-column" title="جمع کل ردیف"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 60px; text-align: center;">جمع
+                                    کل ردیف</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px; display: none;"><span
+                                    class="title-column" title="بستنی کل"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">بستنی
+                                    کل</span></div>
+                            <div class="pmdynaform-grid-field-static" style="min-width: 150px; display: none;"><span
+                                    class="title-column" title="متوسط - گران"
+                                    style="font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block; width: 110px; text-align: center;">متوسط
+                                    - گران</span></div>
+                            <div class="pmdynaform-grid-removerow-static" style="min-width: 38px;"></div>
+                        </div>
+                        <div id="TargetGrid1-body">
+                            <div class="pmdynaform-grid-tbody pmdynaform-form pmdynaform-static"
+                                style="overflow: auto;">
+                                <div class="pmdynaform-grid-row row form-group show-grid pmdynaform-grid-static">
+                                    <div class="pmdynaform-grid-field-static index index-row" style="width: 33px;">
+                                        <div class="row form-group">
+                                            <div>
+                                                <div
+                                                    class="col-xs-4 col-sm-12 col-md-12 col-lg-12 pmdynaform-grid-label rowIndex">
+                                                    <span>1</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 200px; max-width: 200px;">
+                                        <div class="row form-group" style="width: 200px;">
+                                            <div id="[TargetGrid1][1][SellerName]"
+                                                class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                                                <div>
+                                                    <select id="form[TargetGrid1][1][SellerName]"
+                                                        name="form[TargetGrid1][1][SellerName]"
+                                                        class="pmdynaform-control-dropdown form-control">
+
+                                                        <option disabled="" id="placeholder-option" value="">---
+                                                        </option>
+
+
+                                                    </select>
+
+                                                    <input type="hidden" value=""
+                                                        id="form[TargetGrid1][1][SellerName_label]"
+                                                        name="form[TargetGrid1][1][SellerName_label]">
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 200px; max-width: 200px;">
+                                        <div class="row form-group" style="width: 200px;">
+                                            <div id="[TargetGrid1][1][seller_position]"
+                                                class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                                                <div>
+                                                    <select id="form[TargetGrid1][1][seller_position]"
+                                                        name="form[TargetGrid1][1][seller_position]"
+                                                        class="pmdynaform-control-dropdown form-control">
+
+                                                        <option disabled="" id="placeholder-option" value="">---
+                                                        </option>
+
+
+                                                    </select>
+
+                                                    <input type="hidden" value=""
+                                                        id="form[TargetGrid1][1][seller_position_label]"
+                                                        name="form[TargetGrid1][1][seller_position_label]">
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 100px; max-width: 100px;">
+                                        <div class="row form-group" style="width: 100px;">
+                                            <div id="[TargetGrid1][1][SellerCode]"
+                                                class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][SellerCode]"
+                                                        name="form[TargetGrid1][1][SellerCode]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" disabled="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][SellerCode_label]"
+                                                        name="form[TargetGrid1][1][SellerCode_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][PersonalCode]"
+                                                class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][PersonalCode]"
+                                                        name="form[TargetGrid1][1][PersonalCode]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" disabled="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][PersonalCode_label]"
+                                                        name="form[TargetGrid1][1][PersonalCode_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Structure]"
+                                                class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                                                <div>
+                                                    <select id="form[TargetGrid1][1][Structure]"
+                                                        name="form[TargetGrid1][1][Structure]"
+                                                        class="pmdynaform-control-dropdown form-control">
+
+                                                        <option disabled="" id="placeholder-option" value="">----
+                                                        </option>
+
+
+                                                    </select>
+
+                                                    <input type="hidden" value=""
+                                                        id="form[TargetGrid1][1][Structure_label]"
+                                                        name="form[TargetGrid1][1][Structure_label]">
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Activity]"
+                                                class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                                                <div>
+                                                    <select id="form[TargetGrid1][1][Activity]"
+                                                        name="form[TargetGrid1][1][Activity]"
+                                                        class="pmdynaform-control-dropdown form-control">
+
+                                                        <option disabled="" id="placeholder-option" value="">----
+                                                        </option>
+
+
+                                                        <option value="1245">تره بار</option>
+
+                                                        <option value="607">تعاونی کارکنان</option>
+
+                                                        <option value="347">خرده</option>
+
+                                                        <option value="355">رستوران</option>
+
+                                                        <option value="350">زنجیره ای</option>
+
+                                                        <option value="1716">سازمانی</option>
+
+                                                        <option value="1225">صادرات</option>
+
+                                                        <option value="348">عمده</option>
+
+                                                        <option value="1222">مراکز حمل و نقل</option>
+
+                                                        <option value="1224">مراکز درمانی</option>
+
+                                                        <option value="349">مراکز دولتی</option>
+
+                                                        <option value="1221">مراکز علمی و آموزشی</option>
+
+                                                        <option value="1223">مراکز ورزشی و تفریحی </option>
+
+                                                        <option value="1226">مصرف کننده</option>
+
+                                                        <option value="351">نماینده 1</option>
+
+                                                        <option value="353">پیمانکار 1</option>
+
+                                                        <option value="354">پیمانکار 2</option>
+
+                                                        <option value="1378">کترینگ</option>
+
+                                                    </select>
+
+                                                    <input type="hidden" value=""
+                                                        id="form[TargetGrid1][1][Activity_label]"
+                                                        name="form[TargetGrid1][1][Activity_label]">
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][TypeVisit]"
+                                                class="pmdynaform-field-dropdown  pmdynaform-edit-dropdown pmdynaform-field">
+
+                                                <div>
+                                                    <select id="form[TargetGrid1][1][TypeVisit]"
+                                                        name="form[TargetGrid1][1][TypeVisit]"
+                                                        class="pmdynaform-control-dropdown form-control">
+
+                                                        <option disabled="" id="placeholder-option" value="">----
+                                                        </option>
+
+
+                                                        <option value="1">سرد</option>
+
+                                                        <option value="2">گرم</option>
+
+                                                    </select>
+
+                                                    <input type="hidden" value=""
+                                                        id="form[TargetGrid1][1][TypeVisit_label]"
+                                                        name="form[TargetGrid1][1][TypeVisit_label]">
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Family_Ice_Cream]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Family_Ice_Cream]"
+                                                        name="form[TargetGrid1][1][Family_Ice_Cream]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Family_Ice_Cream_label]"
+                                                        name="form[TargetGrid1][1][Family_Ice_Cream_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Premium]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Premium]"
+                                                        name="form[TargetGrid1][1][Premium]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Premium_label]"
+                                                        name="form[TargetGrid1][1][Premium_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Fantasy]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Fantasy]"
+                                                        name="form[TargetGrid1][1][Fantasy]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Fantasy_label]"
+                                                        name="form[TargetGrid1][1][Fantasy_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Mirax]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Mirax]"
+                                                        name="form[TargetGrid1][1][Mirax]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Mirax_label]"
+                                                        name="form[TargetGrid1][1][Mirax_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Fruttare]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Fruttare]"
+                                                        name="form[TargetGrid1][1][Fruttare]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Fruttare_label]"
+                                                        name="form[TargetGrid1][1][Fruttare_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Butter_Lafaf_currency]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Butter_Lafaf_currency]"
+                                                        name="form[TargetGrid1][1][Butter_Lafaf_currency]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Butter_Lafaf_currency_label]"
+                                                        name="form[TargetGrid1][1][Butter_Lafaf_currency_label]"
+                                                        value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Butter_FormSil_currency]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Butter_FormSil_currency]"
+                                                        name="form[TargetGrid1][1][Butter_FormSil_currency]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Butter_FormSil_currency_label]"
+                                                        name="form[TargetGrid1][1][Butter_FormSil_currency_label]"
+                                                        value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Cheese_Pizza_currency]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Cheese_Pizza_currency]"
+                                                        name="form[TargetGrid1][1][Cheese_Pizza_currency]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Cheese_Pizza_currency_label]"
+                                                        name="form[TargetGrid1][1][Cheese_Pizza_currency_label]"
+                                                        value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Eggs_Bulk]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Eggs_Bulk]"
+                                                        name="form[TargetGrid1][1][Eggs_Bulk]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Eggs_Bulk_label]"
+                                                        name="form[TargetGrid1][1][Eggs_Bulk_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Eggs_Package]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Eggs_Package]"
+                                                        name="form[TargetGrid1][1][Eggs_Package]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Eggs_Package_label]"
+                                                        name="form[TargetGrid1][1][Eggs_Package_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Row_Factor]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Row_Factor]"
+                                                        name="form[TargetGrid1][1][Row_Factor]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Row_Factor_label]"
+                                                        name="form[TargetGrid1][1][Row_Factor_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Total_Factor]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Total_Factor]"
+                                                        name="form[TargetGrid1][1][Total_Factor]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden" id="form[TargetGrid1][1][Total_Factor_label]"
+                                                        name="form[TargetGrid1][1][Total_Factor_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px;">
+                                        <div class="row form-group" style="width: 150px;">
+                                            <div id="[TargetGrid1][1][Total_Customers]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Total_Customers]"
+                                                        name="form[TargetGrid1][1][Total_Customers]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Total_Customers_label]"
+                                                        name="form[TargetGrid1][1][Total_Customers_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 100px; max-width: 100px;">
+                                        <div class="row form-group" style="width: 100px;">
+                                            <div id="[TargetGrid1][1][TotalRow_currency]"
+                                                class="pmdynaform-field-text pmdynaform-disabled-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][TotalRow_currency]"
+                                                        name="form[TargetGrid1][1][TotalRow_currency]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" disabled="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][TotalRow_currency_label]"
+                                                        name="form[TargetGrid1][1][TotalRow_currency_label]" value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px; display: none;">
+                                        <div class="row form-group" style="width: 150px; display: none;">
+                                            <div id="[TargetGrid1][1][Total_IceCream_currency]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Total_IceCream_currency]"
+                                                        name="form[TargetGrid1][1][Total_IceCream_currency]" type="text"
+                                                        class="pmdynaform-control-text form-control" placeholder=""
+                                                        value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Total_IceCream_currency_label]"
+                                                        name="form[TargetGrid1][1][Total_IceCream_currency_label]"
+                                                        value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static"
+                                        style="min-width: 150px; max-width: 150px; display: none;">
+                                        <div class="row form-group" style="width: 150px; display: none;">
+                                            <div id="[TargetGrid1][1][Medium_Expensive_currency]"
+                                                class="pmdynaform-field-text pmdynaform-edit-text ">
+
+                                                <div>
+                                                    <input id="form[TargetGrid1][1][Medium_Expensive_currency]"
+                                                        name="form[TargetGrid1][1][Medium_Expensive_currency]"
+                                                        type="text" class="pmdynaform-control-text form-control"
+                                                        placeholder="" value="" autocomplete="off">
+
+
+
+                                                    <input type="hidden"
+                                                        id="form[TargetGrid1][1][Medium_Expensive_currency_label]"
+                                                        name="form[TargetGrid1][1][Medium_Expensive_currency_label]"
+                                                        value="">
+
+                                                    <span class="content-print"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pmdynaform-grid-removerow-static remove-row"><button
+                                            class="glyphicon glyphicon-trash btn btn-danger btn-sm"
+                                            data-row="1"></button></div>
+                                </div>
+                            </div>
+
+
+                            <div class="containerStaticGrid" style="overflow:hidden">
+
+                                <div class="pmdynaform-grid-functions pmdynaform-grid-thead-static"
+                                    style="width: 3527px;">
+                                    <div style="width: 33px; display: inline-block;"><span></span></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 200px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 200px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 100px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 150px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 150px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 150px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: inline-block; width: 150px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Family_Ice_Cream"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Family_Ice_Cream"
+                                            style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Premium"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Premium" style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Fantasy"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Fantasy" style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Mirax"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Mirax" style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Fruttare"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Fruttare" style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Butter_Lafaf_currency"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Butter_Lafaf_currency"
+                                            style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Butter_FormSil_currency"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Butter_FormSil_currency"
+                                            style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Cheese_Pizza_currency"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Cheese_Pizza_currency"
+                                            style="width: 50%;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Eggs_Bulk"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Eggs_Bulk" style="width: 50%;">
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Eggs_Package"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Eggs_Package" style="width: 50%;">
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Row_Factor"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Row_Factor" style="width: 50%;">
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Total_Factor"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Total_Factor" style="width: 50%;">
+                                    </div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-Total_Customers"
+                                        style="display: inline-block; width: 150px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-Total_Customers" style="width: 50%;"
+                                            data-original-title="" title=""></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result total function-result-TotalRow_currency"
+                                        style="display: inline-block; width: 100px;"><span>∑: </span><input
+                                            readonly="readonly" id="sum-TargetGrid1-TotalRow_currency"
+                                            style="width: 50%;" data-original-title="" title=""></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: none; width: 150px;"></div>
+                                    <div class="pmdynaform-grid-field-static field-operation-result"
+                                        style="display: none; width: 150px;"></div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="pmdynaform-grid-newitem">
+                    <span class="pmdynaform-grid-plus glyphicon glyphicon-plus glyphicon btn btn-default btn-sm"></span>
+                    <span class="pmdynaform-grid-text-plus">New</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div style="display: none;">
+            <div id="sum_FamilyIceCream" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[sum_FamilyIceCream]" name="form[sum_FamilyIceCream]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[sum_FamilyIceCream_label]" name="form[sum_FamilyIceCream_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="sum_Premium" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[sum_Premium]" name="form[sum_Premium]" class="pmdynaform-control-hidden form-control"
+                    type="hidden" value="">
+                <input type="hidden" value="" id="form[sum_Premium_label]" name="form[sum_Premium_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="sum_Fantasy" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[sum_Fantasy]" name="form[sum_Fantasy]" class="pmdynaform-control-hidden form-control"
+                    type="hidden" value="">
+                <input type="hidden" value="" id="form[sum_Fantasy_label]" name="form[sum_Fantasy_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="sum_Mirax" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[sum_Mirax]" name="form[sum_Mirax]" class="pmdynaform-control-hidden form-control"
+                    type="hidden" value="">
+                <input type="hidden" value="" id="form[sum_Mirax_label]" name="form[sum_Mirax_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="sum_Fruttare" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[sum_Fruttare]" name="form[sum_Fruttare]" class="pmdynaform-control-hidden form-control"
+                    type="hidden" value="">
+                <input type="hidden" value="" id="form[sum_Fruttare_label]" name="form[sum_Fruttare_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Butter_Lafaf_currency" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Butter_Lafaf_currency]" name="form[Sum_Butter_Lafaf_currency]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Butter_Lafaf_currency_label]"
+                    name="form[Sum_Butter_Lafaf_currency_label]">
+            </div>
+        </div>
+    </div>
+    <div class="pmdynaform-field row show-grid">
+        <div style="display: none;">
+            <div id="Sum_Butter_FormSil_currency" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Butter_FormSil_currency]" name="form[Sum_Butter_FormSil_currency]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Butter_FormSil_currency_label]"
+                    name="form[Sum_Butter_FormSil_currency_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Cheese_Pizza_currency" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Cheese_Pizza_currency]" name="form[Sum_Cheese_Pizza_currency]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Cheese_Pizza_currency_label]"
+                    name="form[Sum_Cheese_Pizza_currency_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Eggs_Bulk" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Eggs_Bulk]" name="form[Sum_Eggs_Bulk]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Eggs_Bulk_label]" name="form[Sum_Eggs_Bulk_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Eggs_Package" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Eggs_Package]" name="form[Sum_Eggs_Package]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Eggs_Package_label]" name="form[Sum_Eggs_Package_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Row_Factor" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Row_Factor]" name="form[Sum_Row_Factor]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Row_Factor_label]" name="form[Sum_Row_Factor_label]">
+            </div>
+        </div>
+        <div style="display: none;">
+            <div id="Sum_Total_Factor" class="pmdynaform-field-hidden pmdynaform-field">
+                <input id="form[Sum_Total_Factor]" name="form[Sum_Total_Factor]"
+                    class="pmdynaform-control-hidden form-control" type="hidden" value="">
+                <input type="hidden" value="" id="form[Sum_Total_Factor_label]" name="form[Sum_Total_Factor_label]">
+            </div>
+        </div>
+    </div>
+</form>  
+</body>
+</html>
+
+<script>
+
+    $('#Requester_Panel ').click(function(){
+
+    $(this).parents('#65472412166699ef8c6cb19003028977').find(".pmdynaform-field:not(:nth-child(1))").toggleClass("main");
+    $(this).find(".panel-body ").toggleClass("active");
+
+
+    });
+
+</script>
