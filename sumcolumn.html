@@ -972,6 +972,37 @@
                 class="glyphicon glyphicon-trash btn btn-danger btn-sm" data-row="1"></button></div>
     </div>
 </div><!---->
+
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Size 1</th>
+            <th>Size 2</th>
+            <th>Size 3</th>
+            <th>TOTAL</th>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td><input type="text" class="productA"></td>
+            <td><input type="text" class="productA"></td>
+            <td><input type="text" class="productA"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td><input type="text" class="productB"></td>
+            <td><input type="text" class="productB"></td>
+            <td><input type="text" class="productB"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td><input type="text" class="productC"></td>
+            <td><input type="text" class="productC"></td>
+            <td><input type="text" class="productC"></td>
+            <td></td>
+        </tr>
+    </table>
 </body>
 </html>
 <script>
@@ -994,7 +1025,25 @@
             return tamount;
             }
         }
+
     });
+
+        $(document).on("input", "input:text", function () {
+            var strClass = $(this).prop("class");
+            var intTotal = 0;
+            $.each($("input:text." + strClass), function () {
+                var intInputValue = parseInt($(this).val());
+                if (!isNaN(intInputValue))
+                {
+                    intTotal = intTotal + intInputValue;
+                }
+            });
+            $(this).parent("td").siblings("td:last").text(intTotal);
+        });
+
+
+
+   
 
 </script>
 

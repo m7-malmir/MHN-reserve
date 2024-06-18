@@ -1,0 +1,147 @@
+// toggle for each grid
+$(' .pmdynaform-grid-new').click(function(){
+   $(this).parent().find(".pmdynaform-grid-fields").toggleClass("main");
+   $(this).parent().find(".pmdynaform-grid-newitem").toggleClass("main");
+   $(this).parent().find(".pmdynaform-grid").toggleClass("main");
+	$(this).parent().find(".pmdynaform-grid-new ").toggleClass("active");		
+});
+//end toggle
+
+
+/*css for toggle dropdown got each grid*/
+#TargetGrid1 .pmdynaform-grid-title:hover { 
+	background-color:#93c8ed;
+   cursor: pointer;
+   color:#fff;
+}  
+ #TargetGridDAILY .pmdynaform-grid-title:hover{
+  background-color:#df4e4e;
+   cursor: pointer;
+   color:#fff;
+  }  
+  #TargetGridORG .pmdynaform-grid-title:hover{
+   background-color:#e5b059;
+   cursor: pointer;
+    color:#fff;
+  }
+  #TargetGridCHAIN .pmdynaform-grid-title:hover{
+   background-color:#87d1c3;
+   cursor: pointer;
+    color:#fff;
+  }
+ #TargetGrid1 .pmdynaform-grid-title {
+
+    background-color:#9fd1f3;
+   display: flex;
+    justify-content: center;
+       height: 35px;
+    align-items: center;
+}   
+ #TargetGridCHAIN .pmdynaform-grid-title {
+
+    background-color: #91DDCF;
+    text-align-last: center; 
+     display: flex;
+    justify-content: center;
+       height: 35px;
+    align-items: center;
+} 
+  
+ #TargetGridORG .pmdynaform-grid-title {
+
+    background-color: #FFC96F;
+    text-align-last: center; 
+     display: flex;
+    justify-content: center;
+       height: 35px;
+    align-items: center;
+} 
+  
+ #TargetGridDAILY .pmdynaform-grid-title {
+  
+    background-color: #FF6868;
+    text-align-last: center; 
+     display: flex;
+    justify-content: center;
+       height: 35px;
+    align-items: center;
+} 
+/*css for toggle dropdown got each grid*/  
+  
+  
+  
+.pmdynaform-grid .pmdynaform-grid-thead-static div {
+  display: flex;
+    align-items: center;
+}
+  .pmdynaform-grid .pmdynaform-grid-thead-static .pmdynaform-grid-field-static span:nth-child(2) {
+  display:none;
+  }
+
+  #TargetGrid1 .pmdynaform-grid-tbody .pmdynaform-grid-row:hover{
+  background-color:blue;
+  
+  }  
+  .hoverbac{
+  background color:red;
+  }
+ 
+ .pmdynaform-grid-new.active p:after{
+    -webkit-transform: rotate(180deg);
+     -moz-transform: rotate(180deg);
+     transform: rotate(180deg);     
+ }
+.pmdynaform-grid-new>p {
+   display: block;
+   padding: 15px;
+   color: #555;
+   font-size: 16px;
+   font-weight: bold;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   word-spacing: 3px;
+   text-decoration: none;
+}
+ .pmdynaform-grid-new p:after {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+   transition:all 0.2s;
+   margin-left:15px;
+}
+.main {
+    display: none;
+}
+.active{}
+ /*css for drop toggle*/
+  
+  /*for vertical align inputs in grid*/
+.pmdynaform-field-text, .pmdynaform-field-dropdown {
+    /* padding: 0px 0px 0px 0px !important; */
+}  
+ .pmdynaform-field-text, .pmdynaform-field-dropdown {
+    background: whitesmoke;
+    border: 1px solid gainsboro;
+    padding: 0!important;
+     margin-bottom: 0px !important; 
+    direction: rtl;
+} 
+ /*for vertical align inputs in grid*/
+  .pmdynaform-grid-title span{
+  width: 100px;
+  }
+  
+ /*grid title in one section hrizinal*/
+
+
+ /*
+for each sum under each column
+ */
+
+.pmdynaform-grid .pmdynaform-grid-thead-static div:nth-child(8){
+    width:80px!important;
+}
+ /*
+for each sum under each column
+ */
+

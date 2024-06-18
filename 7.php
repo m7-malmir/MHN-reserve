@@ -1,6 +1,6 @@
 <?php
 $Query= "
-SELECT
+SELECT 
   IFNULL(prpfbaprt.CompanyId, 36) AS CompanyId,
   prppkg.G_UNIT AS Unit,
   CONCAT(prpfbaprt.APP_NUMBER, '-', prppkg.ROW) AS InqueryNumber,
